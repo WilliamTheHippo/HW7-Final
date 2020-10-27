@@ -1,3 +1,3 @@
 # HW7 - Final
 
-Game clone TBD.
+Clone of part of *Link's Awakening DX*. Final project for NYU's Intermediate Game Dev Course.
