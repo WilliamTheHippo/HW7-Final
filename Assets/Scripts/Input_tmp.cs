@@ -10,9 +10,9 @@ public class Input_tmp : MonoBehaviour
 
 	void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.UpArrow))
+		if(Input.GetKey(KeyCode.UpArrow))
 		{
-			
+			Camera.main.transform.position += new Vector3(0,1,0);
 		}
 	}
 }
