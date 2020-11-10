@@ -552,7 +552,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!1 &924010250
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,7 +697,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!1 &943682642
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,7 +842,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!1 &951601335
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,6 +855,7 @@ GameObject:
   - component: {fileID: 951601336}
   - component: {fileID: 951601338}
   - component: {fileID: 951601339}
+  - component: {fileID: 951601340}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -963,6 +964,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &951601340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951601335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b29533a9a702b547aef909705224a57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 10
+  attackTimer: 0.5
+  chargeTimer: 0
+  jumpTimer: 0.45
+  canMove: 1
+  jumping: 0
+  slashing: 0
+  poking: 0
+  myDirection: {x: 0, y: 0, z: 0}
+  hitDestination: {x: 0, y: 0, z: 0}
 --- !u!1 &1004513022
 GameObject:
   m_ObjectHideFlags: 0
