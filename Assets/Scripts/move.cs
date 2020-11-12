@@ -18,8 +18,8 @@ public class move : MonoBehaviour
     public bool slashing = false;
     public bool poking = false;
     int pokeCounter = 1;
-    public Gel Gel;
 
+    public Gel Gel;
     public Vector3 myDirection;
     public Vector3 hitDestination;
     Collider2D m_Collider; 
