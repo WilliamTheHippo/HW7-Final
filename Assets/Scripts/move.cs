@@ -18,7 +18,7 @@ public class move : MonoBehaviour
     public bool slashing = false;
     public bool poking = false;
     int pokeCounter = 1;
-    public Gel CharleesGel;
+    public Gel Gel;
 
     public Vector3 myDirection;
     public Vector3 hitDestination;
@@ -80,10 +80,19 @@ public class move : MonoBehaviour
             RaycastHit2D SwordRayRightHit = Physics2D.Raycast(swordRightRay.origin, swordRightRay.direction,maxSwordRayDist);
             attackTimer -= Time.deltaTime;
             MoveSpeed = 0;
-            if(SwordRayRightHit.collider != null ){
+            if(SwordRayRightHit.collider != null){
                 //Debug.Log(SwordRayUpHit.collider.name + SwordRayRightHit.collider.name);
-                if(SwordRayRightHit.collider.tag == "Enemy" || SwordRayUpHit.collider.tag == "Enemy"){
-                    CharleesGel.notHit = false;
+                if(SwordRayRightHit.collider.tag == "Enemy"){
+                    //Gel.SwordHit = 1;
+                    SwordRayRightHit.collider.GetComponent<Enemy>().SwordHit();
+                }
+            }
+
+            if(SwordRayUpHit.collider != null){
+                //Debug.Log(SwordRayUpHit.collider.name + SwordRayRightHit.collider.name);
+                if(SwordRayUpHit.collider.tag == "Enemy"){
+                    //Gel.SwordHit = 1;
+                    SwordRayUpHit.collider.GetComponent<Enemy>().SwordHit();
                 }
             }
         }

@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Gel : Enemy
 {
-    public bool notHit;
     public Transform playerTransform; // "public" = it will be exposed in the Unity editor inspector
     
     //var animDie : AnimationClip; // Drag your animation from the project view in here (to inspector)
 
     void Start(){
-        notHit = true;
+
     }
     void Update()
     {
@@ -24,9 +23,10 @@ public class Gel : Enemy
         //debug what the NPC is thinking
         Debug.DrawLine( transform.position, playerVector, Color.yellow);
 
-        if(notHit == false){
-            Destroy(this.gameObject);
-        }
+        /*if(SwordHit==1){
+            
+        }*/
+        
         //if (SwordHit==1){
             //animation.Play(animDie.name);
             //Destroy(this.gameObject, animDie.length);

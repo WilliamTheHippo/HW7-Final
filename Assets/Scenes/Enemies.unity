@@ -459,8 +459,7 @@ MonoBehaviour:
   jumping: 0
   slashing: 0
   poking: 0
-  CharleesGel: {fileID: 3656358642137570465, guid: 8f219b87538c89c41b29c68db53553b6,
-    type: 3}
+  Gel: {fileID: 3656358642137570465, guid: 8f219b87538c89c41b29c68db53553b6, type: 3}
   myDirection: {x: 0, y: 0, z: 0}
   hitDestination: {x: 0, y: 0, z: 0}
 --- !u!4 &1004513023 stripped
@@ -993,6 +992,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1558551772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1558551774}
+  - component: {fileID: 1558551773}
+  m_Layer: 0
+  m_Name: EnemyScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1558551773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558551772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3730682c24ca6824ab20bddf84d9c293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SwordHit: 0
+--- !u!4 &1558551774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558551772}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.321412, y: 0.5137304, z: -33.58203}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1588802912
 GameObject:
   m_ObjectHideFlags: 0
