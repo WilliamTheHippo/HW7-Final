@@ -95,7 +95,7 @@ public class BladeTrap : Enemy
         ResetTrigger = 1;
         
         //Recycle: if (collision.gameObject.tag == "Boundary")
-        Debug.Log("Object Hit!");
+        //Debug.Log("Object Hit!");
         Trigger = 0;
 
     }
