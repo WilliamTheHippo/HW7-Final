@@ -8,6 +8,9 @@ public class Gel : Enemy
     
     //var animDie : AnimationClip; // Drag your animation from the project view in here (to inspector)
 
+    void Start(){
+
+    }
     void Update()
     {
         var playerVector = playerTransform.position; //find player's transform position 
@@ -18,12 +21,16 @@ public class Gel : Enemy
         transform.position += followVector.normalized * Time.deltaTime/4;
 
         //debug what the NPC is thinking
-        Debug.DrawLine( transform.position, playerVector, Color.yellow );
+        Debug.DrawLine( transform.position, playerVector, Color.yellow);
 
-        if (SwordHit==1){
+        /*if(SwordHit==1){
+            
+        }*/
+        
+        //if (SwordHit==1){
             //animation.Play(animDie.name);
             //Destroy(this.gameObject, animDie.length);
-            Destroy(this.gameObject);
-        }
+            
+        //}
     }
 }
