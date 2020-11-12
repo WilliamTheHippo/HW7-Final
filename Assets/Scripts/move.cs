@@ -18,7 +18,7 @@ public class move : MonoBehaviour
     public bool slashing = false;
     public bool poking = false;
     int pokeCounter = 1;
-
+    //to do : readd slash timers
     public Vector3 myDirection;
     public Vector3 hitDestination;
     Collider2D m_Collider; 
