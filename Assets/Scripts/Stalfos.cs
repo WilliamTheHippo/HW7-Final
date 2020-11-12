@@ -47,9 +47,5 @@ public class Stalfos : Enemy
 		
         }
 
-        if (SwordHit == 1){
-            Lives -= 1;
-            SwordHit = 0;
-        }
     }
 }

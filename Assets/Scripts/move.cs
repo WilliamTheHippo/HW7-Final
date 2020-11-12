@@ -7,7 +7,7 @@ public class move : MonoBehaviour
     Rigidbody2D myRigidBody;
     float inputHorizontal;
     float inputVertical;
-    public float MoveSpeed = 10f;
+    public float MoveSpeed = 5f;
     public float attackTimer = 0.5f;
     public float chargeTimer = 0f;
     public float jumpTimer = 0.45f;
@@ -18,7 +18,8 @@ public class move : MonoBehaviour
     public bool slashing = false;
     public bool poking = false;
     int pokeCounter = 1;
-    //to do : readd slash timers
+
+    public Gel Gel;
     public Vector3 myDirection;
     public Vector3 hitDestination;
     Collider2D m_Collider; 
@@ -79,6 +80,21 @@ public class move : MonoBehaviour
             RaycastHit2D SwordRayRightHit = Physics2D.Raycast(swordRightRay.origin, swordRightRay.direction,maxSwordRayDist);
             attackTimer -= Time.deltaTime;
             MoveSpeed = 0;
+            if(SwordRayRightHit.collider != null){
+                //Debug.Log(SwordRayUpHit.collider.name + SwordRayRightHit.collider.name);
+                if(SwordRayRightHit.collider.tag == "Enemy"){
+                    //Gel.SwordHit = 1;
+                    SwordRayRightHit.collider.GetComponent<Enemy>().SwordHit();
+                }
+            }
+
+            if(SwordRayUpHit.collider != null){
+                //Debug.Log(SwordRayUpHit.collider.name + SwordRayRightHit.collider.name);
+                if(SwordRayUpHit.collider.tag == "Enemy"){
+                    //Gel.SwordHit = 1;
+                    SwordRayUpHit.collider.GetComponent<Enemy>().SwordHit();
+                }
+            }
         }
         if(attackTimer <= 0){
             slashing = false;
@@ -95,6 +111,8 @@ public class move : MonoBehaviour
             RaycastHit2D SwordPokeRayHit = Physics2D.Raycast(swordUpPokeRay.origin, swordUpPokeRay.direction,maxSwordRayDist);
             Debug.DrawRay(swordUpPokeRay.origin, swordUpPokeRay.direction*maxSwordRayDist ,Color.red); 
             if(SwordPokeRayHit.collider != null){
+                //Debug.Log(SwordPokeRayHit.collider.name);
+
                 if(SwordPokeRayHit.collider.tag == "Enemy"){
                      swordknockback();
                 }
@@ -127,7 +145,8 @@ public class move : MonoBehaviour
             Debug.DrawRay(shieldRay.origin, shieldRay.direction * MaxShieldRayDist, Color.blue);
             RaycastHit2D ShieldRayHit = Physics2D.Raycast(shieldRay.origin, shieldRay.direction,MaxShieldRayDist);
             if(ShieldRayHit.collider != null){
-                Debug.Log("shieldrayhit != null");
+                //Debug.Log("shieldrayhit != null");
+                //Debug.Log(ShieldRayHit.collider.name);
                 if(ShieldRayHit.collider.tag == "Enemy"){
                     Debug.Log("shieldrayhit is hitting enemy");
                     knockback();

@@ -18,11 +18,6 @@ public class HardhatBeetle : Enemy
         Debug.DrawLine( transform.position, playerVector, Color.yellow );
 
 
-        if (SwordHit==1){
-            //Knocked back
-        
-        }
-
         //Only dies by falling into a hole
 
     }

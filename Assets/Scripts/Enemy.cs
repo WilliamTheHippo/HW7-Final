@@ -5,19 +5,22 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    public float SwordHit; //General Hit Function
+    //public float SwordHit; //General Hit Function
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Hi, I'm an Enemy!");
+        //Debug.Log("Hi, I'm an Enemy!");
 
-        SwordHit = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void SwordHit(){
+        Destroy(this.gameObject);
     }
 }
