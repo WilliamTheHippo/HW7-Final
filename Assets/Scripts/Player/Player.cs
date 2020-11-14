@@ -79,8 +79,13 @@ public class Player : MonoBehaviour
 		transform.position = new Vector3(x,y,0f); 
 	}
 
+	void Fall()
+	{
+		Debug.Log("Haven't implemented falling yet!");
+	}
+
 	void OnTriggerEnter2D(Collider2D c)
 	{
-		if(c.tag == "Fall") Debug.Log("Haven't implemented falling yet!");
+		if(c.tag == "Fall") Fall();
 	}
 }
