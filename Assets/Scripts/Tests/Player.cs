@@ -58,10 +58,10 @@ public class Player : MonoBehaviour
 		}
 		if(direction == CameraDirection.Down)
 		{
-			delta = new Vector3(0f,0.5f,0f);
-			transform.position += new Vector3(0f,0.125f,0f);
+			delta = new Vector3(0f,-0.5f,0f);
+			transform.position += new Vector3(0f,-0.125f,0f);
 		}
-		
+
 		for(int i = 0; i < times; i++)
 		{
 			Camera.main.transform.position += delta;
