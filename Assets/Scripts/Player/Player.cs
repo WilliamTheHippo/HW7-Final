@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+	//Alex's code, meant to integrate with the tile system.
+	//TODO Pull in Reef's attack code!
 	public float moveSpeed;
 
 	enum CameraDirection{Up, Down, Left, Right}
@@ -79,6 +81,6 @@ public class Player : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D c)
 	{
-		if(c.tag == "Fall") Debug.Log("Falling!");
+		if(c.tag == "Fall") Debug.Log("Haven't implemented falling yet!");
 	}
 }
