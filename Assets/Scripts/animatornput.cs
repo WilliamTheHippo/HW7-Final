@@ -11,14 +11,6 @@ public class animatornput : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.RightArrow)){
-            myAnimator.SetInteger("walkingstate", 2);
-        } else if (Input.GetKey(KeyCode.DownArrow)){
-             myAnimator.SetInteger("walkingstate", 3);
-        }else if (Input.GetKey(KeyCode.LeftArrow)){
-             myAnimator.SetInteger("walkingstate", 4);
-        } else if (Input.GetKey(KeyCode.UpArrow)){
-            myAnimator.SetInteger("walkingstate", 1);
-        }
+
     }
 }
