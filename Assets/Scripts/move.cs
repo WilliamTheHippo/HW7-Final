@@ -19,6 +19,8 @@ public class move : MonoBehaviour
     public bool poking = false;
     int pokeCounter = 1;
 
+    Animator linkAnimator;
+
     public Gel Gel;
     public Vector3 myDirection;
     public Vector3 hitDestination;
@@ -27,6 +29,7 @@ public class move : MonoBehaviour
     {
         myRigidBody = GetComponent<Rigidbody2D>();
         m_Collider= GetComponent<Collider2D>();
+        linkAnimator = GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
