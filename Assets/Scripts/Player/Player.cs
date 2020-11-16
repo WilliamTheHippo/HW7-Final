@@ -8,17 +8,16 @@ public class Player : MonoBehaviour
 	//TODO Pull in Reef's attack code!
 	public float moveSpeed;
 
-	enum CameraDirection{Up, Down, Left, Right}
-	bool panning;
+	CameraMovement cam;
 
 	void Start()
 	{
-		panning = false;
+		cam = Camera.main.GetComponent<CameraMovement>();
 	}
 
 	void FixedUpdate()
 	{
-		if(panning) return;
+		if(cam.Panning) return;
 		float old_x = transform.position.x;
 		float old_y = transform.position.y;
 		if(Input.GetKey(KeyCode.UpArrow)) transform.position += new Vector3(0f, moveSpeed, 0f);
@@ -28,48 +27,14 @@ public class Player : MonoBehaviour
 		QuantizePosition();
 		if(Mathf.Abs(transform.position.x % 20) == 10f)
 		{
-			if(old_x < transform.position.x) StartCoroutine(MoveCamera(CameraDirection.Right));
-			else StartCoroutine(MoveCamera(CameraDirection.Left));
+			if(old_x < transform.position.x) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Right));
+			else StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Left));
 		}
 		if(Mathf.Abs(transform.position.y % 16) == 9f)
 		{
-			if(old_y < transform.position.y) StartCoroutine(MoveCamera(CameraDirection.Up));
-			else StartCoroutine(MoveCamera(CameraDirection.Down));
+			if(old_y < transform.position.y) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Up));
+			else StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Down));
 		}
-	}
-
-	IEnumerator MoveCamera(CameraDirection direction)
-	{
-		panning = true;
-		int times = direction == CameraDirection.Left || direction == CameraDirection.Right ? 40 : 32;
-		Vector3 delta = new Vector3(0f,0f,0f);
-		if(direction == CameraDirection.Left)
-		{
-			delta = new Vector3(-0.5f,0f,0f);
-			transform.position += new Vector3(-0.125f,0f,0f);
-		}
-		if(direction == CameraDirection.Right)
-		{
-			delta = new Vector3(0.5f,0f,0f);
-			transform.position += new Vector3(0.125f,0f,0f);
-		}
-		if(direction == CameraDirection.Up)
-		{
-			delta = new Vector3(0f,0.5f,0f);
-			transform.position += new Vector3(0f,0.125f,0f);
-		}
-		if(direction == CameraDirection.Down)
-		{
-			delta = new Vector3(0f,-0.5f,0f);
-			transform.position += new Vector3(0f,-0.125f,0f);
-		}
-
-		for(int i = 0; i < times; i++)
-		{
-			Camera.main.transform.position += delta;
-			yield return new WaitForSeconds(0.01f); //CHANGE THIS!
-		}
-		panning = false;
 	}
 
 	void QuantizePosition()
