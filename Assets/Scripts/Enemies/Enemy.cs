@@ -58,4 +58,14 @@ public class Enemy : MonoBehaviour
         }
 
     }
+
+    public void Fall()
+    {
+        Debug.Log("Haven't implemented falling yet!");
+    }
+
+    void OnTriggerEnter2D(Collider2D c)
+    {
+        if(c.tag == "Fall") Fall();
+    }
 }
