@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class move : MonoBehaviour
+public class AttackAndMove : MonoBehaviour
 {
+    //Reef's code, implements attacks and animations
+    //TODO fold get working with Alex's code
     Rigidbody2D myRigidBody;
     float inputHorizontal;
     float inputVertical;
