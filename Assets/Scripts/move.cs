@@ -8,9 +8,9 @@ public class move : MonoBehaviour
     float inputHorizontal;
     float inputVertical;
     public float MoveSpeed = 5f;
-    public float attackTimer = 0.5f;
+    public float attackTimer = 0.15f;
     public float chargeTimer = 0f;
-    public float jumpTimer = 0.45f;
+    public float jumpTimer = 0.5f;
     float maxSwordRayDist = 1.8f;
     public bool canMove = true;
     public bool arrowKeyPressed = false;
@@ -80,35 +80,91 @@ public class move : MonoBehaviour
         }
         //slashing code marked in a green debug ray
         if(slashing == true){
-            Ray2D swordUpRay = new Ray2D(transform.position,transform.up);
-            Ray2D swordRightRay = new Ray2D(transform.position,transform.right);
-            Debug.DrawRay(swordUpRay.origin,swordUpRay.direction*maxSwordRayDist,Color.green);
-            Debug.DrawRay(swordRightRay.origin,swordRightRay.direction*maxSwordRayDist,Color.green);
-            RaycastHit2D SwordRayUpHit = Physics2D.Raycast(swordUpRay.origin, swordUpRay.direction,maxSwordRayDist);
-            RaycastHit2D SwordRayRightHit = Physics2D.Raycast(swordRightRay.origin, swordRightRay.direction,maxSwordRayDist);
+            if(linkAnimator.GetInteger("walkingstate") == 1){
+                Ray2D swordUpRay = new Ray2D(transform.position,transform.up);
+                Ray2D swordRightRay = new Ray2D(transform.position,transform.right);
+                //Ray2D swordUpRightRay = new Ray2D(transform.position, transform.up += transform.right);
+                Debug.DrawRay(swordUpRay.origin,swordUpRay.direction*maxSwordRayDist,Color.green);
+                Debug.DrawRay(swordRightRay.origin,swordRightRay.direction*maxSwordRayDist,Color.green);
+                //Debug.DrawRay(swordUpRightRay.origin,swordUpRightRay.direction*maxSwordRayDist,Color.blue);
+                RaycastHit2D SwordRayUpHit = Physics2D.Raycast(swordUpRay.origin, swordUpRay.direction,maxSwordRayDist);
+                RaycastHit2D SwordRayRightHit = Physics2D.Raycast(swordRightRay.origin, swordRightRay.direction,maxSwordRayDist);
+                if(SwordRayRightHit.collider != null){
+                    if(SwordRayRightHit.collider.tag == "Enemy"){
+                        SwordRayRightHit.collider.GetComponent<Enemy>().SwordHit();
+                    }
+                }
+                if(SwordRayUpHit.collider != null){
+                    if(SwordRayUpHit.collider.tag == "Enemy"){
+                        SwordRayUpHit.collider.GetComponent<Enemy>().SwordHit();
+                    }
+                }
+            } else if (linkAnimator.GetInteger("walkingstate") == 2) {
+                Ray2D swordUpRay = new Ray2D(transform.position,transform.up);
+                Ray2D swordRightRay = new Ray2D(transform.position,transform.right);
+                //Ray2D swordUpRightRay = new Ray2D(transform.position, transform.up += transform.right);
+                Debug.DrawRay(swordUpRay.origin,swordUpRay.direction*maxSwordRayDist,Color.green);
+                Debug.DrawRay(swordRightRay.origin,swordRightRay.direction*maxSwordRayDist,Color.green);
+                //Debug.DrawRay(swordUpRightRay.origin,swordUpRightRay.direction*maxSwordRayDist,Color.blue);
+                RaycastHit2D SwordRayUpHit = Physics2D.Raycast(swordUpRay.origin, swordUpRay.direction,maxSwordRayDist);
+                RaycastHit2D SwordRayRightHit = Physics2D.Raycast(swordRightRay.origin, swordRightRay.direction,maxSwordRayDist);
+                if(SwordRayRightHit.collider != null){
+                    if(SwordRayRightHit.collider.tag == "Enemy"){
+                        SwordRayRightHit.collider.GetComponent<Enemy>().SwordHit();
+                    }
+                }
+                if(SwordRayUpHit.collider != null){
+                    if(SwordRayUpHit.collider.tag == "Enemy"){
+                        SwordRayUpHit.collider.GetComponent<Enemy>().SwordHit();
+                    }
+                }
+            } else if (linkAnimator.GetInteger("walkingstate") == 3) {
+                Ray2D swordDownRay = new Ray2D(transform.position,-transform.up);
+                Ray2D swordLeftRay = new Ray2D(transform.position,-transform.right);
+                //Ray2D swordDownLeftRay = new Ray2D(transform.position, -transform.right += -transform.up );
+                Debug.DrawRay(swordDownRay.origin,swordDownRay.direction*maxSwordRayDist,Color.green);
+                Debug.DrawRay(swordLeftRay.origin,swordLeftRay.direction*maxSwordRayDist,Color.green);
+                RaycastHit2D SwordRayDownHit = Physics2D.Raycast(swordDownRay.origin, swordDownRay.direction,maxSwordRayDist);
+                RaycastHit2D SwordRayLeftHit = Physics2D.Raycast(swordLeftRay.origin, swordLeftRay.direction,maxSwordRayDist);
+                if(SwordRayLeftHit.collider != null){
+                    if(SwordRayLeftHit.collider.tag == "Enemy"){
+                        SwordRayLeftHit.collider.GetComponent<Enemy>().SwordHit();
+                    }
+                }
+                if(SwordRayDownHit.collider != null){
+                    if(SwordRayDownHit.collider.tag == "Enemy"){
+                        SwordRayDownHit.collider.GetComponent<Enemy>().SwordHit();
+                    }
+                }
+            } else if (linkAnimator.GetInteger("walkingstate") == 4) {
+                Ray2D swordUpRay = new Ray2D(transform.position,transform.up);
+                Ray2D swordLeftRay = new Ray2D(transform.position,-transform.right);
+                Debug.DrawRay(swordUpRay.origin,swordUpRay.direction*maxSwordRayDist,Color.green);
+                Debug.DrawRay(swordLeftRay.origin,swordLeftRay.direction*maxSwordRayDist,Color.green);
+                RaycastHit2D SwordRayUpHit = Physics2D.Raycast(swordUpRay.origin, swordUpRay.direction,maxSwordRayDist);
+                RaycastHit2D SwordRayRightHit = Physics2D.Raycast(swordLeftRay.origin, swordLeftRay.direction,maxSwordRayDist);
+                if(SwordRayRightHit.collider != null){
+                    if(SwordRayRightHit.collider.tag == "Enemy"){
+                        SwordRayRightHit.collider.GetComponent<Enemy>().SwordHit();
+                    }
+                }
+                if(SwordRayUpHit.collider != null){
+                    if(SwordRayUpHit.collider.tag == "Enemy"){
+                        SwordRayUpHit.collider.GetComponent<Enemy>().SwordHit();
+                    }
+                }
+            }
             attackTimer -= Time.deltaTime;
+            linkAnimator.SetBool("slashing",true);
             MoveSpeed = 0;
-            if(SwordRayRightHit.collider != null){
-                //Debug.Log(SwordRayUpHit.collider.name + SwordRayRightHit.collider.name);
-                if(SwordRayRightHit.collider.tag == "Enemy"){
-                    //Gel.SwordHit = 1;
-                    SwordRayRightHit.collider.GetComponent<Enemy>().SwordHit();
-                }
-            }
-
-            if(SwordRayUpHit.collider != null){
-                //Debug.Log(SwordRayUpHit.collider.name + SwordRayRightHit.collider.name);
-                if(SwordRayUpHit.collider.tag == "Enemy"){
-                    //Gel.SwordHit = 1;
-                    SwordRayUpHit.collider.GetComponent<Enemy>().SwordHit();
-                }
-            }
         }
         if(attackTimer <= 0){
             slashing = false;
-            MoveSpeed = 10f;
-            attackTimer = 0.5f;
+            linkAnimator.SetBool("slashing",false);
+            MoveSpeed = 5f;
+            attackTimer = 0.15f;
         }
+        Debug.Log(attackTimer);
         //poking code for when the player holds the attack button
         if(chargeTimer >= 1f && pokeCounter >= 1){
             poking = true;
@@ -133,6 +189,7 @@ public class move : MonoBehaviour
         }
         if(jumping == true){
             jumpTimer -= Time.deltaTime;
+            linkAnimator.SetBool("jumping",true);
             m_Collider.enabled = false;
         } else {
             m_Collider.enabled = true;
@@ -140,6 +197,7 @@ public class move : MonoBehaviour
         if(jumpTimer <= 0){
             Debug.Log (jumpTimer);
             jumping = false;  
+            linkAnimator.SetBool("jumping",false);
             jumpTimer = 1f;
         }
     }
