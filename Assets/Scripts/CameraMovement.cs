@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-	public GameObject player;
+	public Player player;
 	public bool Panning {get; private set;}
 	public enum Direction {Up, Down, Left, Right}
 
@@ -42,8 +42,11 @@ public class CameraMovement : MonoBehaviour
 		for(int i = 0; i < times; i++)
 		{
 			transform.position += delta;
+			if(player.onDoorTrigger && i % times / 8 == 0)
+				player.transform.position += delta / 1.25f;
 			yield return new WaitForSeconds(0.01f);
 		}
 		Panning = false;
+		player.onDoorTrigger = false;
 	}
 }

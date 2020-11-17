@@ -7,12 +7,14 @@ public class Player : MonoBehaviour
 	//Alex's code, meant to integrate with the tile system.
 	//TODO Pull in Reef's attack code!
 	public float moveSpeed;
+	public bool onDoorTrigger;
 
 	CameraMovement cam;
 
 	void Start()
 	{
 		cam = Camera.main.GetComponent<CameraMovement>();
+		onDoorTrigger = false;
 	}
 
 	void FixedUpdate()
@@ -52,5 +54,6 @@ public class Player : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D c)
 	{
 		if(c.tag == "Fall") Fall();
+		if(c.tag == "DoorTrigger") onDoorTrigger = true;
 	}
 }
