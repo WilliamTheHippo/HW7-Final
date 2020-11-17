@@ -86,6 +86,11 @@ public class move : MonoBehaviour
                     //Gel.SwordHit = 1;
                     SwordRayRightHit.collider.GetComponent<Enemy>().SwordHit();
                 }
+
+                /*if(SwordRayRightHit.collider.gameObject.name == "Enemy"){
+                    //Gel.SwordHit = 1;
+                    SwordRayRightHit.collider.GetComponent<Enemy>().SwordHit();
+                }*/
             }
 
             if(SwordRayUpHit.collider != null){
@@ -94,6 +99,7 @@ public class move : MonoBehaviour
                     //Gel.SwordHit = 1;
                     SwordRayUpHit.collider.GetComponent<Enemy>().SwordHit();
                 }
+
             }
         }
         if(attackTimer <= 0){

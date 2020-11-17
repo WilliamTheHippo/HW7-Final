@@ -23,14 +23,19 @@ public class Gel : Enemy
         //debug what the NPC is thinking
         Debug.DrawLine( transform.position, playerVector, Color.yellow);
 
-        /*if(SwordHit==1){
-            
-        }*/
         
         //if (SwordHit==1){
             //animation.Play(animDie.name);
             //Destroy(this.gameObject, animDie.length);
             
         //}
+        
     }
+
+    /*public void SwordHit(){
+        Destroy(this.gameObject);
+        //animation.Play(animDie.name);
+        //Destroy(this.gameObject, animDie.length);
+    }*/
+
 }
