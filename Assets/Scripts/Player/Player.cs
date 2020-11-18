@@ -7,15 +7,20 @@ public class Player : MonoBehaviour
 	public float moveSpeed;
 	public bool onDoorTrigger;
 
+	[Header("Sprites")]
 	public Sprite front;
 	public Sprite back;
-	public Sprite[] walkAnimation;
+	public Sprite side;
+	public Sprite[] walk;
 
 	CameraMovement cam;
 	enum Direction {Up, Down, Left, Right}
 	Direction direction;
 	SpriteRenderer sr;
 	Sprite idle;
+
+	bool walking;
+	//bool shielding;
 
 	bool coroutine_FlipX;
 	bool coroutine_SideWalk;
@@ -28,8 +33,8 @@ public class Player : MonoBehaviour
 		onDoorTrigger = false;
 		direction = Direction.Down;
 
-		coroutine_FlipX = false;
-		coroutine_SideWalk = false;
+		walking = false;
+		//shielding = false;
 	}
 
 	void FixedUpdate()
@@ -39,33 +44,29 @@ public class Player : MonoBehaviour
 		float old_y = transform.position.y;
 		if(Input.GetKey(KeyCode.UpArrow))
 		{
-			sr.sprite = back;
-			if(!coroutine_FlipX) StartCoroutine("FlipX");
+			if(!walking) StartCoroutine("Walk");
 			direction = Direction.Up;
 			transform.position += new Vector3(0f, moveSpeed, 0f);
 		}
 		else if(Input.GetKey(KeyCode.DownArrow))
 		{
-			sr.sprite = front;
-			if(!coroutine_FlipX) StartCoroutine("FlipX");
+			if(!walking) StartCoroutine("Walk");
 			direction = Direction.Down;
 			transform.position += new Vector3(0f, -moveSpeed, 0f);
 		}
 		else if(Input.GetKey(KeyCode.LeftArrow))
 		{
-			sr.flipX = false;
-			if(!coroutine_SideWalk) StartCoroutine("SideWalk");
+			if(!walking) StartCoroutine("Walk");
 			direction = Direction.Left;
 			transform.position += new Vector3(-moveSpeed, 0f, 0f);
 		}
 		else if(Input.GetKey(KeyCode.RightArrow))
 		{
-			sr.flipX = true;
-			if(!coroutine_SideWalk) StartCoroutine("SideWalk");
+			if(!walking) StartCoroutine("Walk");
 			direction = Direction.Right;
 			transform.position += new Vector3(moveSpeed, 0f, 0f);
 		}
-		else StopFlipping();
+		else Idle();
 		QuantizePosition();
 
 		if(Mathf.Abs(transform.position.x % 20) == 10f)
@@ -87,34 +88,28 @@ public class Player : MonoBehaviour
 		transform.position = new Vector3(x,y,0f); 
 	}
 
-	public void StopFlipping()
+	public void Idle()
 	{
-		StopCoroutine("FlipX");
-		coroutine_FlipX = false;
-		StopCoroutine("SideWalk");
-		coroutine_SideWalk = false;
+		walking = false;
+		StopCoroutine("Walk");
+		if(direction == Direction.Up) sr.sprite = back;
+		if(direction == Direction.Down) sr.sprite = front;
+		if(direction == Direction.Left || direction == Direction.Right) sr.sprite = side;
+		if(direction == Direction.Left) sr.flipX = true;
+		if(direction == Direction.Right) sr.flipX = false;
 	}
 
-	IEnumerator FlipX()
+	IEnumerator Walk()
 	{
-		coroutine_FlipX = true;
+		walking = true;
+		int offset = 0;
+		if(direction == Direction.Down) offset += 2;
+		if(direction == Direction.Left || direction == Direction.Right) offset += 4;
 		while(true)
 		{
-			sr.flipX = !sr.flipX;
+			sr.sprite = walk[offset];
+			sr.sprite = walk[offset+1];
 			yield return new WaitForSeconds(0.25f);
-		}
-	}
-
-	IEnumerator SideWalk() //possibly non-extensible
-	{
-		coroutine_SideWalk = true;
-		while(true)
-		{
-			foreach(Sprite s in walkAnimation)
-			{
-				sr.sprite = s;
-				yield return new WaitForSeconds(0.25f);
-			}
 		}
 	}
 
