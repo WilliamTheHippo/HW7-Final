@@ -16,6 +16,7 @@ public class CameraMovement : MonoBehaviour
 	public IEnumerator MoveCamera(Direction direction)
 	{
 		Panning = true;
+		player.StopFlipping();
 		int times = direction == Direction.Left || direction == Direction.Right ? 40 : 32;
 		Vector3 delta = new Vector3(0f,0f,0f);
 		if(direction == Direction.Left)

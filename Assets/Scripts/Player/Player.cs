@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	//Alex's code, meant to integrate with the tile system.
-	//TODO Pull in Reef's attack code!
 	public float moveSpeed;
 	public bool onDoorTrigger;
 
@@ -67,13 +65,7 @@ public class Player : MonoBehaviour
 			direction = Direction.Right;
 			transform.position += new Vector3(moveSpeed, 0f, 0f);
 		}
-		else
-		{
-			StopCoroutine("FlipX");
-			coroutine_FlipX = false;
-			StopCoroutine("SideWalk");
-			coroutine_SideWalk = false;
-		}
+		else StopFlipping();
 		QuantizePosition();
 
 		if(Mathf.Abs(transform.position.x % 20) == 10f)
@@ -93,6 +85,14 @@ public class Player : MonoBehaviour
 		float x = Mathf.Round(transform.position.x * 8) / 8;
 		float y = Mathf.Round(transform.position.y * 8) / 8;
 		transform.position = new Vector3(x,y,0f); 
+	}
+
+	public void StopFlipping()
+	{
+		StopCoroutine("FlipX");
+		coroutine_FlipX = false;
+		StopCoroutine("SideWalk");
+		coroutine_SideWalk = false;
 	}
 
 	IEnumerator FlipX()
