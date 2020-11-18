@@ -10,10 +10,10 @@ public class AttackAndMove : MonoBehaviour
     float inputHorizontal;
     float inputVertical;
     public float MoveSpeed = 5f;
-    public float attackTimer = 0.15f;
+    public float attackTimer = 0.3f;
     public float chargeTimer = 0f;
     public float jumpTimer = 0.5f;
-    float maxSwordRayDist = 1.8f;
+    float maxSwordRayDist = 3f;
     public bool canMove = true;
     public bool arrowKeyPressed = false;
     public bool jumping = false;
@@ -45,25 +45,30 @@ public class AttackAndMove : MonoBehaviour
         if(inputHorizontal > 0 && arrowKeyPressed == false && slashing == false){
             transform.Translate(-Time.deltaTime,0,0);
             linkAnimator.SetInteger("walkingstate", 2);
+            linkAnimator.SetBool("walking",true);
             arrowKeyPressed = true;
         }
         if(inputHorizontal < 0 && arrowKeyPressed == false && slashing == false){
             transform.Translate(Time.deltaTime,0,0);
             linkAnimator.SetInteger("walkingstate", 4);
+            linkAnimator.SetBool("walking",true);
             arrowKeyPressed = true;
         }
         if(inputVertical >0 && arrowKeyPressed == false && slashing == false){
             transform.Translate(0,-Time.deltaTime,0);
             linkAnimator.SetInteger("walkingstate", 1);
+            linkAnimator.SetBool("walking",true);
             arrowKeyPressed = true;
         }
         if(inputVertical < 0 && arrowKeyPressed == false && slashing == false){
             transform.Translate(0,Time.deltaTime,0);
             linkAnimator.SetInteger("walkingstate", 3);
+            linkAnimator.SetBool("walking",true);
             arrowKeyPressed = true;
         }
         if(inputHorizontal == 0 && inputVertical == 0){
             arrowKeyPressed = false;
+            linkAnimator.SetBool("walking", false);
             //linkAnimator.speed = 0;
         }
         if(Input.GetKey(KeyCode.Z)){
