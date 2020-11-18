@@ -18,7 +18,7 @@ public class Gel : Enemy
         
         // move toward the player
         Vector3 followVector = playerVector - transform.position;
-        transform.position += followVector.normalized * Time.deltaTime/4;
+        transform.position += followVector.normalized * Time.deltaTime;
 
         //debug what the NPC is thinking
         Debug.DrawLine( transform.position, playerVector, Color.yellow);

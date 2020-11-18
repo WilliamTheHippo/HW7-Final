@@ -31,7 +31,7 @@ public class Stalfos : Enemy
         StalfosLivesTimer = 0f;
 
         Knockback = 0f;
-        KnockbackTimerReset = 0.5f / Time.deltaTime;
+        KnockbackTimerReset = 1f / Time.deltaTime;
         KnockbackTimer = KnockbackTimerReset;
     }
     void Update()
@@ -46,22 +46,25 @@ public class Stalfos : Enemy
         }
         Timer++;
 
-        if ( randomNumber < 0.25f ) { 
+        if(Knockback == 0){
             
-            transform.Translate(0.5f * Time.deltaTime, 0f, 0f); // move pixels per second
-        
-        } else if (0.25f < randomNumber && randomNumber < 0.50f) {
-
-            transform.Translate(-0.5f * Time.deltaTime, 0f, 0f);
+            if ( randomNumber < 0.25f ) { 
+                
+                transform.Translate(1.5f * Time.deltaTime, 0f, 0f); // move pixels per second
             
-		} else if (0.50f < randomNumber && randomNumber < .75f) {
+            } else if (0.25f < randomNumber && randomNumber < 0.50f) {
 
-            transform.Translate( 0f, 0.5f * Time.deltaTime, 0f);
+                transform.Translate(-1.5f * Time.deltaTime, 0f, 0f);
+                
+            } else if (0.50f < randomNumber && randomNumber < .75f) {
 
-        } else if (0.75f < randomNumber && randomNumber < 1f) {
+                transform.Translate( 0f, 1.5f * Time.deltaTime, 0f);
 
-            transform.Translate( 0f, -0.5f * Time.deltaTime, 0f);
-		
+            } else if (0.75f < randomNumber && randomNumber < 1f) {
+
+                transform.Translate( 0f, -1.5f * Time.deltaTime, 0f);
+            
+            }
         }
 
         //Debug.Log(StalfosLives);
@@ -89,7 +92,7 @@ public class Stalfos : Enemy
         if(Knockback == 1){
             if(KnockbackTimer > 0f){
                 //Knockback
-                var speed = 2f;
+                var speed = 2f * 3f;
                 KnockbackDirection = transform.position - Player.transform.position;
                 transform.Translate(KnockbackDirection.normalized * speed * Time.deltaTime);
                 
