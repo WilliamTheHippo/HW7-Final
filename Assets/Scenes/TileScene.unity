@@ -78835,10 +78835,10 @@ MonoBehaviour:
   back: {fileID: -350908408369970039, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
   side: {fileID: 1553940418269799609, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
   walk:
-  - {fileID: 4035959289877228764, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
-  - {fileID: -982904232830982447, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
   - {fileID: -350908408369970039, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
   - {fileID: -5409570386352685021, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
+  - {fileID: 4035959289877228764, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
+  - {fileID: -982904232830982447, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
   - {fileID: 1553940418269799609, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
   - {fileID: 2416434504916517810, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
 --- !u!61 &2066058906

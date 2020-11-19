@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
 		if(direction == Direction.Right) sr.flipX = false;
 	}
 
-	IEnumerator Walk()
+	IEnumerator Walk() //can't just use FlipX anymore because shield sprites aren't mirrored
 	{
 		walking = true;
 		int offset = 0;
