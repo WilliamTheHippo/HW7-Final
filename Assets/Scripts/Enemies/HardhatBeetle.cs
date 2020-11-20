@@ -32,9 +32,11 @@ public class HardhatBeetle : Enemy
     {
         var playerVector = playerTransform.position; //find player's transform position
         
-        // move toward the player
-        Vector3 followVector = playerVector - transform.position;
-        transform.position += followVector.normalized * Time.deltaTime;
+        if(Knockback == 0){
+            // move toward the player
+            Vector3 followVector = playerVector - transform.position;
+            transform.position += followVector.normalized * Time.deltaTime * 2;
+        }
 
         //debug what the NPC is thinking
         Debug.DrawLine( transform.position, playerVector, Color.yellow );
@@ -52,7 +54,7 @@ public class HardhatBeetle : Enemy
             //if(KnockbackReady == 1){
                 if(KnockbackTimer > 0f){
                 //Knockback
-                var speed = 2f;
+                var speed = 5f;
                 KnockbackDirection = transform.position - Player.transform.position;
                 transform.Translate(KnockbackDirection.normalized * speed * Time.deltaTime);
             

@@ -43,17 +43,17 @@ public class BladeTrap : Enemy
             
             if (ResetTrigger == 0){
                 
-                if ((player.transform.position-this.transform.position).sqrMagnitude<2*2) {
+                if ((player.transform.position-this.transform.position).sqrMagnitude<6*6) {
                 // the player is within a radius of 3 units to this game object
                     Trigger = 1;
                 }
 
                 if (Trigger == 1){
                     if (moveLeft == 0){
-                        transform.Translate(3f * Time.deltaTime, 0f, 0f); // move pixels per second
+                        transform.Translate(12f * Time.deltaTime, 0f, 0f); // move pixels per second
                     }
                     if (moveLeft == 1){
-                        transform.Translate(-3f * Time.deltaTime, 0f, 0f); // move pixels per second
+                        transform.Translate(-12f * Time.deltaTime, 0f, 0f); // move pixels per second
                     }
                 }
             }
@@ -67,10 +67,10 @@ public class BladeTrap : Enemy
 
                 if (transform.position != ResetPosition){
                     if (moveLeft == 0){
-                        transform.Translate(-1.0f * Time.deltaTime, 0f, 0f);
+                        transform.Translate(-3.0f * Time.deltaTime, 0f, 0f);
                     }
                     if (moveLeft == 1){
-                        transform.Translate(1.0f * Time.deltaTime, 0f, 0f);
+                        transform.Translate(3.0f * Time.deltaTime, 0f, 0f);
                     }
                 }
                 
