@@ -5,13 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	public float moveSpeed;
-	public bool onDoorTrigger;
+	//public bool onDoorTrigger;
 
 	[Header("Sprites")]
 	public Sprite front;
 	public Sprite back;
 	public Sprite side;
 	public Sprite[] walk;
+	int walk_offset;
 
 	CameraMovement cam;
 	enum Direction {Up, Down, Left, Right}
@@ -20,21 +21,14 @@ public class Player : MonoBehaviour
 	Sprite idle;
 
 	bool walking;
-	//bool shielding;
-
-	bool coroutine_FlipX;
-	bool coroutine_SideWalk;
 
 	void Start()
 	{
 		sr = GetComponent<SpriteRenderer>();
 		idle = sr.sprite;
 		cam = Camera.main.GetComponent<CameraMovement>();
-		onDoorTrigger = false;
 		direction = Direction.Down;
-
 		walking = false;
-		//shielding = false;
 	}
 
 	void FixedUpdate()
@@ -42,31 +36,44 @@ public class Player : MonoBehaviour
 		if(cam.Panning) return;
 		float old_x = transform.position.x;
 		float old_y = transform.position.y;
+		bool keyDown = false;
+		walk_offset = 0;
+		if(direction == Direction.Down) walk_offset += 2;
+		if(direction == Direction.Left || direction == Direction.Right) walk_offset += 4;
+		sr.flipX = direction == Direction.Left ? true : false;
 		if(Input.GetKey(KeyCode.UpArrow))
 		{
-			if(!walking) StartCoroutine("Walk");
+			keyDown = true;
 			direction = Direction.Up;
+			if(!walking) StartCoroutine("Walk");
+			walking = true;
 			transform.position += new Vector3(0f, moveSpeed, 0f);
 		}
-		else if(Input.GetKey(KeyCode.DownArrow))
+		/*else*/ if(Input.GetKey(KeyCode.DownArrow))
 		{
-			if(!walking) StartCoroutine("Walk");
+			keyDown = true;
 			direction = Direction.Down;
+			if(!walking) StartCoroutine("Walk");
+			walking = true;
 			transform.position += new Vector3(0f, -moveSpeed, 0f);
 		}
-		else if(Input.GetKey(KeyCode.LeftArrow))
+		/*else*/ if(Input.GetKey(KeyCode.LeftArrow))
 		{
-			if(!walking) StartCoroutine("Walk");
+			keyDown = true;
 			direction = Direction.Left;
+			if(!walking) StartCoroutine("Walk");
+			walking = true;
 			transform.position += new Vector3(-moveSpeed, 0f, 0f);
 		}
-		else if(Input.GetKey(KeyCode.RightArrow))
+		/*else*/ if(Input.GetKey(KeyCode.RightArrow))
 		{
-			if(!walking) StartCoroutine("Walk");
+			keyDown = true;
 			direction = Direction.Right;
+			if(!walking) StartCoroutine("Walk");
+			walking = true;
 			transform.position += new Vector3(moveSpeed, 0f, 0f);
 		}
-		else Idle();
+		if(!keyDown) Idle();
 		QuantizePosition();
 
 		if(Mathf.Abs(transform.position.x % 20) == 10f)
@@ -95,21 +102,20 @@ public class Player : MonoBehaviour
 		if(direction == Direction.Up) sr.sprite = back;
 		if(direction == Direction.Down) sr.sprite = front;
 		if(direction == Direction.Left || direction == Direction.Right) sr.sprite = side;
-		if(direction == Direction.Left) sr.flipX = true;
-		if(direction == Direction.Right) sr.flipX = false;
+		//sr.flipX = direction == Direction.Left ? true : false;
 	}
 
 	IEnumerator Walk() //can't just use FlipX anymore because shield sprites aren't mirrored
 	{
-		walking = true;
-		int offset = 0;
-		if(direction == Direction.Down) offset += 2;
-		if(direction == Direction.Left || direction == Direction.Right) offset += 4;
 		while(true)
 		{
-			sr.sprite = walk[offset];
-			sr.sprite = walk[offset+1];
-			yield return new WaitForSeconds(0.25f);
+			sr.sprite = walk[walk_offset];
+			yield return new WaitForSeconds(0.125f);
+			sr.sprite = walk[walk_offset]; //duplicates improve game feel
+			yield return new WaitForSeconds(0.125f);
+			sr.sprite = walk[walk_offset+1];
+			yield return new WaitForSeconds(0.125f);
+			sr.sprite = walk[walk_offset+1];
 		}
 	}
 
@@ -121,6 +127,5 @@ public class Player : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D c)
 	{
 		if(c.tag == "Fall") Fall();
-		if(c.tag == "DoorTrigger") onDoorTrigger = true;
 	}
 }
