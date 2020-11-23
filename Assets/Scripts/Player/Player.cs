@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
 	void FixedUpdate()
 	{
 		if(cam.Panning) return;
+
+		//WALKING
 		float old_x = transform.position.x;
 		float old_y = transform.position.y;
 		bool keyDown = false;
@@ -49,7 +51,7 @@ public class Player : MonoBehaviour
 			walking = true;
 			transform.position += new Vector3(0f, moveSpeed, 0f);
 		}
-		/*else*/ if(Input.GetKey(KeyCode.DownArrow))
+		if(Input.GetKey(KeyCode.DownArrow))
 		{
 			keyDown = true;
 			direction = Direction.Down;
@@ -57,7 +59,7 @@ public class Player : MonoBehaviour
 			walking = true;
 			transform.position += new Vector3(0f, -moveSpeed, 0f);
 		}
-		/*else*/ if(Input.GetKey(KeyCode.LeftArrow))
+		if(Input.GetKey(KeyCode.LeftArrow))
 		{
 			keyDown = true;
 			direction = Direction.Left;
@@ -65,7 +67,7 @@ public class Player : MonoBehaviour
 			walking = true;
 			transform.position += new Vector3(-moveSpeed, 0f, 0f);
 		}
-		/*else*/ if(Input.GetKey(KeyCode.RightArrow))
+		if(Input.GetKey(KeyCode.RightArrow))
 		{
 			keyDown = true;
 			direction = Direction.Right;

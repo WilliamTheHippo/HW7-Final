@@ -78830,7 +78830,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.125
-  onDoorTrigger: 0
   front: {fileID: 4035959289877228764, guid: 776d025b4a89044ef867541cb90a8fe2, type: 3}
   back: {fileID: -350908408369970039, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
   side: {fileID: 1553940418269799609, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
