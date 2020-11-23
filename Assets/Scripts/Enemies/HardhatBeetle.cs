@@ -54,7 +54,7 @@ public class HardhatBeetle : Enemy
             //if(KnockbackReady == 1){
                 if(KnockbackTimer > 0f){
                 //Knockback
-                var speed = 5f;
+                var speed = 6f;
                 KnockbackDirection = transform.position - Player.transform.position;
                 transform.Translate(KnockbackDirection.normalized * speed * Time.deltaTime);
             
