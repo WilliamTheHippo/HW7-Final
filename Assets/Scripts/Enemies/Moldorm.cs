@@ -33,13 +33,13 @@ public class Moldorm : Enemy
         LivesTimer = 0f;
 
         Knockback = 0f;
-        KnockbackTimerReset = 0.5f / Time.deltaTime;
+        KnockbackTimerReset = 1f / Time.deltaTime;
         KnockbackTimer = KnockbackTimerReset;
 
-        KnockbackSpeed = 2f;
+        KnockbackSpeed = 10f;
 
-        xSpeed = 1.5f * Time.deltaTime;
-        ySpeed = 1.5f * Time.deltaTime;
+        xSpeed = 1.5f * Time.deltaTime * 3f;
+        ySpeed = 1.5f * Time.deltaTime * 3f;
     }
     void Update()
     {
@@ -53,26 +53,28 @@ public class Moldorm : Enemy
         }
         Timer++;
 
-        if ( randomNumber <= 0.25f ) { 
+        if(Knockback == 0){
+            if ( randomNumber <= 0.25f ) { 
 
-            transform.Translate(xSpeed, 0f, 0f); // move pixels per second
-            transform.Translate(0f, ySpeed, 0f);
+                transform.Translate(xSpeed, 0f, 0f); // move pixels per second
+                transform.Translate(0f, ySpeed, 0f);
 
-        
-        } else if (0.25f < randomNumber && randomNumber <= 0.5f) {
+            
+            } else if (0.25f < randomNumber && randomNumber <= 0.5f) {
 
-            transform.Translate(xSpeed, 0f, 0f);
-            transform.Translate( 0f, -ySpeed, 0f);
+                transform.Translate(xSpeed, 0f, 0f);
+                transform.Translate( 0f, -ySpeed, 0f);
 
-        } else if (0.5f < randomNumber && randomNumber <= 0.75f) {
+            } else if (0.5f < randomNumber && randomNumber <= 0.75f) {
 
-            transform.Translate(-xSpeed, 0f, 0f);
-            transform.Translate( 0f, ySpeed, 0f);
+                transform.Translate(-xSpeed, 0f, 0f);
+                transform.Translate( 0f, ySpeed, 0f);
 
-        } else if (0.75f < randomNumber) {
+            } else if (0.75f < randomNumber) {
 
-            transform.Translate(-xSpeed, 0f, 0f);
-            transform.Translate( 0f, -ySpeed, 0f);
+                transform.Translate(-xSpeed, 0f, 0f);
+                transform.Translate( 0f, -ySpeed, 0f);
+            }
         }
 
 

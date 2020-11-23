@@ -1,103 +1,25 @@
 fileFormatVersion: 2
-guid: ebf5be7f23a25604ba8e492d5e3302c4
+guid: d758a3cc84f014564a3f807b06a008d3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8168279644174240420
-    second: walk down_0
+      213: -1359259898419596604
+    second: Orange-Stalfos_0
   - first:
-      213: -8495427822860374384
-    second: walk down_1
+      213: -716282354541075376
+    second: Orange-Stalfos_1
   - first:
-      213: 2215179818911802930
-    second: walk down_2
+      213: -8550237376726836521
+    second: Orange-Stalfos_2
   - first:
-      213: 6139032208394436819
-    second: walk down_3
+      213: 4086435871239784271
+    second: Orange-Stalfos_3
   - first:
-      213: 212961251472597627
-    second: walk down_4
+      213: 3067668954320265664
+    second: Orange-Stalfos_4
   - first:
-      213: -1520178286218416688
-    second: walk down_5
-  - first:
-      213: -120312773120953412
-    second: walk down_6
-  - first:
-      213: 7763898553223810108
-    second: walk down_7
-  - first:
-      213: 4871988254882125306
-    second: walk down_8
-  - first:
-      213: -5169216303055669070
-    second: walk down_9
-  - first:
-      213: -2442751307273490412
-    second: walk down_10
-  - first:
-      213: -1534286269318103792
-    second: walk down_11
-  - first:
-      213: -3014266955516419905
-    second: walk down_12
-  - first:
-      213: 3453168873717216612
-    second: walk down_13
-  - first:
-      213: 3996256325415500861
-    second: walk down_14
-  - first:
-      213: -2572091310043810187
-    second: walk down_15
-  - first:
-      213: 6515445462206336839
-    second: walk down_16
-  - first:
-      213: 4704450078700102896
-    second: walk down_17
-  - first:
-      213: 2556846843874425152
-    second: walk down_18
-  - first:
-      213: -4366932298927425320
-    second: walk down_19
-  - first:
-      213: -7970799750546460343
-    second: walk down_20
-  - first:
-      213: 414534705497905577
-    second: walk down_21
-  - first:
-      213: 5434333372304945458
-    second: walk down_22
-  - first:
-      213: -6756503371179436007
-    second: walk down_23
-  - first:
-      213: 2477478111207479932
-    second: walk down_24
-  - first:
-      213: -7539904274712384631
-    second: walk down_25
-  - first:
-      213: -4268120070299109490
-    second: walk down_26
-  - first:
-      213: -4318027068145100265
-    second: walk down_27
-  - first:
-      213: -2228781967532826631
-    second: walk down_28
-  - first:
-      213: 233669011769635559
-    second: walk down_29
-  - first:
-      213: 7469112702993764262
-    second: walk down_30
-  - first:
-      213: -6121470277626955627
-    second: walk down_31
+      213: -1353154633030146457
+    second: Orange-Stalfos_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -143,7 +65,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -159,8 +81,8 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -171,8 +93,8 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -183,8 +105,8 @@ TextureImporter:
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -195,11 +117,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: walk down_0
+      name: Orange-Stalfos_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 48
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -209,18 +131,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c55b0f6e0f074ae80800000000000000
-      internalID: -8168279644174240420
+      spriteID: 4c23445f250f22de0800000000000000
+      internalID: -1359259898419596604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk down_1
+      name: Orange-Stalfos_1
       rect:
         serializedVersion: 2
         x: 16
-        y: 48
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -230,8 +152,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09eef63e76d2a1a80800000000000000
-      internalID: -8495427822860374384
+      spriteID: 054e2ba5ef04f06f0800000000000000
+      internalID: -716282354541075376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Orange-Stalfos_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7daddee2864775980800000000000000
+      internalID: -8550237376726836521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Orange-Stalfos_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4749a626cfe5b830800000000000000
+      internalID: 4086435871239784271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Orange-Stalfos_4
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c1e0c629ac829a20800000000000000
+      internalID: 3067668954320265664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Orange-Stalfos_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7666014d701a83de0800000000000000
+      internalID: -1353154633030146457
       vertices: []
       indices: 
       edges: []
