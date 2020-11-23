@@ -68,5 +68,15 @@ public class HardhatBeetle : Enemy
             Knockback = 0;
         }
 
+
+
     }
+
+    void OnTriggerEnter2D(Collider2D c)
+	{
+		if(c.tag == "Fall"){
+            Destroy(this.gameObject);
+        }
+	}
+
 }
