@@ -11,7 +11,7 @@ public class Stalfos : Enemy
     float StalfosLivesTimer;
     public float StalfosHit;
 
-    private float Knockback;
+    public float Knockback;
     private float KnockbackTimer;
     private float KnockbackTimerReset;
 
@@ -92,15 +92,17 @@ public class Stalfos : Enemy
                 myAnimator.SetBool("isHit", true);
 
             }
-            KnockbackTimer -= 1f;
+            KnockbackTimer --;
         }
         if(KnockbackTimer <= 0){
-            KnockbackTimer = KnockbackTimerReset;
             Knockback = 0;
+            KnockbackTimer = KnockbackTimerReset;
 
             myAnimator.SetBool("isHit", false);
         }
     }
 
-    public override void SwordHit() {Debug.LogError("SwordHit() not implemented for " + gameObject.name + "!");}
+    public override void SwordHit() {
+        StalfosHit = 1;
+    }
 }

@@ -107,7 +107,9 @@ public class Moldorm : Enemy
         }
     }
 
-    public override void SwordHit() {Debug.LogError("SwordHit() not implemented for " + gameObject.name + "!");}
+    public override void SwordHit() {
+        Hit = 1;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {

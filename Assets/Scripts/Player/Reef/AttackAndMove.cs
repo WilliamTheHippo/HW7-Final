@@ -38,7 +38,7 @@ public class AttackAndMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(cam.Panning) return;
+        //if(cam.Panning) return;
         transform.up = myDirection;
         inputHorizontal = Input.GetAxis("Horizontal");
         inputVertical = Input.GetAxis("Vertical");

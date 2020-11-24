@@ -20,5 +20,7 @@ public class Gel : Enemy
         Debug.DrawLine( transform.position, playerVector, Color.yellow);
     }
 
-    public override void SwordHit() {Debug.LogError("SwordHit() not implemented for " + gameObject.name + "!");}
+    public override void SwordHit() {
+        Destroy(this.gameObject);
+    }
 }

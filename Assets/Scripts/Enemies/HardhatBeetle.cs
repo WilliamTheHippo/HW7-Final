@@ -67,5 +67,7 @@ public class HardhatBeetle : Enemy
 	}
 
 
-    public override void SwordHit() {Debug.LogError("SwordHit() not implemented for " + gameObject.name + "!");}
+    public override void SwordHit() {
+        Hit = 1;
+    }
 }
