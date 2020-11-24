@@ -22,6 +22,7 @@ public class AttackAndMove : MonoBehaviour
     int pokeCounter = 1;
 
     Animator linkAnimator;
+    CameraMovement cam;
 
     public Gel Gel;
     public Vector3 myDirection;
@@ -32,10 +33,12 @@ public class AttackAndMove : MonoBehaviour
         myRigidBody = GetComponent<Rigidbody2D>();
         m_Collider= GetComponent<Collider2D>();
         linkAnimator = GetComponent<Animator>();
+        cam = Camera.main.GetComponent<CameraMovement>();
     }
     // Update is called once per frame
     void Update()
     {
+        if(cam.Panning) return;
         transform.up = myDirection;
         inputHorizontal = Input.GetAxis("Horizontal");
         inputVertical = Input.GetAxis("Vertical");
@@ -207,6 +210,10 @@ public class AttackAndMove : MonoBehaviour
             linkAnimator.SetBool("jumping",false);
             jumpTimer = 1f;
         }
+        if(Input.GetKeyDown(KeyCode.W)) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Up));
+        if(Input.GetKeyDown(KeyCode.A)) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Left));
+        if(Input.GetKeyDown(KeyCode.S)) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Down));
+        if(Input.GetKeyDown(KeyCode.D)) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Right));
     }
     void FixedUpdate(){
         myRigidBody.velocity = new Vector2 (inputHorizontal * MoveSpeed, inputVertical * MoveSpeed);

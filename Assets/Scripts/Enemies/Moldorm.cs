@@ -41,7 +41,8 @@ public class Moldorm : Enemy
         xSpeed = 1.5f * Time.deltaTime * 3f;
         ySpeed = 1.5f * Time.deltaTime * 3f;
     }
-    void Update()
+
+    void FixedUpdate()
     {
        
     //Moves in a curve, randomly clockwise or counterclockwise about every second
@@ -76,36 +77,25 @@ public class Moldorm : Enemy
                 transform.Translate( 0f, -ySpeed, 0f);
             }
         }
-
-
         if (LivesTimer > 0f){
             LivesTimer -= 1f;
         }
         if(Hit == 1){
-
             if(LivesTimer <= 0f){
                 Lives -= 1f;
                 
                 LivesTimer = 1f / Time.deltaTime;
             }
-
-            //Debug.Log(StalfosLives);
             if(Lives <= 0){
-                /*GameObject EnemyFollowMoldorm = GameObject.Find("Follow Moldorm");
-                MoldormFollow MoldormFollowScript = EnemyFollowMoldorm.GetComponent<MoldormFollow>();
-                MoldormFollowScript.Die = 1;*/
-
                 Destroy(this.gameObject);
             }
 
             Knockback = 1;
-
             Hit = 0;         
         }
 
         if(Knockback == 1){
             if(KnockbackTimer > 0f){
-                //Knockback
                 KnockbackDirection = transform.position - Player.transform.position;
                 transform.Translate(KnockbackDirection.normalized * KnockbackSpeed * Time.deltaTime);
             }
@@ -116,6 +106,8 @@ public class Moldorm : Enemy
             Knockback = 0;
         }
     }
+
+    public override void SwordHit() {Debug.LogError("SwordHit() not implemented for " + gameObject.name + "!");}
 
     void OnCollisionEnter2D(Collision2D collision)
     {

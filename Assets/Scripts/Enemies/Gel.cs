@@ -4,38 +4,21 @@ using UnityEngine;
 
 public class Gel : Enemy
 {
-    public Transform playerTransform; // "public" = it will be exposed in the Unity editor inspector
-    
-    //var animDie : AnimationClip; // Drag your animation from the project view in here (to inspector)
+    GameObject playerTransform;    
 
-    void Start(){
-
-    }
-    void Update()
+    void Start()
     {
-        var playerVector = playerTransform.position; //find player's transform position 
-        //recycle: GameObject.Find("Player").transform.position
-        
-        // move toward the player
+        playerTransform = GameObject.Find("Player");
+    }
+
+    void FixedUpdate()
+    {
+        var playerVector = playerTransform.transform.position;
         Vector3 followVector = playerVector - transform.position;
         transform.position += followVector.normalized * Time.deltaTime;
 
-        //debug what the NPC is thinking
         Debug.DrawLine( transform.position, playerVector, Color.yellow);
-
-        
-        //if (SwordHit==1){
-            //animation.Play(animDie.name);
-            //Destroy(this.gameObject, animDie.length);
-            
-        //}
-        
     }
 
-    /*public void SwordHit(){
-        Destroy(this.gameObject);
-        //animation.Play(animDie.name);
-        //Destroy(this.gameObject, animDie.length);
-    }*/
-
+    public override void SwordHit() {Debug.LogError("SwordHit() not implemented for " + gameObject.name + "!");}
 }
