@@ -4,79 +4,65 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-	//Alex's code, meant to integrate with the tile system.
-	//TODO Pull in Reef's attack code!
-	public float moveSpeed;
+	[Header("Sprites")]
+	public Sprite front;
+	public Sprite back;
+	public Sprite side;
+	Sprite idle;
 
-	enum CameraDirection{Up, Down, Left, Right}
-	bool panning;
+	public enum Direction {Up, Down, Left, Right}
+
+	[Header("State Management")]
+	public Direction direction;
+	public bool walking;
+	public bool shielding;
+	public bool attacking;
+
+	SpriteRenderer sr;
+	CameraMovement cam;
+	Walking walk;
+	Shielding shield;
+	Attacking attack;
 
 	void Start()
 	{
-		panning = false;
+		sr = GetComponent<SpriteRenderer>();
+		cam = Camera.main.GetComponent<CameraMovement>();
+		idle = sr.sprite;
+		direction = Direction.Down;
+
+		walk = GetComponent<Walking>();
+		walking = false;
+		shield = GetComponent<Shielding>();
+		shielding = false;
+		attack = GetComponent<Attacking>();
 	}
 
 	void FixedUpdate()
 	{
-		if(panning) return;
-		float old_x = transform.position.x;
-		float old_y = transform.position.y;
-		if(Input.GetKey(KeyCode.UpArrow)) transform.position += new Vector3(0f, moveSpeed, 0f);
-		if(Input.GetKey(KeyCode.DownArrow)) transform.position += new Vector3(0f, -moveSpeed, 0f);
-		if(Input.GetKey(KeyCode.LeftArrow)) transform.position += new Vector3(-moveSpeed, 0f, 0f);
-		if(Input.GetKey(KeyCode.RightArrow)) transform.position += new Vector3(moveSpeed, 0f, 0f);
-		QuantizePosition();
-		if(Mathf.Abs(transform.position.x % 20) == 10f)
-		{
-			if(old_x < transform.position.x) StartCoroutine(MoveCamera(CameraDirection.Right));
-			else StartCoroutine(MoveCamera(CameraDirection.Left));
-		}
-		if(Mathf.Abs(transform.position.y % 16) == 9f)
-		{
-			if(old_y < transform.position.y) StartCoroutine(MoveCamera(CameraDirection.Up));
-			else StartCoroutine(MoveCamera(CameraDirection.Down));
-		}
+		if(cam.Panning) return;
+		if(Input.GetKey(KeyCode.Z)) {attack.Attack(); return;}
+		if(Input.GetKey(KeyCode.X)) {shield.Shield(); return; }
+		if( Input.GetKey(KeyCode.UpArrow) ||
+			Input.GetKey(KeyCode.DownArrow) ||
+			Input.GetKey(KeyCode.LeftArrow) ||
+			Input.GetKey(KeyCode.RightArrow)
+			) { walk.Walk(); return; }
+		Idle();
 	}
 
-	IEnumerator MoveCamera(CameraDirection direction)
+	public void Idle()
 	{
-		panning = true;
-		int times = direction == CameraDirection.Left || direction == CameraDirection.Right ? 40 : 32;
-		Vector3 delta = new Vector3(0f,0f,0f);
-		if(direction == CameraDirection.Left)
-		{
-			delta = new Vector3(-0.5f,0f,0f);
-			transform.position += new Vector3(-0.125f,0f,0f);
-		}
-		if(direction == CameraDirection.Right)
-		{
-			delta = new Vector3(0.5f,0f,0f);
-			transform.position += new Vector3(0.125f,0f,0f);
-		}
-		if(direction == CameraDirection.Up)
-		{
-			delta = new Vector3(0f,0.5f,0f);
-			transform.position += new Vector3(0f,0.125f,0f);
-		}
-		if(direction == CameraDirection.Down)
-		{
-			delta = new Vector3(0f,-0.5f,0f);
-			transform.position += new Vector3(0f,-0.125f,0f);
-		}
+		walking = false;
+		walk.Stop();
+		shielding = false;
+		shield.Stop();
+		attacking = false;
+		attack.Stop();
 
-		for(int i = 0; i < times; i++)
-		{
-			Camera.main.transform.position += delta;
-			yield return new WaitForSeconds(0.01f); //CHANGE THIS!
-		}
-		panning = false;
-	}
-
-	void QuantizePosition()
-	{
-		float x = Mathf.Round(transform.position.x * 8) / 8;
-		float y = Mathf.Round(transform.position.y * 8) / 8;
-		transform.position = new Vector3(x,y,0f); 
+		if(direction == Direction.Up) sr.sprite = back;
+		else if(direction == Direction.Down) sr.sprite = front;
+		else sr.sprite = side;
 	}
 
 	void Fall()
