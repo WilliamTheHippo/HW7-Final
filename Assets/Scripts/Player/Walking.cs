@@ -5,11 +5,9 @@ using UnityEngine;
 public class Walking : MonoBehaviour
 {
 	public float moveSpeed;
-	//public bool onDoorTrigger;
+	public Sprite[] sprites;
 
-	[Header("Sprites")]
-	public Sprite[] walk;
-	int walk_offset;
+	int offset;
 
 	CameraMovement cam;
 	SpriteRenderer sr;
@@ -26,9 +24,9 @@ public class Walking : MonoBehaviour
 	{
 		float old_x = transform.position.x;
 		float old_y = transform.position.y;
-		walk_offset = 0;
-		if(player.direction == Player.Direction.Down) walk_offset += 2;
-		if(player.direction == Player.Direction.Left || player.direction == Player.Direction.Right) walk_offset += 4;
+		offset = 0;
+		if(player.direction == Player.Direction.Down) offset += 2;
+		if(player.direction == Player.Direction.Left || player.direction == Player.Direction.Right) offset += 4;
 		sr.flipX = player.direction == Player.Direction.Left ? true : false;
 		if(Input.GetKey(KeyCode.UpArrow))
 		{
@@ -59,7 +57,20 @@ public class Walking : MonoBehaviour
 			transform.position += new Vector3(moveSpeed, 0f, 0f);
 		}
 		QuantizePosition();
+		SwitchRoom(old_x, old_y);
+	}
 
+	public void Stop() {StopCoroutine("Animation");}
+
+	public void QuantizePosition()
+	{
+		float x = Mathf.Round(transform.position.x * 8) / 8;
+		float y = Mathf.Round(transform.position.y * 8) / 8;
+		transform.position = new Vector3(x,y,0f);
+	}
+
+	public void SwitchRoom(float old_x, float old_y)
+	{
 		if(Mathf.Abs(transform.position.x % 20) == 10f)
 		{
 			if(old_x < transform.position.x) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Right));
@@ -72,26 +83,18 @@ public class Walking : MonoBehaviour
 		}
 	}
 
-	public void Stop() {StopCoroutine("Animation");}
-
-	void QuantizePosition()
-	{
-		float x = Mathf.Round(transform.position.x * 8) / 8;
-		float y = Mathf.Round(transform.position.y * 8) / 8;
-		transform.position = new Vector3(x,y,0f); 
-	}
-
 	IEnumerator Animation() //can't just use FlipX anymore because shield sprites aren't mirrored
 	{
 		while(true)
 		{
-			sr.sprite = walk[walk_offset];
+			sr.sprite = sprites[offset];
 			yield return new WaitForSeconds(0.125f);
-			sr.sprite = walk[walk_offset]; //duplicates improve game feel
+			sr.sprite = sprites[offset]; //duplicates improve game feel
 			yield return new WaitForSeconds(0.125f);
-			sr.sprite = walk[walk_offset+1];
+			sr.sprite = sprites[offset+1];
 			yield return new WaitForSeconds(0.125f);
-			sr.sprite = walk[walk_offset+1];
+			sr.sprite = sprites[offset+1];
+			yield return new WaitForSeconds(0.125f);
 		}
 	}
 }

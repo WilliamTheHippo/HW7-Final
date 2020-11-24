@@ -15,10 +15,14 @@ public class Player : MonoBehaviour
 	[Header("State Management")]
 	public Direction direction;
 	public bool walking;
+	public bool shielding;
+	public bool attacking;
 
 	SpriteRenderer sr;
 	CameraMovement cam;
 	Walking walk;
+	Shielding shield;
+	Attacking attack;
 
 	void Start()
 	{
@@ -29,11 +33,16 @@ public class Player : MonoBehaviour
 
 		walk = GetComponent<Walking>();
 		walking = false;
+		shield = GetComponent<Shielding>();
+		shielding = false;
+		attack = GetComponent<Attacking>();
 	}
 
 	void FixedUpdate()
 	{
 		if(cam.Panning) return;
+		if(Input.GetKey(KeyCode.Z)) {attack.Attack(); return;}
+		if(Input.GetKey(KeyCode.X)) {shield.Shield(); return; }
 		if( Input.GetKey(KeyCode.UpArrow) ||
 			Input.GetKey(KeyCode.DownArrow) ||
 			Input.GetKey(KeyCode.LeftArrow) ||
@@ -46,10 +55,14 @@ public class Player : MonoBehaviour
 	{
 		walking = false;
 		walk.Stop();
+		shielding = false;
+		shield.Stop();
+		attacking = false;
+		attack.Stop();
 
 		if(direction == Direction.Up) sr.sprite = back;
-		if(direction == Direction.Down) sr.sprite = front;
-		if(direction == Direction.Left || direction == Direction.Right) sr.sprite = side;
+		else if(direction == Direction.Down) sr.sprite = front;
+		else sr.sprite = side;
 	}
 
 	void Fall()
