@@ -17,12 +17,14 @@ public class Player : MonoBehaviour
 	public bool walking;
 	public bool shielding;
 	public bool attacking;
+	public bool pushing;
 
 	SpriteRenderer sr;
 	CameraMovement cam;
 	Walking walk;
 	Shielding shield;
 	Attacking attack;
+	Pushing push;
 
 	void Start()
 	{
@@ -36,6 +38,9 @@ public class Player : MonoBehaviour
 		shield = GetComponent<Shielding>();
 		shielding = false;
 		attack = GetComponent<Attacking>();
+		// attacking = false? 
+		push = GetComponent<Pushing>();
+		pushing = false;
 	}
 
 	void FixedUpdate()
@@ -59,6 +64,8 @@ public class Player : MonoBehaviour
 		shield.Stop();
 		attacking = false;
 		attack.Stop();
+		pushing = false;
+		push.Stop();
 
 		if(direction == Direction.Up) sr.sprite = back;
 		else if(direction == Direction.Down) sr.sprite = front;
@@ -72,6 +79,16 @@ public class Player : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D c)
 	{
-		if(c.tag == "Fall") Fall();
+		if(c.tag == "Fall") {
+			Fall();
+		} else if (walking) {
+			pushing = true;
+			push.target = c.gameObject.GetComponent<Pushable>(); // sometimes null
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D c) {
+
+		if (c.tag == "Push") Idle();
 	}
 }

@@ -24,10 +24,16 @@ public class Walking : MonoBehaviour
 	{
 		float old_x = transform.position.x;
 		float old_y = transform.position.y;
+
+		// offset moves focus to the right frames on the sprite sheet for the current direction
 		offset = 0;
 		if(player.direction == Player.Direction.Down) offset += 2;
-		if(player.direction == Player.Direction.Left || player.direction == Player.Direction.Right) offset += 4;
+		if(player.direction == Player.Direction.Left || player.direction == Player.Direction.Right) 
+			offset += 4;
 		sr.flipX = player.direction == Player.Direction.Left ? true : false;
+			// true if player.direction is left, otherwise false
+		
+		// move player
 		if(Input.GetKey(KeyCode.UpArrow))
 		{
 			player.direction = Player.Direction.Up;
