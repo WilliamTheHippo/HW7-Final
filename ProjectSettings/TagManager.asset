@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Fall
-  - Wall
+  - DoorTrigger
   layers:
   - Default
   - TransparentFX
