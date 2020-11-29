@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class shielding : MonoBehaviour
+public class Shielding : MonoBehaviour
 {
     
     public Animator linkAnimator;
