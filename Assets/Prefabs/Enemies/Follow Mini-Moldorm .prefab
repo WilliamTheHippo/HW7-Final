@@ -95,4 +95,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BallToFollow: {fileID: 0}
-  LerpScale: 6
+  LerpScale: 5

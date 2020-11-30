@@ -8,7 +8,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void Fall()
     {
-        Debug.LogError("Haven't implemented falling yet!");
+        //Debug.LogError("Haven't implemented falling yet!");
     }
 
     void OnTriggerEnter2D(Collider2D c)

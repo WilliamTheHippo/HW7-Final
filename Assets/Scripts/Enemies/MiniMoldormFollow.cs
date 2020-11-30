@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MiniMoldormFollow : Enemy
 {
-    Transform BallToFollow;
+    public Transform BallToFollow;
     public float LerpScale=1f;
 
     void Start()
     {
-        BallToFollow = transform.parent;
+        //BallToFollow = transform.parent;
     }
 
     void FixedUpdate()
