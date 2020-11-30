@@ -46,7 +46,7 @@ public class HardhatBeetle : Enemy
             if(KnockbackTimer > 0f)
             {
                 //Knockback
-                float speed = 5f;
+                var speed = 6f;
                 KnockbackDirection = transform.position - Player.transform.position;
                 transform.Translate(KnockbackDirection.normalized * speed * Time.deltaTime);
 
@@ -59,5 +59,15 @@ public class HardhatBeetle : Enemy
         }
     }
 
-    public override void SwordHit() {Debug.LogError("SwordHit() not implemented for " + gameObject.name + "!");}
+    void OnTriggerEnter2D(Collider2D c)
+	{
+		if(c.tag == "Fall"){
+            Destroy(this.gameObject);
+        }
+	}
+
+
+    public override void SwordHit() {
+        Hit = 1;
+    }
 }

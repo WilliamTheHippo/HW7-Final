@@ -11,12 +11,14 @@ public class Stalfos : Enemy
     float StalfosLivesTimer;
     public float StalfosHit;
 
-    private float Knockback;
+    public float Knockback;
     private float KnockbackTimer;
     private float KnockbackTimerReset;
 
     public Vector3 KnockbackDirection;
     public Rigidbody2D Player;
+
+    Animator myAnimator;
 
     void Start()
     {
@@ -29,6 +31,8 @@ public class Stalfos : Enemy
         Knockback = 0f;
         KnockbackTimerReset = 1f / Time.deltaTime;
         KnockbackTimer = KnockbackTimerReset;
+
+        myAnimator = GetComponent<Animator>();
     }
     void Update()
     {
@@ -79,18 +83,26 @@ public class Stalfos : Enemy
         if(Knockback == 1){
             if(KnockbackTimer > 0f){
                 //Knockback
-                var speed = 2f * 3f;
+                var speed = 8f;
                 KnockbackDirection = transform.position - Player.transform.position;
                 transform.Translate(KnockbackDirection.normalized * speed * Time.deltaTime);
+                //transform.Translate( 0f, 1.5f * Time.deltaTime, 0f);
                 
+
+                myAnimator.SetBool("isHit", true);
+
             }
-            KnockbackTimer -= 1f;
+            KnockbackTimer --;
         }
         if(KnockbackTimer <= 0){
-            KnockbackTimer = KnockbackTimerReset;
             Knockback = 0;
+            KnockbackTimer = KnockbackTimerReset;
+
+            myAnimator.SetBool("isHit", false);
         }
     }
 
-    public override void SwordHit() {Debug.LogError("SwordHit() not implemented for " + gameObject.name + "!");}
+    public override void SwordHit() {
+        StalfosHit = 1;
+    }
 }
