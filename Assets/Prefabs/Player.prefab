@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3208204332620647372}
   - component: {fileID: 3208204332620647374}
   - component: {fileID: 3208204332620647375}
+  - component: {fileID: 6762709092397183123}
   - component: {fileID: 7394421068365951396}
-  - component: {fileID: 3208204332620647368}
   - component: {fileID: 3208204332620647369}
   m_Layer: 2
   m_Name: Player
@@ -124,6 +124,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6762709092397183123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208204332620647363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9340501c6bfc84447ae6ff5407fc2652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 5
+  attackTimer: 0.3
+  chargeTimer: 0
+  spinTimer: 1
+  jumpTimerUp: 0.25
+  jumpTimerDown: 0.25
+  canMove: 1
+  arrowKeyPressed: 0
+  jumping: 0
+  slashing: 0
+  poking: 0
+  shielding: 0
+  spinning: 0
+  facing: 0
+  Gel: {fileID: 0}
+  myDirection: {x: 0, y: 0, z: 0}
+  hitDestination: {x: 0, y: 0, z: 0}
 --- !u!114 &7394421068365951396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,32 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2381f403ca426684e93a87797f256c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3208204332620647368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3208204332620647363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b29533a9a702b547aef909705224a57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 10
-  attackTimer: 0.5
-  chargeTimer: 0
-  jumpTimer: 0.45
-  canMove: 1
-  arrowKeyPressed: 0
-  jumping: 0
-  slashing: 0
-  poking: 0
-  shielding: 0
-  facing: 0
-  Gel: {fileID: 3656358642137570465, guid: 8f219b87538c89c41b29c68db53553b6, type: 3}
-  myDirection: {x: 0, y: 0, z: 0}
-  hitDestination: {x: 0, y: 0, z: 0}
+  linkAnimator: {fileID: 3208204332620647369}
+  mainScript: {fileID: 6762709092397183123}
+  rb: {fileID: 3208204332620647375}
 --- !u!95 &3208204332620647369
 Animator:
   serializedVersion: 3
