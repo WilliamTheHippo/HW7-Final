@@ -2,93 +2,69 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player : MonoBehaviour
 {
-	[Header("Sprites")]
-	public Sprite front;
-	public Sprite back;
-	public Sprite side;
-	Sprite idle;
 
-	public enum Direction {Up, Down, Left, Right}
+    PlayerState currentState;
 
-	[Header("State Management")]
-	public Direction direction;
-	public bool walking;
-	public bool shielding;
-	public bool attacking;
-	public bool pushing;
+    ////////// PLAYER STATES //////////
+    Idle idle = new Idle();
+    Walk walk = new Walk();
+    Hit hit = new Hit();
+    Shield shield = new Shield();
+    Jump jump = new Jump();
+    Fall falling = new Fall();
 
-	SpriteRenderer sr;
-	CameraMovement cam;
-	Walking walk;
-	Shielding shield;
-	Attacking attack;
-	Pushing push;
+    public float moveSpeed = 5f;
 
-	void Start()
-	{
-		sr = GetComponent<SpriteRenderer>();
-		cam = Camera.main.GetComponent<CameraMovement>();
-		idle = sr.sprite;
-		direction = Direction.Down;
+    public enum Direction {
+        Up,
+        Down,
+        Left,
+        Right,
+    }
+    public Direction currentDirection;
 
-		walk = GetComponent<Walking>();
-		walking = false;
-		shield = GetComponent<Shielding>();
-		shielding = false;
-		attack = GetComponent<Attacking>();
-		// attacking = false? 
-		push = GetComponent<Pushing>();
-		pushing = false;
-	}
+    void Start()
+    {
+        currentState = idle;
+    }
 
-	void FixedUpdate()
-	{
-		if(cam.Panning) return;
-		if(Input.GetKey(KeyCode.Z)) {attack.Attack(); return;}
-		if(Input.GetKey(KeyCode.X)) {shield.Shield(); return; }
-		if( Input.GetKey(KeyCode.UpArrow) ||
-			Input.GetKey(KeyCode.DownArrow) ||
-			Input.GetKey(KeyCode.LeftArrow) ||
-			Input.GetKey(KeyCode.RightArrow)
-			) { walk.Walk(); return; }
-		Idle();
-	}
+    void Update()
+    {
+        if (cam.Panning) return;
 
-	public void Idle()
-	{
-		walking = false;
-		walk.Stop();
-		shielding = false;
-		shield.Stop();
-		attacking = false;
-		attack.Stop();
-		pushing = false;
-		push.Stop();
+        if (Input.GetKeyDown(KeyCode.X)) {
+            currentState = hit;
+        } 
+        else if (Input.GetKeyDown(KeyCode.Z)) {
+            currentState = shield;
+        } 
+        else if (Input.GetKeyDown(KeyCode.Space)) {
+            currentState = jump;
+        }
 
-		if(direction == Direction.Up) sr.sprite = back;
-		else if(direction == Direction.Down) sr.sprite = front;
-		else sr.sprite = side;
-	}
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) {
+            currentState = walk;
+            currentDirection = Direction.Up;
+        }
+        
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) {
+            currentState = walk;
+            currentDirection = Direction.Left;
+        }
 
-	void Fall()
-	{
-		Debug.Log("Haven't implemented falling yet!");
-	}
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) {
+            currentState = walK;
+            currentDirection = Direction.Down;
+        }
 
-	void OnTriggerEnter2D(Collider2D c)
-	{
-		if(c.tag == "Fall") {
-			Fall();
-		} else if (walking) {
-			pushing = true;
-			push.target = c.gameObject.GetComponent<Pushable>(); // sometimes null
-		}
-	}
+        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) {  
+            currentState = walk;
+            currentDirection = Direction.Right;
+        }
 
-	void OnTriggerExit2D(Collider2D c) {
-
-		if (c.tag == "Push") Idle();
-	}
+        currentState.UpdateOnActive();
+    }
 }
