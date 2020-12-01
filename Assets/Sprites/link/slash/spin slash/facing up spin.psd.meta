@@ -1,0 +1,311 @@
+fileFormatVersion: 2
+guid: 8acd2d49e4f5fb94a86fdffa59809226
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7182612611632546498
+    second: facing up spin_0
+  - first:
+      213: -1730691248723393097
+    second: facing up spin_1
+  - first:
+      213: 272467162767372954
+    second: facing up spin_2
+  - first:
+      213: 8637601313527524606
+    second: facing up spin_3
+  - first:
+      213: -2295672382817120827
+    second: facing up spin_4
+  - first:
+      213: 5065971109391818294
+    second: facing up spin_5
+  - first:
+      213: 5355046946204556173
+    second: facing up spin_6
+  - first:
+      213: 2108290949444931376
+    second: facing up spin_7
+  - first:
+      213: -70732579960036465
+    second: facing up spin_8
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 8
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: facing up spin_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 100
+        width: 28
+        height: 28
+      alignment: 9
+      pivot: {x: 0.7328749, y: 0.2894813}
+      border: {x: 13, y: 0, z: 0, w: 12}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c2499b7d14cda360800000000000000
+      internalID: 7182612611632546498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: facing up spin_1
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 100
+        width: 30
+        height: 15
+      alignment: 9
+      pivot: {x: 0.75386465, y: 0.48956758}
+      border: {x: 15, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b507f79a795bf7e0800000000000000
+      internalID: -1730691248723393097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: facing up spin_2
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 88
+        width: 27
+        height: 27
+      alignment: 9
+      pivot: {x: 0.7299081, y: 0.7221801}
+      border: {x: 12, y: 12, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9235b1e07ff7c300800000000000000
+      internalID: 272467162767372954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: facing up spin_3
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 85
+        width: 15
+        height: 30
+      alignment: 9
+      pivot: {x: 0.51391095, y: 0.7416934}
+      border: {x: 0, y: 15, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efc614471aceed770800000000000000
+      internalID: 8637601313527524606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: facing up spin_4
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 59
+        width: 27
+        height: 28
+      alignment: 9
+      pivot: {x: 0.27204216, y: 0.2687149}
+      border: {x: 0, y: 0, z: 12, w: 13}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cdc28d71222420e0800000000000000
+      internalID: -2295672382817120827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: facing up spin_5
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 59
+        width: 15
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5148366, y: 0.2307813}
+      border: {x: 0, y: 0, z: 0, w: 16}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63ed0b122e1fd4640800000000000000
+      internalID: 5065971109391818294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: facing up spin_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 44
+        width: 27
+        height: 30
+      alignment: 9
+      pivot: {x: 0.29330304, y: 0.75280607}
+      border: {x: 0, y: 15, z: 13, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8b101843d2f05a40800000000000000
+      internalID: 5355046946204556173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: facing up spin_7
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 59
+        width: 30
+        height: 15
+      alignment: 9
+      pivot: {x: 0.25196356, y: 0.5095398}
+      border: {x: 0, y: 0, z: 15, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03f06d4c277224d10800000000000000
+      internalID: 2108290949444931376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

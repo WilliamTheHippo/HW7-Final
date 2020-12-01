@@ -688,9 +688,9 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!4 &951601337
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3208204332620647373, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3208204331669078900}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 951601335}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -718,68 +718,10 @@ CircleCollider2D:
   m_Radius: 0.49999997
 --- !u!50 &951601339
 Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3208204332620647375, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
+    type: 3}
+  m_PrefabInstance: {fileID: 3208204331669078900}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 951601335}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &951601340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 951601335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b29533a9a702b547aef909705224a57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 10
-  attackTimer: 0.5
-  chargeTimer: 0
-  jumpTimer: 0.45
-  canMove: 1
-  arrowKeyPressed: 0
-  jumping: 0
-  slashing: 0
-  poking: 0
-  Gel: {fileID: 3656358642137570465, guid: 8f219b87538c89c41b29c68db53553b6, type: 3}
-  myDirection: {x: 0, y: 0, z: 0}
-  hitDestination: {x: 0, y: 0, z: 0}
---- !u!95 &951601341
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 951601335}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a0a2b0a56786814429c21eee01412e89, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &982925223
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,6 +1515,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moldorm-Tail1
       objectReference: {fileID: 0}
+    - target: {fileID: 2635694551805261627, guid: a1de2d2f5909e654ba5fc1f22e74fe49,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b33e3f814311e8478fbe8795a87227c, type: 3}
 --- !u!1001 &4398175209536576958
@@ -1937,6 +1884,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stalfos
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964107777275896085, guid: 9574b4f2b2fe8784e9297450397a21cf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1de2d2f5909e654ba5fc1f22e74fe49, type: 3}
