@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoldormFollow : Enemy
 {
     public Transform BallToFollow;
-    public float LerpScale=1f;
+    public float LerpScale=5f;
 
     void Start()
     {

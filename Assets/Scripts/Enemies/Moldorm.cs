@@ -57,24 +57,32 @@ public class Moldorm : Enemy
         if(Knockback == 0){
             if ( randomNumber <= 0.25f ) { 
 
-                transform.Translate(xSpeed, 0f, 0f); // move pixels per second
-                transform.Translate(0f, ySpeed, 0f);
+                transform.Translate(xSpeed, 0f, 0f, Space.World); // move pixels per second
+                transform.Translate(0f, ySpeed, 0f, Space.World);
+
+                transform.localEulerAngles = new Vector3(0f, 0f, -45f );
 
             
             } else if (0.25f < randomNumber && randomNumber <= 0.5f) {
 
-                transform.Translate(xSpeed, 0f, 0f);
-                transform.Translate( 0f, -ySpeed, 0f);
+                transform.Translate(xSpeed, 0f, 0f, Space.World);
+                transform.Translate( 0f, -ySpeed, 0f, Space.World);
+
+                transform.localEulerAngles = new Vector3(0f, 0f, -135f );
 
             } else if (0.5f < randomNumber && randomNumber <= 0.75f) {
 
-                transform.Translate(-xSpeed, 0f, 0f);
-                transform.Translate( 0f, ySpeed, 0f);
+                transform.Translate(-xSpeed, 0f, 0f, Space.World);
+                transform.Translate( 0f, ySpeed, 0f, Space.World);
+
+                transform.localEulerAngles = new Vector3(0f, 0f, 45f );
 
             } else if (0.75f < randomNumber) {
 
-                transform.Translate(-xSpeed, 0f, 0f);
-                transform.Translate( 0f, -ySpeed, 0f);
+                transform.Translate(-xSpeed, 0f, 0f, Space.World);
+                transform.Translate( 0f, -ySpeed, 0f, Space.World);
+
+                transform.localEulerAngles = new Vector3(0f, 0f, 135f );
             }
         }
         if (LivesTimer > 0f){
@@ -97,7 +105,7 @@ public class Moldorm : Enemy
         if(Knockback == 1){
             if(KnockbackTimer > 0f){
                 KnockbackDirection = transform.position - Player.transform.position;
-                transform.Translate(KnockbackDirection.normalized * KnockbackSpeed * Time.deltaTime);
+                transform.Translate(KnockbackDirection.normalized * KnockbackSpeed * Time.deltaTime, Space.World);
             }
             KnockbackTimer -= 1f;
         }
@@ -105,6 +113,7 @@ public class Moldorm : Enemy
             KnockbackTimer = KnockbackTimerReset;
             Knockback = 0;
         }
+
     }
 
     public override void SwordHit() {
@@ -113,8 +122,26 @@ public class Moldorm : Enemy
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        xSpeed = -xSpeed;
+        /*xSpeed = -xSpeed;
         ySpeed = -ySpeed;
+        transform.Rotate(0f, 0f, 180f);*/
+
+        if ( randomNumber <= 0.25f ) { 
+
+                randomNumber = 0.8f;
+            
+            } else if (0.25f < randomNumber && randomNumber <= 0.5f) {
+
+                randomNumber = 0.6f;
+
+            } else if (0.5f < randomNumber && randomNumber <= 0.75f) {
+
+                randomNumber = 0.4f;
+
+            } else if (0.75f < randomNumber) {
+
+                randomNumber = 0.1f;
+            }
 
     }
 }

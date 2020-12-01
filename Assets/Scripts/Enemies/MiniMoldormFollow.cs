@@ -5,7 +5,8 @@ using UnityEngine;
 public class MiniMoldormFollow : Enemy
 {
     public Transform BallToFollow;
-    public float LerpScale=1f;
+    public float LerpScale=5f;
+
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class MiniMoldormFollow : Enemy
         transform.position = Vector3.Lerp(transform.position, BallToFollow.position, LerpScale * Time.deltaTime);
 
         GameObject EnemyMoldorm = GameObject.Find("Mini-Moldorm");
-        Moldorm MoldormScript = EnemyMoldorm.GetComponent<Moldorm>();
+        MiniMoldorm MoldormScript = EnemyMoldorm.GetComponent<MiniMoldorm>();
         if(MoldormScript.Lives <= 0){
 
             Destroy(this.gameObject);
