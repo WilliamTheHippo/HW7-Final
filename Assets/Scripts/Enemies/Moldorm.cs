@@ -36,7 +36,7 @@ public class Moldorm : Enemy
         KnockbackTimerReset = 1f / Time.deltaTime;
         KnockbackTimer = KnockbackTimerReset;
 
-        KnockbackSpeed = 10f;
+        KnockbackSpeed = 0f;
 
         xSpeed = 1.5f * Time.deltaTime * 3f;
         ySpeed = 1.5f * Time.deltaTime * 3f;
