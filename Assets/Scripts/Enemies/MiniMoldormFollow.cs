@@ -7,12 +7,13 @@ public class MiniMoldormFollow : Enemy
     public Transform BallToFollow;
     public float LerpScale=5f;
 
-    void Start()
+    new void Start()
     {
+        base.Start();
         //BallToFollow = transform.parent;
     }
 
-    void FixedUpdate()
+    public override void OnUpdate()
     {
         if(BallToFollow == null){
             Destroy(this.gameObject);

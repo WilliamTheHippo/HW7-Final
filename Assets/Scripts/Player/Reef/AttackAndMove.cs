@@ -27,6 +27,11 @@ public class AttackAndMove : MonoBehaviour
     int pokeCounter = 1;
     public int facing;
     Animator linkAnimator;
+
+    CameraMovement cam;
+    public int room;
+    //ones place holds the X coord, tens place holds the Y coord
+    //THIS IS REALLY BAD PRACTICE SHIVVED IN FOR A PLAYTEST
     
     public Gel Gel;
     public Vector3 myDirection;
@@ -37,10 +42,14 @@ public class AttackAndMove : MonoBehaviour
         myRigidBody = GetComponent<Rigidbody2D>();
         m_Collider= GetComponent<Collider2D>();
         linkAnimator = GetComponent<Animator>();
+        cam = Camera.main.GetComponent<CameraMovement>();
     }
     // Update is called once per frame
     void Update()
     {
+        float old_x = transform.position.x;
+        float old_y = transform.position.y;
+
         transform.up = myDirection;
         inputHorizontal = Input.GetAxis("Horizontal");
         inputVertical = Input.GetAxis("Vertical");
@@ -151,7 +160,7 @@ public class AttackAndMove : MonoBehaviour
         if(spinning){
             spinTimer -= Time.deltaTime;
         }
-        Debug.Log(spinTimer);
+        //Debug.Log(spinTimer);
         if(spinTimer <= 0){
             linkAnimator.SetBool("spinning",false);
             linkAnimator.SetBool("poking", false);
@@ -316,12 +325,37 @@ public class AttackAndMove : MonoBehaviour
             jumpTimerUp = 0.25f;
             jumpTimerDown = 0.25f;
         }
+        QuantizePosition();
+        SwitchRoom(old_x, old_y);
     }
     void FixedUpdate(){
         myRigidBody.velocity = new Vector2 (inputHorizontal * MoveSpeed, inputVertical * MoveSpeed);
     }
 
+    void QuantizePosition()
+    {
+        float x = Mathf.Round(transform.position.x * 8) / 8;
+        float y = Mathf.Round(transform.position.y * 8) / 8;
+        transform.position = new Vector3(x,y,0f);
+    }
 
+    void SwitchRoom(float old_x, float old_y)
+    {
+        if(Mathf.Abs(transform.position.x % 20) == 10f)
+        {
+            if(old_x < transform.position.x) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Right));
+            else StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Left));
+            if(old_x < transform.position.x) room++;
+            else room--;
+        }
+        if(Mathf.Abs(transform.position.y % 16) == 9f)
+        {
+            if(old_y < transform.position.y) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Up));
+            else StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Down));
+            if(old_y < transform.position.y) room += 10;
+            else room -= 10;
+        }
+    }
 
     void swordknockback(){
         hitDestination = -transform.up * 10;
