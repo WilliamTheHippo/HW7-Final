@@ -40547,6 +40547,11 @@ PrefabInstance:
       propertyPath: room
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 6726819428835716376, guid: a1de2d2f5909e654ba5fc1f22e74fe49,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 589018388}
     - target: {fileID: 6726819428835716379, guid: a1de2d2f5909e654ba5fc1f22e74fe49,
         type: 3}
       propertyPath: m_Name
@@ -40621,6 +40626,11 @@ PrefabInstance:
       propertyPath: room
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 6726819428835716376, guid: a1de2d2f5909e654ba5fc1f22e74fe49,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 589018388}
     - target: {fileID: 6726819428835716379, guid: a1de2d2f5909e654ba5fc1f22e74fe49,
         type: 3}
       propertyPath: m_Name
@@ -79438,10 +79448,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 160, y: 144}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
