@@ -62,7 +62,10 @@ public class HardhatBeetle : Enemy
     void OnTriggerEnter2D(Collider2D c)
 	{
 		if(c.tag == "Fall"){
+            if(Knockback == 1){
+
             Destroy(this.gameObject);
+            }
         }
 	}
 
