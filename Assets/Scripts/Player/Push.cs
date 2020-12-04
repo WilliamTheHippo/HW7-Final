@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fall : PlayerState 
+public class Push : PlayerState
 {
     // This is a constructor that passes through the Player Transform component so the 
     // states can use it.
-    public Fall(Transform t) => playerTransform = t;
+    public Push(Transform t) => playerTransform = t;
 }

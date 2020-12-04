@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Walk : PlayerState
 {
-    void Start()
-    {
-        // PASS IN SPECIFIC ANIMATOR FOR WALK STATE
-        linkAnimator = GetComponent<Animator>();
-    }
+    // This is a constructor that passes through the Player Transform component so the 
+    // states can use it.
+    public Walk(Transform t) => playerTransform = t;
 
-    void Update()
+    public void UpdateOnActive()
     {
-        
+        ///////// ANIMATOR STUFF //////////
+        linkAnimator.SetBool("walking", true);
+        linkAnimator.SetFloat("AnimMoveX", Input.GetAxis("Horizontal"));
+        linkAnimator.SetFloat("AnimMoveY", Input.GetAxis("Vertical"));
+
+        Move();
     }
 }

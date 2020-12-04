@@ -4,14 +4,7 @@ using UnityEngine;
 
 public class Shield : PlayerState
 {
-    void Start()
-    {
-        // PASS IN SPECIFIC ANIMATOR FOR SHIELD STATE
-        linkAnimator = GetComponent<Animator>();
-    }
-
-    void Update()
-    {
-        
-    }
+    // This is a constructor that passes through the Player Transform component so the 
+    // states can use it.
+    public Shield(Transform t) => playerTransform = t;
 }
