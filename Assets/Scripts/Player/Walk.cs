@@ -8,6 +8,10 @@ public class Walk : PlayerState
     // states can use it.
     public Walk(Transform t) => playerTransform = t;
 
+    void Start() {
+        
+    }
+
     public void UpdateOnActive()
     {
         ///////// ANIMATOR STUFF //////////

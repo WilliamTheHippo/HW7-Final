@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
-    PlayerState currentState;
+    public Vector2Int room;
 
     ////////// PLAYER STATES //////////
     Idle idle;
@@ -22,11 +21,14 @@ public class Player : MonoBehaviour
         Down,
         Left,
         Right,
+        Static
     }
     public Direction currentDirection;
 
     Transform thisTransform;
     CameraMovement cam;
+
+    PlayerState currentState;
 
     void Start()
     {
@@ -43,48 +45,31 @@ public class Player : MonoBehaviour
         currentState = idle;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (cam.Panning) return;
-        
 
-        // these if statements are honestly still hell and there's probably a more elegant
-        // way of doing this ... 
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) { // UP
-            currentState = walk;
-            currentDirection = Direction.Up;
+        // The if statements below are better but  honestly still hell and there's probably a more 
+        // elegant way to do this... 
+        if (currentState != hit) {
+
+            if (Input.GetKeyDown(KeyCode.X)) { // ATTACK –– prioritized over all other actions
+                currentState = hit;
+
+            } else { 
+
+                UpdateDirection();
+                
+                if (Input.GetKeyDown(KeyCode.Z)) { // SHIELD
+                    currentState = shield;
+                } 
+                else if (Input.GetKeyDown(KeyCode.Space)) { // JUMP
+                    currentState = jump;
+                } else { // IDLE IF NO BUTTONS ARE PRESSED
+                    currentState = idle;
+                }
+            }
         }
-        
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) { // LEFT
-            currentState = walk;
-            currentDirection = Direction.Left;
-        }
-
-        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) { // DOWN
-            currentState = walk;
-            currentDirection = Direction.Down;
-        }
-
-        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) { // RIGHT
-            currentState = walk;
-            currentDirection = Direction.Right;
-        }
-
-        if (Input.GetKeyDown(KeyCode.X)) { // ATTACK
-            currentState = hit;
-        } 
-        else if (Input.GetKeyDown(KeyCode.Z)) { // SHIELD
-            currentState = shield;
-        } 
-        else if (Input.GetKeyDown(KeyCode.Space)) { // JUMP
-            currentState = jump;
-        } 
-
-        // bug: the way it's currently written, this will set it to idle on every frame
-        else { // IDLE IF NO BUTTONS ARE PRESSED
-            currentState = idle;
-        }
-
         ///////////// UPDATE CURRENT STATE VALUES //////////////
         currentState.setDirection(currentDirection);
 
@@ -93,4 +78,31 @@ public class Player : MonoBehaviour
 
         currentState.UpdateOnActive();
     }
+
+    void UpdateDirection() {
+        Direction newDirection = Direction.Static;
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) { // UP
+            currentState = walk;
+            newDirection = Direction.Up;
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) { // LEFT
+            currentState = walk;
+            newDirection = Direction.Left;
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) { // DOWN
+            currentState = walk;
+            newDirection = Direction.Down;
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) { // RIGHT
+            currentState = walk;
+            newDirection = Direction.Right;
+        }
+
+        if (newDirection != Direction.Static) {
+            currentDirection = newDirection;
+            if (currentState != hit) currentState = walk;
+        }
+    }
+
+    public void SetIdle() => currentState = idle;
 }

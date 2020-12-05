@@ -6,19 +6,34 @@ public abstract class PlayerState : MonoBehaviour
 {
 
     public Animator linkAnimator;
+    public float moveSpeed = 5f;
+    public Player.Direction direction;
 
     [HideInInspector] public float oldX;
     [HideInInspector] public float oldY;
-    [HideInInspector] public float moveSpeed = 5f;
-    public Player.Direction direction;
-    public Transform playerTransform;
+    [HideInInspector] public Player player;
+    [HideInInspector] public Transform playerTransform;
+    [HideInInspector] public bool canStandStill;
+
 
     float pushRayLength = 1f;
     
+    ////////// PLACEHOLDER METHODS ////////// 
     public void UpdateOnActive() { }
+    public void Reset() { }
+    // Every state will have these methods, but the functionality will differ between states.
+    // The methods are declared here so that UpdateOnActive() and Reset() can be called on any
+    // object that inherits from PlayerState.
+
+    // all the child classes should run this Start() function unless they have their own?
+    void Start() { 
+        player = playerTransform.GetComponent<Player>();
+        linkAnimator = GetComponent<Animator>();
+    }
 
     public bool CheckPush () {
     // Runs when an arrow key is pressed to check whether Link should be pushing or walking
+
         bool pushing = false;
 
         Ray2D pushCheckRay = new Ray2D (playerTransform.position, playerTransform.up);
@@ -40,6 +55,7 @@ public abstract class PlayerState : MonoBehaviour
         oldY = playerTransform.position.y;
     }
 
+    // Called in UpdateOnActive() in any player state that allows movement.
     public void Move() {
 
         switch (direction) {

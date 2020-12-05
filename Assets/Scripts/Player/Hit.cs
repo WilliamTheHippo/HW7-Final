@@ -4,43 +4,76 @@ using UnityEngine;
 
 public class Hit : PlayerState
 {
-    float chargeTimer = 0f;
-    float spinTimer = 1f;
-    float attackTimer = 0.3f;
+    const float CHARGETIMER = 0f;
+    const float SPINTIMER = 1f;
+    const float ATTACKTIMER = 0.3f;
+    float charge = 0f;
+    float spinTime = 0f;
+    float attackTime = 0f;
     bool spinning = false;
+    bool canPoke = true;
     bool poking = false;
     bool slashing  = false;
+    bool firstFrame = true;
 
     // This is a constructor that passes through the Player Transform component so the 
     // states can use it.
     public Hit(Transform t) => playerTransform = t;
-    void Start()
-    {
-        // PASS IN SPECIFIC ANIMATOR FOR HIT STATE
-        linkAnimator = GetComponent<Animator>();
-        
+
+    //////////////////////////// UTILITY FUNCTIONS ////////////////////////////
+    void beginHit() {
+        // not sure how animation controller works, but hopefully setting these once at the 
+        // beginning of the hit will keep link facing the same direction, but let him move?
+        linkAnimator.SetFloat("AnimMoveX", Input.GetAxis("Horizontal"));
+        linkAnimator.SetFloat("AnimMoveY", Input.GetAxis("Vertical"));
+
+        slashing = true;
     }
 
+    void keyRelease() {
+        if (charge >= CHARGETIMER) spinning = true;
+        if (!canPoke) canPoke = true;
+
+        charge = 0f;
+    }
+
+    void Reset() {
+        spinning = poking = slashing = false;
+        charge = spinTime = attackTime = 0f;
+        firstFrame = true;
+
+        // When the state is Hit, Player doesn't switch states in FixedUpdate() automatically to 
+        // keep Link hitting when the arrow keys are pressed. 
+        player.SetIdle(); // When the state is Hit, Player doesn't check state switching
+    }
+
+    ////////////////////////////// UPDATE /////////////////////////////////
     void UpdateOnActive()
     {
-        chargeTimer += Time.deltaTime;
+        if (firstFrame) beginHit();
 
         Move();
 
-        if (Input.GetKeyUp(KeyCode.X))
-            keyRelease();
+        charge += Time.deltaTime;
+        if (Input.GetKeyUp(KeyCode.X)) keyRelease();
         
-        if (spinning)
-            spinTimer -= Time.deltaTime;
+        if (spinning) spinTime += Time.deltaTime;
         
-        if (spinTimer <= 0) {
-            spinTimer = 0.5f;
+        if (spinTime >= SPINTIMER) {
+            spinTime = 0f;
             spinning = false;
         }
-        // I can't find where attackTimer is decremented, so I'm not sure it ever runs?
-        if (attackTimer <= 0) {
+        // I can't find where attackTime is decremented in the original code, so I'm not 
+        // sure this ever runs?
+        if (attackTime >= ATTACKTIMER) {
             slashing = false;
-            
+            moveSpeed = 5f;
+            attackTime = 0f;
+        }
+
+        if (charge >= CHARGETIMER && canPoke) {
+            poking = true;
+            canPoke = false;
         }
 
         linkAnimator.SetBool("spinning", spinning);
@@ -48,15 +81,15 @@ public class Hit : PlayerState
         linkAnimator.SetBool("slashing", slashing);
     }
 
-    void keyRelease() {
-        if (chargeTimer >= 0.3f)
-            spinning = true;
-        chargeTimer = 0f;
+    ////////////////////////////// BEHAVIOR /////////////////////////////////
 
-        if (spinning) 
-            spinTimer -= Time.deltaTime;
-        if (spinTimer <= 0) {
+    void Slash() {
 
-        }
     }
+
+    void Poke() {
+
+    }
+
+    
 }
