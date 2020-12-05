@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         if (cam.Panning) return;
+        
 
         // The if statements below are better but  honestly still hell and there's probably a more 
         // elegant way to do this... 
