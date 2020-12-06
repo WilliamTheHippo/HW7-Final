@@ -60,7 +60,7 @@ public class AttackAndMove : MonoBehaviour
             linkAnimator.SetFloat("AnimMoveX", inputHorizontal);
             linkAnimator.SetFloat("AnimMoveY", inputVertical);
             arrowKeyPressed = true;
-            facing = 2;
+            facing = 2; // RIGHT
         }
         if(inputHorizontal < 0 && arrowKeyPressed == false && slashing == false && poking == false){
             transform.Translate(Time.deltaTime,0,0);
@@ -68,7 +68,7 @@ public class AttackAndMove : MonoBehaviour
             linkAnimator.SetFloat("AnimMoveX", inputHorizontal);
             linkAnimator.SetFloat("AnimMoveY", inputVertical);
             arrowKeyPressed = true;
-            facing = 4;
+            facing = 4; // LEFT
         }
         if(inputVertical > 0 && arrowKeyPressed == false && slashing == false && poking == false){
             transform.Translate(0,-Time.deltaTime,0);
@@ -76,7 +76,7 @@ public class AttackAndMove : MonoBehaviour
             linkAnimator.SetFloat("AnimMoveX", inputHorizontal);
             linkAnimator.SetFloat("AnimMoveY", inputVertical);
             arrowKeyPressed = true;
-            facing = 1;
+            facing = 1; // UP
         }
         if(inputVertical < 0 && arrowKeyPressed == false && slashing == false && poking == false){
             transform.Translate(0,Time.deltaTime,0);
@@ -84,7 +84,7 @@ public class AttackAndMove : MonoBehaviour
             linkAnimator.SetFloat("AnimMoveX", inputHorizontal);
             linkAnimator.SetFloat("AnimMoveY", inputVertical);
             arrowKeyPressed = true;
-            facing = 3;
+            facing = 3; // DOWN
         }
         if(inputHorizontal == 0 && inputVertical == 0){
             arrowKeyPressed = false;

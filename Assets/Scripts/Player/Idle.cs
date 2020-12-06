@@ -9,7 +9,7 @@ public class Idle : PlayerState
     // states can use it.
     public Idle(Transform t) => playerTransform = t;
 
-    void Update()
+    public void UpdateOnActive()
     {
         linkAnimator.SetBool("walking", false);
     }

@@ -5,18 +5,19 @@ using UnityEngine;
 public abstract class PlayerState : MonoBehaviour
 {
 
-    public Animator linkAnimator;
-    public float moveSpeed = 5f;
-    public Player.Direction direction;
+    float moveSpeed = 5f;
+    Player.Direction direction;
+    Player player;
+    Animator linkAnimator;
+    protected Transform playerTransform;
+    Collider2D playerCollider;
+    Rigidbody2D player_rb;
 
-    [HideInInspector] public float oldX;
-    [HideInInspector] public float oldY;
-    [HideInInspector] public Player player;
-    [HideInInspector] public Transform playerTransform;
-    [HideInInspector] public bool canStandStill;
-
+    bool canStandStill;
 
     float pushRayLength = 1f;
+    bool firstFrame = true;
+
     
     ////////// PLACEHOLDER METHODS ////////// 
     public void UpdateOnActive() { }
@@ -28,7 +29,9 @@ public abstract class PlayerState : MonoBehaviour
     // all the child classes should run this Start() function unless they have their own?
     void Start() { 
         player = playerTransform.GetComponent<Player>();
-        linkAnimator = GetComponent<Animator>();
+        linkAnimator = player.GetComponent<Animator>();
+        playerCollider = player.GetComponent<Collider2D>();
+        player_rb = player.GetComponent<Rigidbody2D>();
     }
 
     public bool CheckPush () {
@@ -51,8 +54,6 @@ public abstract class PlayerState : MonoBehaviour
 
     public void setDirection(Player.Direction d) {
         direction = d;
-        oldX = playerTransform.position.x;
-        oldY = playerTransform.position.y;
     }
 
     // Called in UpdateOnActive() in any player state that allows movement.
