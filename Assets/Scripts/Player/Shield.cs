@@ -12,7 +12,7 @@ public class Shield : PlayerState
 
     // This is a constructor that passes through the Player Transform component so the 
     // states can use it.
-    public Shield(Transform t) => playerTransform = t;
+    public Shield(Player p) => GrabComponents(p);
 
     void BeginShield() 
     {

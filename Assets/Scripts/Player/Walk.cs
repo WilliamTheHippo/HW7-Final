@@ -6,7 +6,7 @@ public class Walk : PlayerState
 {
     // This is a constructor that passes through the Player Transform component so the 
     // states can use it.
-    public Walk(Transform t) => playerTransform = t;
+    public Walk(Player p) => GrabComponents(p);
 
     public void UpdateOnActive()
     {

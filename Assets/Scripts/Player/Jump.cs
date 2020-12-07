@@ -11,7 +11,7 @@ public class Jump : PlayerState
 
     // This is a constructor that passes through the Player Transform component so the 
     // states can use it.
-    public Jump(Transform t) => playerTransform = t;
+    public Jump(Player p) => GrabComponents(p);
 
     public void BeginJump() 
     {
@@ -36,7 +36,7 @@ public class Jump : PlayerState
         }
 
         jumpTime += Time.deltaTime;
-        transform.position += new Vector3 (0f, JUMPSPEED * jumpDirection, 0f);
+        playerTransform.position += new Vector3 (0f, JUMPSPEED * jumpDirection, 0f);
     }
 
     public void Reset() 

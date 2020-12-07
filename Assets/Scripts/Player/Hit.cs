@@ -21,7 +21,7 @@ public class Hit : PlayerState
 
     // This is a constructor that passes through the player's Transform component so the 
     // states can use it.
-    public Hit(Transform t) => playerTransform = t;
+    public Hit(Player p) => GrabComponents(p);
 
     ////////////////////////////// UTILITIES /////////////////////////////////
     void beginHit() {
@@ -125,16 +125,16 @@ public class Hit : PlayerState
 
         switch (direction) {
             case (Player.Direction.Up):
-                pokeRay = new Ray2D(transform.position + new Vector3(-pokeOffset, 0f, 0f),  transform.up);
+                pokeRay = new Ray2D(playerTransform.position + new Vector3(-pokeOffset, 0f, 0f),  playerTransform.up);
             break;
             case (Player.Direction.Down):
-                pokeRay = new Ray2D(transform.position + new Vector3( pokeOffset, 0f, 0f), -transform.up);
+                pokeRay = new Ray2D(playerTransform.position + new Vector3( pokeOffset, 0f, 0f), -playerTransform.up);
             break;
             case (Player.Direction.Left):
-                pokeRay = new Ray2D(transform.position + new Vector3( pokeOffset, 0f, 0f), -transform.right);
+                pokeRay = new Ray2D(playerTransform.position + new Vector3( pokeOffset, 0f, 0f), -playerTransform.right);
             break;
             default:
-                pokeRay = new Ray2D(transform.position + new Vector3(0f, -pokeOffset, 0f),  transform.right);
+                pokeRay = new Ray2D(playerTransform.position + new Vector3(0f, -pokeOffset, 0f),  playerTransform.right);
             break;
         }
 
@@ -146,9 +146,9 @@ public class Hit : PlayerState
 
     void SwordKnockback() 
     {
-        Vector3 hitDestination = -transform.up * 10;
-        Vector3 hitVector = hitDestination - transform.position;
-        transform.position += hitVector.normalized;
+        Vector3 hitDestination = -playerTransform.up * 10;
+        Vector3 hitVector = hitDestination - playerTransform.position;
+        playerTransform.position += hitVector.normalized;
         charge = 0f;
         poking = false;
     }

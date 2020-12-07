@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerState : MonoBehaviour
+public abstract class PlayerState : ScriptableObject
 {
     protected Player player;
     protected float moveSpeed = 5f;
@@ -23,9 +23,10 @@ public abstract class PlayerState : MonoBehaviour
     // The methods are declared here so that UpdateOnActive() and Reset() can be called on any
     // object that inherits from PlayerState.
 
-    // all the child classes should run this Start() function unless they have their own?
-    void Start() { 
-        player = playerTransform.GetComponent<Player>();
+    protected void GrabComponents(Player p) 
+    {
+        player = p;
+        playerTransform = p.GetComponent<Transform>();
         linkAnimator = player.GetComponent<Animator>();
         playerCollider = player.GetComponent<Collider2D>();
         player_rb = player.GetComponent<Rigidbody2D>();
@@ -51,7 +52,7 @@ public abstract class PlayerState : MonoBehaviour
     }
 
     // Called in UpdateOnActive() in any player state that allows movement.
-    public void Move() {
+    protected void Move() {
 
         if (Input.GetKey(KeyCode.UpArrow)    || Input.GetKey(KeyCode.W))
             playerTransform.Translate( 0, -Time.deltaTime, 0);
@@ -61,22 +62,6 @@ public abstract class PlayerState : MonoBehaviour
             playerTransform.Translate( Time.deltaTime,  0, 0);
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             playerTransform.Translate(-Time.deltaTime,  0, 0);
-
-        /*
-        switch (direction) {
-            case (Player.Direction.Up):
-                playerTransform.Translate(0, -Time.deltaTime, 0);
-            break;
-            case (Player.Direction.Down):
-                playerTransform.Translate(0, Time.deltaTime, 0);
-            break;
-            case (Player.Direction.Left):
-                playerTransform.Translate(Time.deltaTime, 0, 0);
-            break;
-            case (Player.Direction.Right):
-                playerTransform.Translate(-Time.deltaTime, 0, 0);
-            break;
-        } */
     }
 
     // GetVDirection() and GetHDirection() are for raycasts done by Shield() and Hit().
@@ -87,24 +72,21 @@ public abstract class PlayerState : MonoBehaviour
     //  - DOWN  : -transform.up / -transform.right
     //  - LEFT  :  transform.up / -transform.right
     //  - RIGHT :  transform.up /  transform.right
-    public Vector3 GetVDirection () 
+    protected Vector3 GetVDirection () 
     {
-        if (direction == Player.Direction.Down) return -transform.up;
-        return transform.up;
+        if (direction == Player.Direction.Down) return -playerTransform.up;
+        return playerTransform.up;
     }
 
-    public Vector3 GetHDirection () 
+    protected Vector3 GetHDirection () 
     {
         switch (direction) {
             case (Player.Direction.Down):
-                return -transform.right;
-            break;
+                return -playerTransform.right;
             case (Player.Direction.Left):
-                return -transform.right;
-            break;
+                return -playerTransform.right;
             default:
-                return transform.right;
-            break;
+                return playerTransform.right;
         }
     }
     public void SetDirection(Player.Direction d) => direction = d;

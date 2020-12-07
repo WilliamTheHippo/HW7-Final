@@ -6,5 +6,5 @@ public class Fall : PlayerState
 {
     // This is a constructor that passes through the Player Transform component so the 
     // states can use it.
-    public Fall(Transform t) => playerTransform = t;
+    public Fall(Player p) => GrabComponents(p);
 }

@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Vector2Int room;
-
     ////////// PLAYER STATES //////////
     Idle idle;
     Walk walk;
@@ -24,25 +22,21 @@ public class Player : MonoBehaviour
         Static
     }
     public Direction currentDirection;
-
-    Transform thisTransform;
     CameraMovement cam;
-
-
     PlayerState currentState;
+    bool moving; // True whenever movement keys are pressed
 
     void Start()
     {
-        thisTransform = this.GetComponent<Transform>();
         cam = Camera.main.GetComponent<CameraMovement>();
 
-        idle = new Idle(thisTransform);
-        walk = new Walk(thisTransform);
-        hit = new Hit(thisTransform);
-        shield = new Shield(thisTransform);
-        jump = new Jump(thisTransform);
-        fall = new Fall(thisTransform);
-        push = new Push(thisTransform);
+        idle = new Idle(this);
+        walk = new Walk(this);
+        hit = new Hit(this);
+        shield = new Shield(this);
+        jump = new Jump(this);
+        fall = new Fall(this);
+        push = new Push(this);
 
         currentState = idle;
     }
@@ -51,66 +45,57 @@ public class Player : MonoBehaviour
     {
         float old_x = transform.position.x;
         float old_y = transform.position.y;
+
+        PlayerState oldState = currentState;
+
+        UpdateDirection();
+
+        // these if statements are honestly still hell lmao
+        if (Input.GetKeyDown(KeyCode.X)) {            // ATTACK
+            currentState = hit;
+        } else if (Input.GetKeyDown(KeyCode.Space)) { // JUMP
+            currentState = jump;
+        } else if (Input.GetKeyDown(KeyCode.Z)) {     // SHIELD
+            currentState = shield;
         
-        // The if statements below are honestly still hell lmao
-
-        // Hit and Jump can't be interrupted if other keys are pressed 
-        if (currentState != hit && currentState != jump) {
-
-            // ATTACK –– prioritized over all other actions
-            if (Input.GetKeyDown(KeyCode.X)) { currentState = hit; } 
-
-            else { 
-                UpdateDirection();
-                
-                // SHIELD
-                if (Input.GetKeyDown(KeyCode.Z)) { currentState = shield; }
-                // JUMP
-                else if (Input.GetKeyDown(KeyCode.Space)) { currentState = jump; } 
-                // IDLE IF NO BUTTONS ARE PRESSED
-                else { currentState = idle; }
-            }
+        } else if (currentState == idle &&  moving) { // WALK
+            currentState = walk;
+        } else if (currentState == walk && !moving) { // IDLE
+            currentState = idle;
         }
-
-        ///////////// UPDATE CURRENT STATE VALUES //////////////
-        currentState.SetDirection(currentDirection);
-
         if (currentState == walk && currentState.CheckPush()) 
-            currentState = push;
+            currentState = push;                      // PUSH
 
+
+        currentState.SetDirection(currentDirection);
+        if (currentState != oldState) oldState.Reset();
+        
         currentState.UpdateOnActive();
 
         QuantizePosition();
         SwitchRoom(old_x, old_y);
-
     }
 
     void UpdateDirection() 
     {
         // move check if currentState is hit in here 
         Direction newDirection = Direction.Static;
-        // maybe these should be GetKey?
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) { // UP
-            //currentState = walk;
+
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) { // UP
             newDirection = Direction.Up;
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) { // LEFT
-            //currentState = walk;
+        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) { // LEFT
             newDirection = Direction.Left;
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) { // DOWN
-            //currentState = walk;
+        else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) { // DOWN
             newDirection = Direction.Down;
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) { // RIGHT
-            //currentState = walk;
+        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) { // RIGHT
             newDirection = Direction.Right;
         }
 
-        if (newDirection != Direction.Static) {
-            currentDirection = newDirection;
-            if (currentState != hit) currentState = walk;
-        }
+        moving = newDirection != Direction.Static;
+        if (moving) currentDirection = newDirection;
     }
 
     // Rounds player's position onto the nearest tile.
