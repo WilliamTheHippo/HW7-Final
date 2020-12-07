@@ -18,7 +18,6 @@ public class Hit : PlayerState
     bool canPoke = true;
     bool poking = false;
     bool slashing  = false;
-    bool firstFrame = true;
 
     // This is a constructor that passes through the player's Transform component so the 
     // states can use it.
@@ -39,18 +38,20 @@ public class Hit : PlayerState
         if (charge >= CHARGETIMER) spinning = true;
         if (!canPoke) canPoke = true;
 
-        charge = 0f;
+        // charge = 0f;
+        Reset(); // The original script sets the charge back to 0 (above), but Reset() needs 
+                 // to be called somewhere and functionally it feels like it should be here
     }
 
-    void Reset() {
+    public void Reset() {
         spinning = poking = slashing = false;
         charge = spinTime = attackTime = 0f;
         firstFrame = true;
         moveSpeed = 5f;
 
-        // When the state is Hit, Player doesn't switch states in FixedUpdate() automatically to 
-        // keep Link hitting when the arrow keys are pressed. 
-        player.SetIdle(); // When the state is Hit, Player doesn't check state switching
+        player.SetIdle();
+        // When the state is Hit, Player doesn't switch states in FixedUpdate() automatically so 
+        // Link continues to hit when the arrow keys are pressed. 
     }
 
     ////////////////////////////// UPDATE /////////////////////////////////
@@ -82,28 +83,18 @@ public class Hit : PlayerState
         }
 
         if (slashing) Slash();
-        if (poking) Poke();
+        if (poking)   Poke();
 
         linkAnimator.SetBool("spinning", spinning);
-        linkAnimator.SetBool("poking", poking);
+        linkAnimator.SetBool("poking",   poking);
         linkAnimator.SetBool("slashing", slashing);
     }
 
     ////////////////////////////// BEHAVIORS /////////////////////////////////
     void Slash() 
     {
-        Vector3 vDirection = transform.up;
-        Vector3 hDirection = transform.right;
-
-        switch (direction) {
-            case (Player.Direction.Down):
-                vDirection = -transform.up;
-                hDirection = -transform.right;
-            break;
-            case (Player.Direction.Left):
-                hDirection = -transform.right;
-            break;
-        }
+        Vector3 vDirection = GetVDirection(); // update raycast directions based on
+        Vector3 hDirection = GetHDirection(); // which way Link is facing
 
         // Draw 3 rays: vertical, diagonal, and horizontal. 
         // collision is never checked on diagonal ray?
@@ -134,16 +125,16 @@ public class Hit : PlayerState
 
         switch (direction) {
             case (Player.Direction.Up):
-                pokeRay = new Ray2D(transform.position + new Vector3(-pokeOffset, 0f, 0f), transform.up);
+                pokeRay = new Ray2D(transform.position + new Vector3(-pokeOffset, 0f, 0f),  transform.up);
             break;
             case (Player.Direction.Down):
-                pokeRay = new Ray2D(transform.position + new Vector3(pokeOffset, 0f, 0f), -transform.up);
+                pokeRay = new Ray2D(transform.position + new Vector3( pokeOffset, 0f, 0f), -transform.up);
             break;
             case (Player.Direction.Left):
-                pokeRay = new Ray2D(transform.position + new Vector3(pokeOffset, 0f, 0f), -transform.right);
+                pokeRay = new Ray2D(transform.position + new Vector3( pokeOffset, 0f, 0f), -transform.right);
             break;
             default:
-                pokeRay = new Ray2D(transform.position + new Vector3(0f, -pokeOffset, 0f), transform.right);
+                pokeRay = new Ray2D(transform.position + new Vector3(0f, -pokeOffset, 0f),  transform.right);
             break;
         }
 

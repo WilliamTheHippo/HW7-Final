@@ -51,30 +51,29 @@ public class Player : MonoBehaviour
     {
         float old_x = transform.position.x;
         float old_y = transform.position.y;
-        // The if statements below are better but  honestly still hell and there's probably a more 
-        // elegant way to do this... 
+        
+        // The if statements below are honestly still hell lmao
+
+        // Hit and Jump can't be interrupted if other keys are pressed 
         if (currentState != hit && currentState != jump) {
 
-            if (Input.GetKeyDown(KeyCode.X)) { // ATTACK –– prioritized over all other actions
-                currentState = hit;
+            // ATTACK –– prioritized over all other actions
+            if (Input.GetKeyDown(KeyCode.X)) { currentState = hit; } 
 
-            } else { 
-
+            else { 
                 UpdateDirection();
                 
-                if (Input.GetKeyDown(KeyCode.Z)) { // SHIELD
-                    currentState = shield;
-                } 
-                else if (Input.GetKeyDown(KeyCode.Space)) { // JUMP
-                    currentState = jump;
-                } else { // IDLE IF NO BUTTONS ARE PRESSED
-                // does unity have something to check if no buttons are pressed?
-                    currentState = idle;
-                }
+                // SHIELD
+                if (Input.GetKeyDown(KeyCode.Z)) { currentState = shield; }
+                // JUMP
+                else if (Input.GetKeyDown(KeyCode.Space)) { currentState = jump; } 
+                // IDLE IF NO BUTTONS ARE PRESSED
+                else { currentState = idle; }
             }
         }
+
         ///////////// UPDATE CURRENT STATE VALUES //////////////
-        currentState.setDirection(currentDirection);
+        currentState.SetDirection(currentDirection);
 
         if (currentState == walk && currentState.CheckPush()) 
             currentState = push;

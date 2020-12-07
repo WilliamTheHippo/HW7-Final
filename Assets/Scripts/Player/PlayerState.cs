@@ -4,21 +4,18 @@ using UnityEngine;
 
 public abstract class PlayerState : MonoBehaviour
 {
+    protected Player player;
+    protected float moveSpeed = 5f;
+    protected Player.Direction direction; // WHICH WAY LINK IS FACING
 
-    float moveSpeed = 5f;
-    Player.Direction direction;
-    Player player;
-    Animator linkAnimator;
+    protected bool firstFrame = true; // BOOLEAN FLAG FOR Start() FUNCTIONALITY
+
+    // COMPONENTS
+    protected Animator linkAnimator;
     protected Transform playerTransform;
-    Collider2D playerCollider;
-    Rigidbody2D player_rb;
+    protected Collider2D playerCollider;
+    protected Rigidbody2D player_rb;
 
-    bool canStandStill;
-
-    float pushRayLength = 1f;
-    bool firstFrame = true;
-
-    
     ////////// PLACEHOLDER METHODS ////////// 
     public void UpdateOnActive() { }
     public void Reset() { }
@@ -38,6 +35,7 @@ public abstract class PlayerState : MonoBehaviour
     // Runs when an arrow key is pressed to check whether Link should be pushing or walking
 
         bool pushing = false;
+        float pushRayLength = 1f;
 
         Ray2D pushCheckRay = new Ray2D (playerTransform.position, playerTransform.up);
         Debug.DrawRay(pushCheckRay.origin, pushCheckRay.direction * pushRayLength, Color.green);
@@ -52,13 +50,19 @@ public abstract class PlayerState : MonoBehaviour
         return pushing;
     }
 
-    public void setDirection(Player.Direction d) {
-        direction = d;
-    }
-
     // Called in UpdateOnActive() in any player state that allows movement.
     public void Move() {
 
+        if (Input.GetKey(KeyCode.UpArrow)    || Input.GetKey(KeyCode.W))
+            playerTransform.Translate( 0, -Time.deltaTime, 0);
+        if (Input.GetKey(KeyCode.DownArrow)  || Input.GetKey(KeyCode.S))
+            playerTransform.Translate( 0,  Time.deltaTime, 0);
+        if (Input.GetKey(KeyCode.LeftArrow)  || Input.GetKey(KeyCode.A))
+            playerTransform.Translate( Time.deltaTime,  0, 0);
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+            playerTransform.Translate(-Time.deltaTime,  0, 0);
+
+        /*
         switch (direction) {
             case (Player.Direction.Up):
                 playerTransform.Translate(0, -Time.deltaTime, 0);
@@ -72,6 +76,36 @@ public abstract class PlayerState : MonoBehaviour
             case (Player.Direction.Right):
                 playerTransform.Translate(-Time.deltaTime, 0, 0);
             break;
+        } */
+    }
+
+    // GetVDirection() and GetHDirection() are for raycasts done by Shield() and Hit().
+    // They return Vector3s that can be used to check for enemies in the correct direction
+    // based on which way Link is facing.
+    // KEY:
+    //  - UP    :  transform.up /  transform.right
+    //  - DOWN  : -transform.up / -transform.right
+    //  - LEFT  :  transform.up / -transform.right
+    //  - RIGHT :  transform.up /  transform.right
+    public Vector3 GetVDirection () 
+    {
+        if (direction == Player.Direction.Down) return -transform.up;
+        return transform.up;
+    }
+
+    public Vector3 GetHDirection () 
+    {
+        switch (direction) {
+            case (Player.Direction.Down):
+                return -transform.right;
+            break;
+            case (Player.Direction.Left):
+                return -transform.right;
+            break;
+            default:
+                return transform.right;
+            break;
         }
     }
+    public void SetDirection(Player.Direction d) => direction = d;
 }

@@ -7,7 +7,7 @@ public class Jump : PlayerState
     const float JUMPTIMER = 0.25f;
     const float JUMPSPEED = 0.1f;
     float jumpTime = 0f;
-    float jumpDirection = 0;
+    float jumpDirection = 1;
 
     // This is a constructor that passes through the Player Transform component so the 
     // states can use it.
@@ -15,14 +15,14 @@ public class Jump : PlayerState
 
     public void BeginJump() 
     {
-        jumpDirection = 1; 
+        firstFrame = false;
         playerCollider.enabled = false;
         linkAnimator.SetBool("jumping", true);
     }
 
     public void UpdateOnActive()
     {
-        if (jumpDirection == 0) BeginJump();
+        if (firstFrame) BeginJump();
 
         Move();
 
@@ -41,9 +41,10 @@ public class Jump : PlayerState
 
     public void Reset() 
     {
-        jumpDirection = 0;
+        jumpDirection = 1;
         linkAnimator.SetBool("jumping", false);
         playerCollider.enabled = true;
+        firstFrame = true;
         player.SetIdle();
     }
 
