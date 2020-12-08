@@ -5,13 +5,18 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     AttackAndMove player_t;
-	public int room; //very simple hack, change later
+	Vector2Int room;
     public abstract void SwordHit();
     public abstract void OnUpdate();
 
     public void Start()
     {
         player_t = GameObject.Find("Player").GetComponent<AttackAndMove>();
+        if(transform.parent.GetComponent<Room>() != null)
+        {
+            room.x = transform.parent.GetComponent<Room>().coords.x;
+            room.y = transform.parent.GetComponent<Room>().coords.y;
+        }
         //Debug.Log(player_t.name);
     }
 
