@@ -29,9 +29,7 @@ public class AttackAndMove : MonoBehaviour
     Animator linkAnimator;
 
     CameraMovement cam;
-    public int room;
-    //ones place holds the X coord, tens place holds the Y coord
-    //THIS IS REALLY BAD PRACTICE SHIVVED IN FOR A PLAYTEST
+    public Vector2Int room;
     
     public Gel Gel;
     public Vector3 myDirection;
@@ -43,12 +41,15 @@ public class AttackAndMove : MonoBehaviour
         m_Collider= GetComponent<Collider2D>();
         linkAnimator = GetComponent<Animator>();
         cam = Camera.main.GetComponent<CameraMovement>();
+        room = new Vector2Int(0,0);
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float old_x = transform.position.x;
         float old_y = transform.position.y;
+
+        myRigidBody.velocity = new Vector2(inputHorizontal * MoveSpeed, inputVertical * MoveSpeed);
 
         transform.up = myDirection;
         inputHorizontal = Input.GetAxis("Horizontal");
@@ -328,9 +329,6 @@ public class AttackAndMove : MonoBehaviour
         QuantizePosition();
         SwitchRoom(old_x, old_y);
     }
-    void FixedUpdate(){
-        myRigidBody.velocity = new Vector2 (inputHorizontal * MoveSpeed, inputVertical * MoveSpeed);
-    }
 
     void QuantizePosition()
     {
@@ -345,15 +343,11 @@ public class AttackAndMove : MonoBehaviour
         {
             if(old_x < transform.position.x) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Right));
             else StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Left));
-            if(old_x < transform.position.x) room++;
-            else room--;
         }
         if(Mathf.Abs(transform.position.y % 16) == 9f)
         {
             if(old_y < transform.position.y) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Up));
             else StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Down));
-            if(old_y < transform.position.y) room += 10;
-            else room -= 10;
         }
     }
 
