@@ -20,8 +20,9 @@ public class Stalfos : Enemy
 
     Animator myAnimator;
 
-    void Start()
+    new void Start()
     {
+        base.Start();
         randomNumber = Random.Range(0.0f, 1.0f);
         Timer = 0f;
 
@@ -34,7 +35,7 @@ public class Stalfos : Enemy
 
         myAnimator = GetComponent<Animator>();
     }
-    void Update()
+    public override void OnUpdate()
     {
         if (Timer > 1f / Time.deltaTime){
             randomNumber = Random.Range(0.0f, 1.0f);

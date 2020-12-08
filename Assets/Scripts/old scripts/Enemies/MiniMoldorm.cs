@@ -24,8 +24,9 @@ public class MiniMoldorm : Enemy
     public float xSpeed;
     public float ySpeed;
 
-    void Start()
+    new void Start()
     {
+        base.Start();
         randomNumber = Random.Range(0.0f, 1.0f);
         Timer = 0f;
 
@@ -42,7 +43,7 @@ public class MiniMoldorm : Enemy
         ySpeed = 1.5f * Time.deltaTime * 3f;
     }
 
-    void FixedUpdate()
+    public override void OnUpdate()
     {
        
     //Moves in a curve, randomly clockwise or counterclockwise about every second

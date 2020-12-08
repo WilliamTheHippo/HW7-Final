@@ -6,12 +6,13 @@ public class Gel : Enemy
 {
     GameObject playerTransform;    
 
-    void Start()
+    new void Start()
     {
+        base.Start();
         playerTransform = GameObject.Find("Player");
     }
 
-    void FixedUpdate()
+    public override void OnUpdate()
     {
         var playerVector = playerTransform.transform.position;
         Vector3 followVector = playerVector - transform.position;

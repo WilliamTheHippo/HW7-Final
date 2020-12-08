@@ -10,13 +10,14 @@ public class HardhatBeetle : Enemy
     private float KnockbackTimerReset;
 
     public Vector3 KnockbackDirection;
-    public Rigidbody2D Player;
+    public Rigidbody2D player_rb;
 
     public float Hit;
     
     
-    void Start()
+    new void Start()
     {
+        base.Start();
         player = GameObject.Find("Player");
         Knockback = 0f;
         KnockbackTimerReset = 0.5f / Time.deltaTime;
@@ -24,7 +25,7 @@ public class HardhatBeetle : Enemy
         Hit = 0;
     }
 
-    void FixedUpdate()
+    public override void OnUpdate()
     {
         Vector3 playerVector = player.transform.position;
         if(Knockback == 0)
@@ -47,7 +48,7 @@ public class HardhatBeetle : Enemy
             {
                 //Knockback
                 var speed = 6f;
-                KnockbackDirection = transform.position - Player.transform.position;
+                KnockbackDirection = transform.position - player_rb.transform.position;
                 transform.Translate(KnockbackDirection.normalized * speed * Time.deltaTime);
 
             }            

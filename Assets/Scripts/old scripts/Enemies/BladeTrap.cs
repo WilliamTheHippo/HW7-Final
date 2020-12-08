@@ -11,15 +11,16 @@ public class BladeTrap : Enemy
     private Vector3 ResetPosition;
     public float moveLeft;
 
-    void Start()
+    new void Start()
     {
+        base.Start();
         player = GameObject.Find("Player");
         Trigger = 0;
         ResetTrigger = 0;
         ResetPosition = transform.position;
     }
 
-    void FixedUpdate()
+    public override void OnUpdate()
     {
         if(ResetTrigger == 0)
         {
