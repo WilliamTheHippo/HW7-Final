@@ -4,77 +4,41 @@ using UnityEngine;
 
 public class BladeTrap : Enemy
 {
-    private GameObject player;
+    public bool moveLeft;
 
-    private float Trigger;
-    private float ResetTrigger;
-    private Vector3 ResetPosition;
-    public float moveLeft;
+    bool move;
+    bool reset;
+    Vector3 resetPosition;
+    float c;
 
     void Start()
     {
-        player = GameObject.Find("Player");
-        Trigger = 0;
-        ResetTrigger = 0;
-        ResetPosition = transform.position;
+        c = moveLeft ? -1 : 1;
+        move = false;
+        reset = false;
+        resetPosition = transform.position;
     }
 
     void FixedUpdate()
     {
-        if(ResetTrigger == 0)
+        if(!reset)
         {
+            //player within 3 units
             if((player.transform.position-this.transform.position).sqrMagnitude<6*6)
-            {
-                // the player is within a radius of 3 units to this game object
-                Trigger = 1;
-            }
-            if (Trigger == 1)
-            {
-                if (moveLeft == 0)
-                {
-                    transform.Translate(12f * Time.deltaTime, 0f, 0f); // move pixels per second
-                }
-                if (moveLeft == 1)
-                {
-                    transform.Translate(-12f * Time.deltaTime, 0f, 0f); // move pixels per second
-                }
-            }
+                move = 1;
+            if (move) transform.Translate(c * 12f * Time.deltaTime, 0f, 0f);
         }
-            if (ResetTrigger == 1)
-            {
-                if (transform.position != ResetPosition)
-                {
-                    if (moveLeft == 0)
-                    {
-                        transform.Translate(-3.0f * Time.deltaTime, 0f, 0f);
-                    }
-                    if (moveLeft == 1)
-                    {
-                        transform.Translate(3.0f * Time.deltaTime, 0f, 0f);
-                    }
-                }
-
-                if (moveLeft == 0)
-                {
-                    if (transform.position.x <= ResetPosition.x)
-                    {
-                        ResetTrigger=0;
-                    }
-                }
-                if (moveLeft == 1)
-                {
-                    if (transform.position.x >= ResetPosition.x)
-                    {
-                        ResetTrigger=0;
-                    }
-                }
-
-            }
-        }
-
-        void OnCollisionEnter2D(Collision2D collision)
+        else
         {
-            ResetTrigger = 1;
-            Trigger = 0;
+            if (transform.position != resetPosition) transform.Translate(c * 3.0f * Time.deltaTime, 0f, 0f);
+            if (moveLeft && transform.position.x >= resetPosition) reset = false;
+            if (!moveLeft && transform.position.x <= resetPosition) reset = false;
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        reset = true;
+        move = false;
+    }
 }
