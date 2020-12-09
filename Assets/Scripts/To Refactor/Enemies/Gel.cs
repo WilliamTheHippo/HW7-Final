@@ -3,25 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Gel : Enemy
-{
-    GameObject playerTransform;    
-
-    new void Start()
+{  
+    void Start()
     {
-        base.Start();
-        playerTransform = GameObject.Find("Player");
+        player = GameObject.Find("Player");
+        playerTransform = player.GetComponent<Transform>();
     }
 
-    public override void OnUpdate()
+    void FixedUpdate()
     {
-        var playerVector = playerTransform.transform.position;
-        Vector3 followVector = playerVector - transform.position;
-        transform.position += followVector.normalized * Time.deltaTime;
-
-        Debug.DrawLine( transform.position, playerVector, Color.yellow);
-    }
-
-    public override void SwordHit() {
-        Destroy(this.gameObject);
+        FollowPlayer();
     }
 }

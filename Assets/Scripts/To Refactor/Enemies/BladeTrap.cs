@@ -11,16 +11,15 @@ public class BladeTrap : Enemy
     private Vector3 ResetPosition;
     public float moveLeft;
 
-    new void Start()
+    void Start()
     {
-        base.Start();
         player = GameObject.Find("Player");
         Trigger = 0;
         ResetTrigger = 0;
         ResetPosition = transform.position;
     }
 
-    public override void OnUpdate()
+    void FixedUpdate()
     {
         if(ResetTrigger == 0)
         {
@@ -73,7 +72,7 @@ public class BladeTrap : Enemy
             }
         }
 
-        public override void SwordHit() {return;}
+        public override void SwordHit() => return;
 
         void OnCollisionEnter2D(Collision2D collision)
         {
