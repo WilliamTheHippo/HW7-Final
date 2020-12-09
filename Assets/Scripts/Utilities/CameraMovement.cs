@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-	public AttackAndMove player;
+	public Player player;
 	public bool Panning {get; private set;}
 	public enum Direction {Up, Down, Left, Right}
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Stalfos : Enemy
 {
-    float directionTimer;
+    //float directionTimer;
 
     void Start()
     {
