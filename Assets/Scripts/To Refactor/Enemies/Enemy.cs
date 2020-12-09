@@ -13,14 +13,16 @@ public abstract class Enemy : MonoBehaviour
     public float knockbackDuration = 1f;
     public bool hasInvFrames = false;
     public bool movesDiagonal = false;
-    public float invTimer = 1f / Time.deltaTime;
+    public float invTimer = 1f;
     public float knockbackSpeed = 8f;
     public Animator myAnimator; 
     public Vector3 direction;
     public Vector3 angle;
     public bool movesRight = true;
     public float directionTimer = 0f;
-    public float randomNumber;
+    public float random;
+
+    public float invFrames; //this never seems to be referenced, only assigned in CheckInvTimer()
 
     public float xSpeed;
     public float ySpeed;
@@ -29,14 +31,15 @@ public abstract class Enemy : MonoBehaviour
     private float knockbackTimer;
 
     public void SetupEnemy() {
-        player = GameObject.Find("Player");
+        invTimer /= Time.deltaTime; //can't do this in a constructor because unity starts the clock after initialization
+        player = GameObject.Find("Player").GetComponent<Player>();
         myAnimator = GetComponent<Animator>();
-        if (canKnockback) knockbackDuration = SetKnockbackTimer(knockbackDuration);
+        if (canKnockback) knockbackTimer = SetKnockbackTimer(knockbackDuration);
         if (hp > 1) hasInvFrames = true;
         RandomizeDirection();
     }
 
-    public void SwordHit() 
+    public virtual void SwordHit() 
     {
         if (hasInvFrames && CheckInvTimer()) {
             hp--;
@@ -61,16 +64,16 @@ public abstract class Enemy : MonoBehaviour
         if(c.tag == "Fall") Fall();
     }
 
-    void FollowPlayer() {
+    public void FollowPlayer() {
         Vector3 playerVector = player.transform.position;
         Vector3 followVector = playerVector - transform.position;
         transform.position += followVector.normalized * Time.deltaTime * 2;
         Debug.DrawLine (transform.position, playerVector, Color.yellow);
     }
 
-    void Knockback() {
+    public void Knockback() {
         isKnockback = true;
-        Vector3 KnockbackDirection = transform.position - Player.transform.position;
+        Vector3 KnockbackDirection = transform.position - player.transform.position;
         transform.Translate(KnockbackDirection.normalized * knockbackSpeed * Time.deltaTime);
         knockbackTimer--;
 
@@ -81,9 +84,9 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    void Die() {
+    public void Die() {
         myAnimator.SetBool("isHit", false);
-        Destroy this.GameObject();
+        Destroy(this.gameObject);
     }
 
     public bool CheckInvTimer() {
@@ -96,32 +99,30 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    private void RandomizeDirection() 
+    public void RandomizeDirection() 
     {
         directionTimer = 0f;
-        randomNumber = Random.Range(0f, 1f);
+        random = Random.Range(0f, 1f);
 
         xSpeed = speed * Time.deltaTime;
         ySpeed = speed * Time.deltaTime;
         movesRight = true;
         angle = new Vector3 (0f, 0f, -45f);
 
-        switch (random) {
-            case (random < 0.25f): 
-                xSpeed *= -1;
-                movesRight = false;
-                angle = new Vector3 (0f, 0f, 45f);
-            break;
-            case (random < 0.5f):  
-                ySpeed *= -1;
-                angle = new Vector3 (0f, 0f, -135f);
-            break;
-            case (random < 0.75f): 
-                xSpeed *= -1;
-                ySpeed *= -1;
-                movesRight = false;
-                angle = new Vector3 (0f, 0f, 135f);
-            break;                
+        if(random < 0.25f) {
+            xSpeed *= -1;
+            movesRight = false;
+            angle = new Vector3 (0f, 0f, 45f);
+        }
+        else if(random < 0.5f) { 
+            ySpeed *= -1;
+            angle = new Vector3 (0f, 0f, -135f);
+        }
+        else if(random < 0.75f) {
+            xSpeed *= -1;
+            ySpeed *= -1;
+            movesRight = false;
+            angle = new Vector3 (0f, 0f, 135f);
         }
 
         if (movesDiagonal) {
@@ -135,5 +136,5 @@ public abstract class Enemy : MonoBehaviour
         }
     } 
 
-    public void SetKnockbackTimer(float time) => knockbackDuration / Time.deltaTime;
+    public float SetKnockbackTimer(float time) => knockbackDuration / Time.deltaTime;
 }

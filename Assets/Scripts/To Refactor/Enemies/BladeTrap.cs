@@ -72,8 +72,6 @@ public class BladeTrap : Enemy
             }
         }
 
-        public override void SwordHit() => return;
-
         void OnCollisionEnter2D(Collision2D collision)
         {
             ResetTrigger = 1;

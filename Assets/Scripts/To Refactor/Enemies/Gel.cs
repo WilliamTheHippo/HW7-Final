@@ -6,7 +6,7 @@ public class Gel : Enemy
 {  
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Player").GetComponent<Player>();
         playerTransform = player.GetComponent<Transform>();
     }
 

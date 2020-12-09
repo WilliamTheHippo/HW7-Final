@@ -118,6 +118,7 @@ public class MiniMoldorm : Enemy
 
     public override void SwordHit() {
         Hit = 1;
+        base.SwordHit();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
