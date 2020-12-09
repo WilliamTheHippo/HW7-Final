@@ -22,8 +22,9 @@ public class Moldorm : Enemy
 
     public float KnockbackSpeed;
 
-    public float xSpeed;
-    public float ySpeed;
+    //should be inherited from Enemy.cs now, no?
+    // public float xSpeed;
+    // public float ySpeed;
 
     void Start()
     {
