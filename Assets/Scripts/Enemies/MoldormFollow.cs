@@ -7,13 +7,12 @@ public class MoldormFollow : Enemy
     public Transform BallToFollow;
     public float LerpScale=5f;
 
-    new void Start()
+    void Start()
     {
-        base.Start();
         //BallToFollow = transform.parent;
     }
     
-    public override void OnUpdate()
+    void FixedUpdate()
     {
         if(BallToFollow == null){
             Destroy(this.gameObject);
@@ -28,5 +27,8 @@ public class MoldormFollow : Enemy
         
     }
 
-    public override void SwordHit() {Debug.LogError("SwordHit() not implemented for " + gameObject.name + "!");}
+    public override void SwordHit() {
+        Debug.LogError("SwordHit() not implemented for " + gameObject.name + "!");
+        base.SwordHit();
+    }
 }

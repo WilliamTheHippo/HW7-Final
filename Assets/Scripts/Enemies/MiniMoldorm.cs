@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// mini moldorm gets knocked back when hit
 public class MiniMoldorm : Enemy
 {
     float randomNumber;
     float Timer;
     
-
     public float Lives;
     float LivesTimer;
     public float Hit;
@@ -24,9 +24,8 @@ public class MiniMoldorm : Enemy
     public float xSpeed;
     public float ySpeed;
 
-    new void Start()
+    void Start()
     {
-        base.Start();
         randomNumber = Random.Range(0.0f, 1.0f);
         Timer = 0f;
 
@@ -43,7 +42,7 @@ public class MiniMoldorm : Enemy
         ySpeed = 1.5f * Time.deltaTime * 3f;
     }
 
-    public override void OnUpdate()
+    void FixedUpdate()
     {
        
     //Moves in a curve, randomly clockwise or counterclockwise about every second
@@ -119,6 +118,7 @@ public class MiniMoldorm : Enemy
 
     public override void SwordHit() {
         Hit = 1;
+        base.SwordHit();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
