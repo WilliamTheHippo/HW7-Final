@@ -30,14 +30,6 @@ public class Player : MonoBehaviour
     {
         cam = Camera.main.GetComponent<CameraMovement>();
 
-        /*idle = new Idle(this);
-        walk = new Walk(this);
-        hit = new Hit(this);
-        shield = new Shield(this);
-        jump = new Jump(this);
-        fall = new Fall(this);
-        push = new Push(this);
-        */
         idle = ScriptableObject.CreateInstance<Idle>();
         walk = ScriptableObject.CreateInstance<Walk>();
         hit = ScriptableObject.CreateInstance<Hit>();
@@ -45,6 +37,15 @@ public class Player : MonoBehaviour
         jump = ScriptableObject.CreateInstance<Jump>();
         fall = ScriptableObject.CreateInstance<Fall>();
         push = ScriptableObject.CreateInstance<Push>();
+
+        idle.GrabComponents(this);
+        walk.GrabComponents(this);
+        hit.GrabComponents(this);
+        shield.GrabComponents(this);
+        jump.GrabComponents(this);
+        fall.GrabComponents(this);
+        push.GrabComponents(this);
+
 
         currentState = idle;
     }
@@ -61,24 +62,32 @@ public class Player : MonoBehaviour
         // these if statements are honestly still hell lmao
         if (Input.GetKeyDown(KeyCode.X)) {            // ATTACK
             currentState = hit;
+            Debug.Log("attack");
         } else if (Input.GetKeyDown(KeyCode.Space)) { // JUMP
             currentState = jump;
+            Debug.Log("jump");
         } else if (Input.GetKeyDown(KeyCode.Z)) {     // SHIELD
             currentState = shield;
+            Debug.Log("shield");
+        
         } else if (currentState == idle &&  moving) { // WALK
             currentState = walk;
+            Debug.Log("walk");
         } else if (currentState == walk && !moving) { // IDLE
             currentState = idle;
+            Debug.Log("idle");
         }
-        if (currentState == walk && currentState.CheckPush()){
-          currentState = push;                        // PUSH
-        } 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+        if (currentState == walk && currentState.CheckPush()) {
+            currentState = push;                      // PUSH
+            Debug.Log("push"); }
+
+
         currentState.SetDirection(currentDirection);
         if (currentState != oldState){
             oldState.Reset();
         } 
         
+        Debug.Log("updateOnActive");
         currentState.UpdateOnActive();
   
         QuantizePosition();

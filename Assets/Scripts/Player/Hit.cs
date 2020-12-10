@@ -21,7 +21,7 @@ public class Hit : PlayerState
 
     // This is a constructor that passes through the player's Transform component so the 
     // states can use it.
-    public Hit(Player p) => GrabComponents(p);
+    //public Hit(Player p) => GrabComponents(p);
 
     ////////////////////////////// UTILITIES /////////////////////////////////
     void beginHit() {
@@ -55,7 +55,7 @@ public class Hit : PlayerState
     }
 
     ////////////////////////////// UPDATE /////////////////////////////////
-    public void UpdateOnActive()
+    public override void UpdateOnActive()
     {
         if (firstFrame) beginHit();
 
