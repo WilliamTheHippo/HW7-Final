@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
         Static
     }
     public Direction currentDirection;
+    public Vector2Int room;
     CameraMovement cam;
     PlayerState currentState;
     bool moving; // True whenever movement keys are pressed
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
         push = new Push(this);
 
         currentState = idle;
+        room = new Vector2Int(0,0);
     }
 
     void FixedUpdate()

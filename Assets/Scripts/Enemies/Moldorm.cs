@@ -28,6 +28,7 @@ public class Moldorm : Enemy
 
     void Start()
     {
+        AssignRoom();
 
 
         KnockbackSpeed = 0f; // why is this set to 0? 
@@ -41,6 +42,7 @@ public class Moldorm : Enemy
 
     void FixedUpdate()
     {
+        if(room != player.room) return;
        
     //Moves in a curve, randomly clockwise or counterclockwise about every second
        //Generate a random number from 0.0f to 1.0f;

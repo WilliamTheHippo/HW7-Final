@@ -9,11 +9,14 @@ public class MoldormFollow : Enemy
 
     void Start()
     {
+        AssignRoom();
+        player = GameObject.Find("Player").GetComponent<Player>();
         //BallToFollow = transform.parent;
     }
     
     void FixedUpdate()
     {
+        if(room != player.room) return;
         if(BallToFollow == null){
             Destroy(this.gameObject);
         }
