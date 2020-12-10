@@ -79482,7 +79482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2121094948}
-  firstRoom: {fileID: 0}
+  firstRoom: {fileID: 427491678}
 --- !u!4 &1797738768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7962415569471306460, guid: 8f219b87538c89c41b29c68db53553b6,
