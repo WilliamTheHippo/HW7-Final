@@ -28,6 +28,7 @@ public class Moldorm : Enemy
 
     void Start()
     {
+        sound = GetComponent<AudioSource>();
         AssignRoom();
 
 

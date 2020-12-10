@@ -7,6 +7,7 @@ public class HardhatBeetle : Enemy
 
     void Start()
     {
+        sound = GetComponent<AudioSource>();
         AssignRoom();
         knockbackDuration = 0.5f;
         knockbackSpeed = 6f;

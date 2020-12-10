@@ -98,11 +98,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c0acd90bde9b524a9e0d2c41f027ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StalfosLives: 0
-  StalfosHit: 0
-  Knockback: 0
-  KnockbackDirection: {x: 0, y: 0, z: 0}
-  Player: {fileID: 0}
+  hp: 1
+  player: {fileID: 0}
+  playerTransform: {fileID: 0}
+  following: 0
+  canKnockback: 0
+  isKnockback: 0
+  knockbackDuration: 1
+  hasInvFrames: 0
+  movesDiagonal: 0
+  invTimer: 1
+  knockbackSpeed: 8
+  myAnimator: {fileID: 0}
+  direction: {x: 0, y: 0, z: 0}
+  angle: {x: 0, y: 0, z: 0}
+  movesRight: 1
+  directionTimer: 0
+  random: 0
+  invFrames: 0
+  xSpeed: 0
+  ySpeed: 0
+  speed: 1.5
+  room: {x: 0, y: 0}
+  hitSound: {fileID: 8300000, guid: f4d7f6467ac604579a03431c159329df, type: 3}
+  dieSound: {fileID: 8300000, guid: 67670539f25974147afd3cf876487782, type: 3}
+  fallSound: {fileID: 8300000, guid: adea0ea1059304d809d3e46bf5416a03, type: 3}
 --- !u!50 &6726819428835716377
 Rigidbody2D:
   serializedVersion: 4

@@ -26,6 +26,7 @@ public class MiniMoldorm : Enemy
 
     void Start()
     {
+        sound = GetComponent<AudioSource>();
         AssignRoom();
         player = GameObject.Find("Player").GetComponent<Player>();
         randomNumber = Random.Range(0.0f, 1.0f);

@@ -27,8 +27,12 @@ public class Player : MonoBehaviour
     PlayerState currentState;
     bool moving; // True whenever movement keys are pressed
 
+    public AudioSource sound;
+    public AudioClip itemPickup, slash;
+
     void Start()
     {
+        sound = GetComponent<AudioSource>();
         cam = Camera.main.GetComponent<CameraMovement>();
 
         idle = new Idle(this);
@@ -54,6 +58,8 @@ public class Player : MonoBehaviour
 
         // these if statements are honestly still hell lmao
         if (Input.GetKeyDown(KeyCode.X)) {            // ATTACK
+            sound.clip = slash;
+            sound.Play();
             currentState = hit;
         } else if (Input.GetKeyDown(KeyCode.Space)) { // JUMP
             currentState = jump;

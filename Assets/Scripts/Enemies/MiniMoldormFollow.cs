@@ -11,6 +11,7 @@ public class MiniMoldormFollow : Enemy
 
     void Start()
     {
+        sound = GetComponent<AudioSource>();
         AssignRoom();
         player = GameObject.Find("Player").GetComponent<Player>();
         //BallToFollow = transform.parent;

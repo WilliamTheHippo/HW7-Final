@@ -30,7 +30,7 @@ public class Room : MonoBehaviour
 		{
 			c.room = this;
 			StartCoroutine(c.Appear());
-			if(c.alsoDisappears != null) StartCoroutine(c.Disappear());
+			if(c.alsoDisappears) StartCoroutine(c.Disappear());
 		}
 	}
 

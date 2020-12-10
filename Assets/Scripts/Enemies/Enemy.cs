@@ -31,6 +31,9 @@ public abstract class Enemy : MonoBehaviour
     private float knockbackTimer;
 
     public Vector2Int room;
+    protected AudioSource sound;
+    public AudioClip hitSound, dieSound, fallSound;
+    bool fallFlag = false;
 
     public void AssignRoom() {
         if(transform.parent.GetComponent<Room>() != null)
@@ -51,6 +54,8 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void SwordHit() 
     {
+        sound.clip = hitSound;
+        sound.Play();
         if (hasInvFrames && CheckInvTimer()) {
             hp--;
             if (hp > 0) {
@@ -66,7 +71,10 @@ public abstract class Enemy : MonoBehaviour
     public void Fall()
     {
         //TODO fall animation
+        fallFlag = true;
+        sound.clip = fallSound;
         Die();
+        fallFlag = false;
     }
 
     void OnTriggerEnter2D(Collider2D c)
@@ -95,6 +103,8 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public void Die() {
+        if(!fallFlag) sound.clip = dieSound;
+        sound.Play();
         myAnimator.SetBool("isHit", false);
         Destroy(this.gameObject);
     }

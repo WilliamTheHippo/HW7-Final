@@ -13,6 +13,7 @@ public class BladeTrap : Enemy
 
     void Start()
     {
+        sound = GetComponent<AudioSource>();
         AssignRoom();
         player = GameObject.Find("Player").GetComponent<Player>();
         c = moveLeft ? -1 : 1;
