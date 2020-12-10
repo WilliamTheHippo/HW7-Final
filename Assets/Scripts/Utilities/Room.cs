@@ -8,6 +8,7 @@ public class Room : MonoBehaviour
 	public Room up, down, left, right;
 	public bool selfSealing;
 	public List<Door> doors;
+	public List<Conditional> conditionals;
 	List<Enemy> enemies;
 
 	bool unvisited;
@@ -25,9 +26,20 @@ public class Room : MonoBehaviour
 		if(!unvisited) return;
 		unvisited = false;
 		if(selfSealing) StartCoroutine("Doors");
+		foreach(Conditional c in conditionals)
+		{
+			StartCoroutine(c.Appear());
+			if(c.alsoDisappears != null) StartCoroutine(c.Disappear());
+		}
 	}
 
-	IEnumerator Doors()
+	public void Reset()
+	{
+		unvisited = true;
+		//respawn enemies? (probably just reload scene)
+	}
+
+	IEnumerator Doors() //open on all enemies killed is hardcoded in for now
 	{
 		foreach(Door door in doors) StartCoroutine(door.Close());
 		yield return new WaitUntil(() => {
@@ -36,5 +48,12 @@ public class Room : MonoBehaviour
 			return flag;
 		});
 		foreach(Door door in doors) StartCoroutine(door.Open());
+	}
+
+	public bool AllEnemiesDead()
+	{
+		bool flag = true;
+		foreach(Enemy e in enemies) if(e != null) flag = false;
+		return flag;
 	}
 }

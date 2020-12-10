@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Chest : MonoBehaviour
+public class Chest : Conditional
 {
 	public Tile openTile;
 
 	Tilemap tilemap;
 
-	void Start()
+	public override void Start()
 	{
+		base.Start();
 		tilemap = GetComponent<Tilemap>();
 	}
 
