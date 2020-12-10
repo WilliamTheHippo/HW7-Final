@@ -9,7 +9,7 @@ public class Gel : Enemy
 
     //private float isDead;  
 
-    public GameObject deathAnimation;
+    //public GameObject deathAnimation;
 
     //GameObject playerTransform;  
     void Start()
@@ -36,9 +36,11 @@ public class Gel : Enemy
 
     public override void SwordHit() {
         //isDead = 1;
-        var instantiatedPrefab = Instantiate (deathAnimation, transform.position, Quaternion.identity) as GameObject;
+
+        /*var instantiatedPrefab = Instantiate (deathAnimation, transform.position, Quaternion.identity) as GameObject;
         instantiatedPrefab.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
-        Destroy(this.gameObject);
+        Destroy(this.gameObject);*/
+
         //myAnimator.SetBool("isDead", true);
         //Destroy(this.gameObject, 0.7f);
     }

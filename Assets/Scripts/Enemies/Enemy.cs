@@ -7,6 +7,9 @@ public abstract class Enemy : MonoBehaviour
     public int hp = 1;
     public Player player;
     public Transform playerTransform;
+
+    public GameObject deathAnimation;
+
     public bool following;
     public bool canKnockback = false;
     public bool isKnockback = false;
@@ -85,7 +88,8 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public void Die() {
-        myAnimator.SetBool("isHit", false);
+        var instantiatedPrefab = Instantiate (deathAnimation, transform.position, Quaternion.identity) as GameObject;
+        /*instantiatedPrefab.transform.localScale = new Vector3(0.5f,0.5f,0.5f);*/
         Destroy(this.gameObject);
     }
 
