@@ -12,9 +12,13 @@ public class Door : MonoBehaviour
 	Renderer r;
 	Collider2D c;
 
+	AudioSource sound;
+	public AudioClip openSound, closeSound;
+
 	void Start()
 	{
 		tilemap = GetComponent<Tilemap>();
+		sound = GetComponent<AudioSource>();
 		r = GetComponent<Renderer>();
 		c = GetComponent<Collider2D>();
 		reserve = new TileBase[4];
@@ -46,6 +50,8 @@ public class Door : MonoBehaviour
 
 	public IEnumerator Open()
 	{
+		sound.clip = openSound;
+		sound.Play();
 		HalfOpen();
 		yield return new WaitForSeconds(.25f);
 		r.enabled = false;
@@ -55,6 +61,8 @@ public class Door : MonoBehaviour
 
 	public IEnumerator Close()
 	{
+		sound.clip = closeSound;
+		sound.Play();
 		r.enabled = true;
 		c.enabled = true;
 		yield return new WaitForSeconds(.25f);

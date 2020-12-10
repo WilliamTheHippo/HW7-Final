@@ -22,12 +22,17 @@ public class Player : MonoBehaviour
         Static
     }
     public Direction currentDirection;
+    public Vector2Int room;
     CameraMovement cam;
     PlayerState currentState;
     bool moving; // True whenever movement keys are pressed
 
+    public AudioSource sound;
+    public AudioClip itemPickup, slash;
+
     void Start()
     {
+        sound = GetComponent<AudioSource>();
         cam = Camera.main.GetComponent<CameraMovement>();
 
         idle = ScriptableObject.CreateInstance<Idle>();
@@ -48,6 +53,7 @@ public class Player : MonoBehaviour
 
 
         currentState = idle;
+        room = new Vector2Int(0,0);
     }
 
     void FixedUpdate()
@@ -61,6 +67,8 @@ public class Player : MonoBehaviour
 
         // these if statements are honestly still hell lmao
         if (Input.GetKeyDown(KeyCode.X)) {            // ATTACK
+            sound.clip = slash;
+            sound.Play();
             currentState = hit;
             Debug.Log("attack");
         } else if (Input.GetKeyDown(KeyCode.Space)) { // JUMP
