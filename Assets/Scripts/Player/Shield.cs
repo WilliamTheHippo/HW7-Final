@@ -12,7 +12,7 @@ public class Shield : PlayerState
 
     // This is a constructor that passes through the Player Transform component so the 
     // states can use it.
-    public Shield(Player p) => GrabComponents(p);
+    //public Shield(Player p) => GrabComponents();
 
     void BeginShield() 
     {
@@ -28,7 +28,7 @@ public class Shield : PlayerState
         player.SetIdle();
     }
 
-    public void UpdateOnActive() 
+    public override void UpdateOnActive() 
     {
         if (firstFrame)                 BeginShield();
         if (Input.GetKeyUp(KeyCode.Z))  Reset();

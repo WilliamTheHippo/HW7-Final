@@ -17,16 +17,18 @@ public abstract class PlayerState : ScriptableObject
     protected Rigidbody2D player_rb;
 
     ////////// PLACEHOLDER METHODS ////////// 
-    public void UpdateOnActive() { }
+    public virtual void UpdateOnActive() {
+        Debug.Log("empty update");
+     }
     public void Reset() { }
     // Every state will have these methods, but the functionality will differ between states.
     // The methods are declared here so that UpdateOnActive() and Reset() can be called on any
     // object that inherits from PlayerState.
 
-    protected void GrabComponents(Player p) 
+    public void GrabComponents(Player p) 
     {
         player = p;
-        playerTransform = p.GetComponent<Transform>();
+        playerTransform = player.GetComponent<Transform>();
         linkAnimator = player.GetComponent<Animator>();
         playerCollider = player.GetComponent<Collider2D>();
         player_rb = player.GetComponent<Rigidbody2D>();
@@ -54,14 +56,18 @@ public abstract class PlayerState : ScriptableObject
     // Called in UpdateOnActive() in any player state that allows movement.
     protected void Move() {
 
-        if (Input.GetKey(KeyCode.UpArrow)    || Input.GetKey(KeyCode.W))
-            playerTransform.Translate( 0, -Time.deltaTime, 0);
-        if (Input.GetKey(KeyCode.DownArrow)  || Input.GetKey(KeyCode.S))
-            playerTransform.Translate( 0,  Time.deltaTime, 0);
-        if (Input.GetKey(KeyCode.LeftArrow)  || Input.GetKey(KeyCode.A))
-            playerTransform.Translate( Time.deltaTime,  0, 0);
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-            playerTransform.Translate(-Time.deltaTime,  0, 0);
+         if (Input.GetKey(KeyCode.UpArrow)    || Input.GetKey(KeyCode.W)) {
+            playerTransform.Translate( 0,  Time.deltaTime * moveSpeed, 0);
+            Debug.Log("up");
+        } if (Input.GetKey(KeyCode.DownArrow)  || Input.GetKey(KeyCode.S)) {
+            playerTransform.Translate( 0, -Time.deltaTime * moveSpeed, 0);
+            Debug.Log("down");
+        } if (Input.GetKey(KeyCode.LeftArrow)  || Input.GetKey(KeyCode.A)) {
+            playerTransform.Translate(-Time.deltaTime * moveSpeed,  0, 0);
+            Debug.Log("left");
+        } if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
+            playerTransform.Translate( Time.deltaTime * moveSpeed,  0, 0);
+            Debug.Log("right"); }
     }
 
     // GetVDirection() and GetHDirection() are for raycasts done by Shield() and Hit().

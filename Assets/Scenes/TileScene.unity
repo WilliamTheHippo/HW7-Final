@@ -78551,7 +78551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac85bd39bcf2420480fc220a7eb189e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2066058905}
+  player: {fileID: 0}
 --- !u!1 &1862395268
 GameObject:
   m_ObjectHideFlags: 0
@@ -78878,8 +78878,6 @@ GameObject:
   - component: {fileID: 2066058907}
   - component: {fileID: 2066058905}
   - component: {fileID: 2066058908}
-  - component: {fileID: 2066058909}
-  - component: {fileID: 2066058910}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -78961,16 +78959,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2066058902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd4cc3ffe6a114d39a27ef77dacd3d32, type: 3}
+  m_Script: {fileID: 11500000, guid: 564a5a3170e464ac8a01bf72b0990767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  front: {fileID: 4035959289877228764, guid: 776d025b4a89044ef867541cb90a8fe2, type: 3}
-  back: {fileID: -350908408369970039, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
-  side: {fileID: 1553940418269799609, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
-  direction: 0
-  walking: 0
-  shielding: 0
-  attacking: 0
+  currentDirection: 0
 --- !u!61 &2066058906
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -79018,70 +79010,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2066058908
-MonoBehaviour:
+--- !u!95 &2066058908
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066058902}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3fec4c89ed7a4a858243ef6f926cb8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0.125
-  sprites:
-  - {fileID: -350908408369970039, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
-  - {fileID: -5409570386352685021, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
-  - {fileID: 4035959289877228764, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
-  - {fileID: -982904232830982447, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
-  - {fileID: 1553940418269799609, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
-  - {fileID: 2416434504916517810, guid: 58c7aab00dd8045fca465d3a2d5fd701, type: 3}
---- !u!114 &2066058909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2066058902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ace242ed8aba439c8633adc271cdded, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0.125
-  knockback: 0
-  sprites:
-  - {fileID: -4098029715399502762, guid: f16134c2ae88749f68baadaa0297a757, type: 3}
-  - {fileID: -407368442477547055, guid: f16134c2ae88749f68baadaa0297a757, type: 3}
-  - {fileID: -6717884257390833292, guid: f16134c2ae88749f68baadaa0297a757, type: 3}
-  - {fileID: -7947067082740497745, guid: f16134c2ae88749f68baadaa0297a757, type: 3}
-  - {fileID: -8418880130915447063, guid: f16134c2ae88749f68baadaa0297a757, type: 3}
-  - {fileID: -7904321528907490436, guid: f16134c2ae88749f68baadaa0297a757, type: 3}
-  front: {fileID: -6717884257390833292, guid: f16134c2ae88749f68baadaa0297a757, type: 3}
-  back: {fileID: -4098029715399502762, guid: f16134c2ae88749f68baadaa0297a757, type: 3}
-  side: {fileID: -8418880130915447063, guid: f16134c2ae88749f68baadaa0297a757, type: 3}
---- !u!114 &2066058910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2066058902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49082a40486824f73bd3eea2c4bbfe92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 302641331129538988, guid: 4683becb62afa4d3fa92f3a4ed2c9f1b, type: 3}
-  - {fileID: -6329420634031446844, guid: 4683becb62afa4d3fa92f3a4ed2c9f1b, type: 3}
-  - {fileID: -7008412969330441016, guid: 4683becb62afa4d3fa92f3a4ed2c9f1b, type: 3}
-  - {fileID: -7763475090823894447, guid: 4683becb62afa4d3fa92f3a4ed2c9f1b, type: 3}
-  - {fileID: -910092549403018386, guid: 4683becb62afa4d3fa92f3a4ed2c9f1b, type: 3}
-  - {fileID: 221524225039350300, guid: 4683becb62afa4d3fa92f3a4ed2c9f1b, type: 3}
-  swordSprites:
-  - {fileID: 712035800519618848, guid: 8fe63f5110fb44e03a98733dc81e504d, type: 3}
-  - {fileID: 1497478763720940017, guid: 8fe63f5110fb44e03a98733dc81e504d, type: 3}
-  sword: {fileID: 203607895}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0a2b0a56786814429c21eee01412e89, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

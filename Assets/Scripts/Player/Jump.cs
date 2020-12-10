@@ -7,20 +7,21 @@ public class Jump : PlayerState
     const float JUMPTIMER = 0.25f;
     const float JUMPSPEED = 0.1f;
     float jumpTime = 0f;
-    float jumpDirection = 1;
+    float jumpDirection = 1f;
 
     // This is a constructor that passes through the Player Transform component so the 
     // states can use it.
-    public Jump(Player p) => GrabComponents(p);
+    //public Jump(Player p) => GrabComponents(p);
 
     public void BeginJump() 
     {
+        //GrabComponents(GameObject.FindWithTag("Player").GetComponent<Player>());
         firstFrame = false;
         playerCollider.enabled = false;
         linkAnimator.SetBool("jumping", true);
     }
 
-    public void UpdateOnActive()
+    public override void UpdateOnActive()
     {
         if (firstFrame) BeginJump();
 
