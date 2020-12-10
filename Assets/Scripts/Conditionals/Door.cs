@@ -17,9 +17,11 @@ public class Door : MonoBehaviour
 		tilemap = GetComponent<Tilemap>();
 		r = GetComponent<Renderer>();
 		c = GetComponent<Collider2D>();
-		reserve = new TileBase[2];
-		reserve[0] = tilemap.GetTile(tilemap.origin + new Vector3Int(0,1,0));
-		reserve[1] = tilemap.GetTile(tilemap.origin + new Vector3Int(1,1,0));
+		reserve = new TileBase[4];
+		reserve[0] = tilemap.GetTile(tilemap.origin);
+		reserve[1] = tilemap.GetTile(tilemap.origin + new Vector3Int(0,1,0));
+		reserve[2] = tilemap.GetTile(tilemap.origin + new Vector3Int(1,0,0));
+		reserve[3] = tilemap.GetTile(tilemap.origin + new Vector3Int(1,1,0));
 		if(open)
 		{
 			HalfOpen();
@@ -56,16 +58,18 @@ public class Door : MonoBehaviour
 		r.enabled = true;
 		c.enabled = true;
 		yield return new WaitForSeconds(.25f);
-		tilemap.SetTile(
-			tilemap.origin,
-			tilemap.GetTile(tilemap.origin + new Vector3Int(0,1,0))
-		);
-		tilemap.SetTile(tilemap.origin + new Vector3Int(0,1,0), reserve[0]);
-		tilemap.SetTile(
-			tilemap.origin + new Vector3Int(1,0,0),
-			tilemap.GetTile(tilemap.origin + new Vector3Int(1,1,0))
-		);
-		tilemap.SetTile(tilemap.origin + new Vector3Int(1,1,0), reserve[1]);
+		// tilemap.SetTile(
+		// 	tilemap.origin,
+		// 	tilemap.GetTile(tilemap.origin + new Vector3Int(0,1,0))
+		// );
+		tilemap.SetTile(tilemap.origin, reserve[0]);
+		tilemap.SetTile(tilemap.origin + new Vector3Int(0,1,0), reserve[1]);
+		// tilemap.SetTile(
+		// 	tilemap.origin + new Vector3Int(1,0,0),
+		// 	tilemap.GetTile(tilemap.origin + new Vector3Int(1,1,0))
+		// );
+		tilemap.SetTile(tilemap.origin + new Vector3Int(1,0,0), reserve[2]);
+		tilemap.SetTile(tilemap.origin + new Vector3Int(1,1,0), reserve[3]);
 		open = false;
 	}
 }

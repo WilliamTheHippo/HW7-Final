@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3208204332620647373}
   - component: {fileID: 3208204332620647372}
+  - component: {fileID: 1449034564073603127}
   - component: {fileID: 3208204332620647374}
   - component: {fileID: 3208204332620647375}
-  - component: {fileID: 6762709092397183123}
-  - component: {fileID: 7394421068365951396}
   - component: {fileID: 3208204332620647369}
   m_Layer: 2
   m_Name: Player
@@ -77,7 +76,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -8495427822860374384, guid: ebf5be7f23a25604ba8e492d5e3302c4,
     type: 3}
-  m_Color: {r: 0.6179246, g: 0.92691135, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -87,6 +86,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1449034564073603127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208204332620647363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 564a5a3170e464ac8a01bf72b0990767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentDirection: 4
 --- !u!58 &3208204332620647374
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -124,50 +136,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6762709092397183123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3208204332620647363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9340501c6bfc84447ae6ff5407fc2652, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 5
-  attackTimer: 0.3
-  chargeTimer: 0
-  spinTimer: 1
-  jumpTimerUp: 0.25
-  jumpTimerDown: 0.25
-  canMove: 1
-  arrowKeyPressed: 0
-  jumping: 0
-  slashing: 0
-  poking: 0
-  shielding: 0
-  spinning: 0
-  facing: 0
-  Gel: {fileID: 0}
-  myDirection: {x: 0, y: 0, z: 0}
-  hitDestination: {x: 0, y: 0, z: 0}
---- !u!114 &7394421068365951396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3208204332620647363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2381f403ca426684e93a87797f256c25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linkAnimator: {fileID: 3208204332620647369}
-  mainScript: {fileID: 6762709092397183123}
-  rb: {fileID: 3208204332620647375}
 --- !u!95 &3208204332620647369
 Animator:
   serializedVersion: 3
@@ -178,9 +146,9 @@ Animator:
   m_GameObject: {fileID: 3208204332620647363}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a0a2b0a56786814429c21eee01412e89, type: 2}
+  m_Controller: {fileID: 9100000, guid: f1e9852c662fc2c408c7d6d40ecae1c5, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 

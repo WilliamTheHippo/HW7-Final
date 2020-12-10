@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Gel : Enemy
 {
-    GameObject playerTransform;  
 
     Animator myAnimator;
 
@@ -12,8 +11,11 @@ public class Gel : Enemy
 
     public GameObject deathAnimation;
 
+    GameObject playerTransform;  
     void Start()
     {
+        player = GameObject.Find("Player").GetComponent<Player>();
+        playerTransform = player.GetComponent<Transform>();
         playerTransform = GameObject.Find("Player");
 
         myAnimator = GetComponent<Animator>();
@@ -23,6 +25,7 @@ public class Gel : Enemy
 
     void FixedUpdate()
     {
+        FollowPlayer();
 
             var playerVector = playerTransform.transform.position;
             Vector3 followVector = playerVector - transform.position;

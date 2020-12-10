@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// class for the objects that follow the head
 public class MiniMoldormFollow : Enemy
 {
     public Transform BallToFollow;
@@ -29,5 +31,8 @@ public class MiniMoldormFollow : Enemy
     
     }
 
-    public override void SwordHit() {Debug.LogError("SwordHit() not implemented for " + gameObject.name + "!");}
+    public override void SwordHit() {
+        Debug.LogError("SwordHit() not implemented for " + gameObject.name + "!");
+        base.SwordHit();
+    }
 }
