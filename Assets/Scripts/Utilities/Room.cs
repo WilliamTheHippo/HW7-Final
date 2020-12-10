@@ -28,6 +28,7 @@ public class Room : MonoBehaviour
 		if(selfSealing) StartCoroutine("Doors");
 		foreach(Conditional c in conditionals)
 		{
+			c.room = this;
 			StartCoroutine(c.Appear());
 			if(c.alsoDisappears != null) StartCoroutine(c.Disappear());
 		}

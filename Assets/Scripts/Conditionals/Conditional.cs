@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Conditional : MonoBehaviour
 {
-	public Room room;
 	public bool visible;
 	public bool alsoDisappears;
 	public enum Condition {
@@ -12,6 +11,8 @@ public class Conditional : MonoBehaviour
 		Immediately
 	}
 	public Condition condition;
+
+	Room room;
 
 	Collider2D c;
 	Renderer r;
