@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     Fall fall;
     Push push;
 
+    
+
     public enum Direction {
         Up,
         Down,
@@ -23,22 +25,34 @@ public class Player : MonoBehaviour
     }
     public Direction currentDirection;
     CameraMovement cam;
-    PlayerState currentState;
+    public PlayerState currentState;
+    //PlayerState PlayerStateScript;
     bool moving; // True whenever movement keys are pressed
 
     void Start()
     {
         cam = Camera.main.GetComponent<CameraMovement>();
 
-        idle = new Idle(this);
+        /*idle = new Idle(this);
         walk = new Walk(this);
         hit = new Hit(this);
         shield = new Shield(this);
         jump = new Jump(this);
         fall = new Fall(this);
-        push = new Push(this);
+        push = new Push(this);*/
+        ScriptableObject.CreateInstance("Idle");
+        ScriptableObject.CreateInstance("Walk");
+        ScriptableObject.CreateInstance("Hit");
+        ScriptableObject.CreateInstance("Shield");
+        ScriptableObject.CreateInstance("Jump");
+        ScriptableObject.CreateInstance("Fall");
+        ScriptableObject.CreateInstance("Push");
+
 
         currentState = idle;
+
+        currentDirection = Direction.Up;
+
     }
 
     void FixedUpdate()

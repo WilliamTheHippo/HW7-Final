@@ -21,8 +21,8 @@ public class MiniMoldorm : Enemy
 
     public float KnockbackSpeed;
 
-    public float xSpeed;
-    public float ySpeed;
+    //public float xSpeed;
+    //public float ySpeed;
 
     void Start()
     {
@@ -38,8 +38,8 @@ public class MiniMoldorm : Enemy
 
         KnockbackSpeed = 8f;
 
-        xSpeed = 1.5f * Time.deltaTime * 3f;
-        ySpeed = 1.5f * Time.deltaTime * 3f;
+        //xSpeed = 1.5f * Time.deltaTime * 3f;
+        //ySpeed = 1.5f * Time.deltaTime * 3f;
     }
 
     void FixedUpdate()

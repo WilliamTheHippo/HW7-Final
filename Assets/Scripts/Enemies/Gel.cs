@@ -5,20 +5,20 @@ using UnityEngine;
 public class Gel : Enemy
 {
 
-    Animator myAnimator;
+    //Animator myAnimator;
 
     //private float isDead;  
 
     public GameObject deathAnimation;
 
-    GameObject playerTransform;  
+    //GameObject playerTransform;  
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
-        playerTransform = player.GetComponent<Transform>();
-        playerTransform = GameObject.Find("Player");
+        //playerTransform = player.GetComponent<Transform>();
+        //playerTransform = GameObject.Find("Player");
 
-        myAnimator = GetComponent<Animator>();
+        //myAnimator = GetComponent<Animator>();
 
         //isDead = 0;
     }
@@ -27,11 +27,11 @@ public class Gel : Enemy
     {
         FollowPlayer();
 
-            var playerVector = playerTransform.transform.position;
+            /*var playerVector = playerTransform.transform.position;
             Vector3 followVector = playerVector - transform.position;
             transform.position += followVector.normalized * Time.deltaTime;
 
-            Debug.DrawLine( transform.position, playerVector, Color.yellow);
+            Debug.DrawLine( transform.position, playerVector, Color.yellow);*/
     }
 
     public override void SwordHit() {
