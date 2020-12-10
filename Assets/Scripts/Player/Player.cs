@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
         Right,
         Static
     }
-    public Direction currentDirection;
+    public Direction currentDirection = Direction.Up;
     CameraMovement cam;
     PlayerState currentState;
     bool moving; // True whenever movement keys are pressed
@@ -30,13 +30,21 @@ public class Player : MonoBehaviour
     {
         cam = Camera.main.GetComponent<CameraMovement>();
 
-        idle = new Idle(this);
+        /*idle = new Idle(this);
         walk = new Walk(this);
         hit = new Hit(this);
         shield = new Shield(this);
         jump = new Jump(this);
         fall = new Fall(this);
         push = new Push(this);
+        */
+        idle = ScriptableObject.CreateInstance<Idle>();
+        walk = ScriptableObject.CreateInstance<Walk>();
+        hit = ScriptableObject.CreateInstance<Hit>();
+        shield = ScriptableObject.CreateInstance<Shield>();
+        jump = ScriptableObject.CreateInstance<Jump>();
+        fall = ScriptableObject.CreateInstance<Fall>();
+        push = ScriptableObject.CreateInstance<Push>();
 
         currentState = idle;
     }
@@ -47,7 +55,7 @@ public class Player : MonoBehaviour
         float old_y = transform.position.y;
 
         PlayerState oldState = currentState;
-
+        
         UpdateDirection();
 
         // these if statements are honestly still hell lmao
@@ -57,21 +65,22 @@ public class Player : MonoBehaviour
             currentState = jump;
         } else if (Input.GetKeyDown(KeyCode.Z)) {     // SHIELD
             currentState = shield;
-        
         } else if (currentState == idle &&  moving) { // WALK
             currentState = walk;
         } else if (currentState == walk && !moving) { // IDLE
             currentState = idle;
         }
-        if (currentState == walk && currentState.CheckPush()) 
-            currentState = push;                      // PUSH
-
-
+        if (currentState == walk && currentState.CheckPush()){
+          currentState = push;                        // PUSH
+        } 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
         currentState.SetDirection(currentDirection);
-        if (currentState != oldState) oldState.Reset();
+        if (currentState != oldState){
+            oldState.Reset();
+        } 
         
         currentState.UpdateOnActive();
-
+  
         QuantizePosition();
         SwitchRoom(old_x, old_y);
     }
@@ -83,6 +92,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) { // UP
             newDirection = Direction.Up;
+            
         }
         else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) { // LEFT
             newDirection = Direction.Left;
@@ -96,6 +106,7 @@ public class Player : MonoBehaviour
 
         moving = newDirection != Direction.Static;
         if (moving) currentDirection = newDirection;
+        Debug.Log(newDirection);
     }
 
     // Rounds player's position onto the nearest tile.

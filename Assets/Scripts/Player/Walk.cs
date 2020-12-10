@@ -14,7 +14,6 @@ public class Walk : PlayerState
         linkAnimator.SetBool("walking", true);
         linkAnimator.SetFloat("AnimMoveX", Input.GetAxis("Horizontal"));
         linkAnimator.SetFloat("AnimMoveY", Input.GetAxis("Vertical"));
-
         Move();
     }
 }
