@@ -11,8 +11,7 @@ public class Conditional : MonoBehaviour
 		Immediately
 	}
 	public Condition condition;
-
-	Room room;
+	public Room room;
 
 	Collider2D c;
 	Renderer r;
