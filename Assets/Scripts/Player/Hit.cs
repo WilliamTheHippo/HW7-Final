@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Hit : PlayerState
 {
-    const float CHARGETIMER = 0.4f;
-    const float SPINTIMER = 0f;
-    const float ATTACKTIMER = 1f;
+    const float POKETIMER = 0.8f;
+    const float SPINTIMER = 1f;
+    const float SLASHTIMER = 0.4f;
+    const float CHARGETIMER = POKETIMER - SLASHTIMER;  // 0.4f
     float charge = 0f;
-    float spinTime = 0f;
+    //float spinTime = 0f;
     float attackTime = 0f;
     float pokeOffset = 0.4f;
     float swordRayLength = 1.8f;
@@ -18,6 +19,11 @@ public class Hit : PlayerState
     bool canPoke = true;
     bool poking = false;
     bool slashing  = false;
+
+    // Slash :  initial swing
+    // then he starts charging up
+    // if you release the key and the charge is still held, he spins
+    // otherwise he returns to idle
 
     ////////////////////////////// UTILITIES /////////////////////////////////
     void beginHit() {
@@ -37,18 +43,10 @@ public class Hit : PlayerState
         Debug.Log("BEGIN HIT");
     }
 
-    void keyRelease() {
-        if (charge >= CHARGETIMER) spinning = true;
-        if (!canPoke) canPoke = true;
-
-        // charge = 0f;
-        Reset(); // The original script sets the charge back to 0 (above), but Reset() needs 
-                 // to be called somewhere and functionally it feels like it should be here
-    }
-
     public override void Reset() {
+
         spinning = poking = slashing = false;
-        charge = spinTime = attackTime = 0f;
+        charge = attackTime = 0f;
         firstFrame = true;
         moveSpeed = 5f;
 
@@ -64,31 +62,35 @@ public class Hit : PlayerState
     {
         if (firstFrame) beginHit();
 
-        Move();
-
-        charge += Time.deltaTime;
-        if (Input.GetKeyUp(KeyCode.X)) keyRelease();
+        if (!slashing) Move();
         
-        if (spinning) spinTime += Time.deltaTime;
-        
-        if (spinTime >= SPINTIMER) {
-            spinTime = 0f;
-            spinning = false;
-        }
-
-        if (attackTime >= ATTACKTIMER) {
-            slashing = false;
+        if (attackTime < SLASHTIMER) {
+            slashing = true;
             moveSpeed = 5f;
-            attackTime = 0f;
+        } else if (attackTime < POKETIMER) {
+            slashing = false;
+            poking = true;
+            if (Input.GetKey(KeyCode.X)) {
+                charge += Time.deltaTime;
+            } else {
+                Reset();
+            }
+        } else if (attackTime > SPINTIMER) {
+            if (Input.GetKeyUp(KeyCode.X)) {
+                if (charge >= CHARGETIMER) {
+                    spinning = true;
+                    poking = false;
+                } else {
+                    Reset();
+                }
+            }
         }
 
-        if (charge >= CHARGETIMER && canPoke) {
-            poking = true;
-            canPoke = false;
-        }
+        attackTime += Time.deltaTime;
 
         if (slashing) Slash();
         if (poking)   Poke();
+        if (spinning) Spin();
 
         linkAnimator.SetBool("spinning", spinning);
         linkAnimator.SetBool("poking",   poking);
@@ -96,6 +98,8 @@ public class Hit : PlayerState
     }
 
     ////////////////////////////// BEHAVIORS /////////////////////////////////
+
+    // The initial swing
     void Slash() 
     {
         Vector3 vDirection = GetVDirection(); // update raycast directions based on
@@ -124,6 +128,7 @@ public class Hit : PlayerState
         attackTime += Time.deltaTime;
     }
 
+    
     void Poke() 
     {
         Ray2D pokeRay;
@@ -149,12 +154,16 @@ public class Hit : PlayerState
         if (pokeRayHit.collider != null && pokeRayHit.collider.tag == "Enemy") SwordKnockback();
     }
 
+    void Spin()
+    {
+        Reset();
+    }
+
     void SwordKnockback() 
     {
         Vector3 hitDestination = -playerTransform.up * 10;
         Vector3 hitVector = hitDestination - playerTransform.position;
         playerTransform.position += hitVector.normalized;
-        charge = 0f;
-        poking = false;
+        Reset();
     }
 }

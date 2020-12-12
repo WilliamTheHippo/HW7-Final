@@ -90,8 +90,10 @@ public class Player : MonoBehaviour
             if (currentState != oldState) oldState.Reset();
         }
 
-        if (moving) { currentState.linkAnimator.SetBool("walking", true); currentState.Turn(); }
+        if (moving) { currentState.linkAnimator.SetBool("walking", true);  }
                else { currentState.linkAnimator.SetBool("walking", false); }
+
+        // currentState.Turn(); 
         
         currentState.UpdateOnActive();
   
@@ -105,8 +107,7 @@ public class Player : MonoBehaviour
         Direction newDirection = Direction.Static;
 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) { // UP
-            newDirection = Direction.Up;
-            
+            newDirection = Direction.Up; 
         }
         else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) { // LEFT
             newDirection = Direction.Left;

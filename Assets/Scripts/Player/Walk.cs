@@ -7,6 +7,6 @@ public class Walk : PlayerState
     public override void UpdateOnActive()
     {
         Move();
-        //Turn();
+        Turn();
     }
 }
