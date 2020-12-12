@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Shield : PlayerState
 {
+    const float KNOCKBACKTIMER = 1f;
+    float knockbackTime = 0f;
     float knockbackForce = 10f;
-
+    //bool isKnockback = false;
+    
     float rayOffset = 0.5f;
     float maxRayDist = 1.8f;
-
-
-    // This is a constructor that passes through the Player Transform component so the 
-    // states can use it.
-    //public Shield(Player p) => GrabComponents();
 
     void BeginShield() 
     {
@@ -64,20 +62,35 @@ public class Shield : PlayerState
         RaycastHit2D lRayHit = Physics2D.Raycast(lRay.origin, lRay.direction, maxRayDist);
 
         //////////////////////////// COLLISION //////////////////////////////
-        if      (cRayHit.collider != null && cRayHit.collider.tag == "Enemy") { BounceOff(cRayHit.collider); }
-        else if (rRayHit.collider != null && rRayHit.collider.tag == "Enemy") { BounceOff(rRayHit.collider); }
-        else if (lRayHit.collider != null && lRayHit.collider.tag == "Enemy") { BounceOff(lRayHit.collider); }
+        if (cRayHit.collider != null && cRayHit.collider.tag == "Enemy") { 
+            BounceOff(cRayHit.collider); 
+            //isKnockback = true;
+        } else if (rRayHit.collider != null && rRayHit.collider.tag == "Enemy") { 
+            BounceOff(rRayHit.collider); 
+            //isKnockback = true;
+        } else if (lRayHit.collider != null && lRayHit.collider.tag == "Enemy") { 
+            BounceOff(lRayHit.collider); 
+            //isKnockback = true;
+        }
 
-        else { Move(); } // If Link isn't being knocked back, move him and turn sprite
+        else { Move(); Turn(); } // If Link isn't being knocked back, move him and turn sprite
     }
 
     void BounceOff(Collider2D monster) {
 
-        Vector2 fromMonsterToPlayer = new Vector2 (
+        Debug.Log("BOUNCE OFF");
+
+        if (knockbackTime < KNOCKBACKTIMER) {
+            Vector2 fromMonsterToPlayer = new Vector2 (
             playerTransform.position.x - monster.transform.position.x,
             playerTransform.position.y - monster.transform.position.y);
         
-        fromMonsterToPlayer.Normalize();
-        player_rb.velocity = fromMonsterToPlayer * knockbackForce;
+            fromMonsterToPlayer.Normalize();
+            player_rb.velocity = fromMonsterToPlayer * knockbackForce;
+
+            knockbackTime += Time.deltaTime;
+        } else {
+            knockbackTime = 0f;
+        }
     }
 }

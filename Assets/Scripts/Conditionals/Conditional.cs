@@ -5,12 +5,12 @@ using UnityEngine;
 public class Conditional : MonoBehaviour
 {
 	public bool visible;
-	public bool alsoDisappears;
 	public enum Condition {
 		AllEnemiesDead,
-		Immediately
+		Immediately,
+		Never
 	}
-	public Condition condition;
+	public Condition appearCondition, disappearCondition;
 	public Room room;
 
 	protected AudioSource sound;
@@ -24,12 +24,16 @@ public class Conditional : MonoBehaviour
 		sound = GetComponent<AudioSource>();
 		c = GetComponent<Collider2D>();
 		r = GetComponent<Renderer>();
+		visible = false;
+		c.enabled = false;
+		r.enabled = false;
 	}
 
 	public IEnumerator Appear()
 	{
+		if(appearCondition == Condition.Never) yield break;
 		if(visible) yield break;
-		if(condition == Condition.AllEnemiesDead)
+		if(appearCondition == Condition.AllEnemiesDead)
 			yield return new WaitUntil(room.AllEnemiesDead);
 		sound.clip = appearSound;
 		sound.Play();
@@ -40,8 +44,9 @@ public class Conditional : MonoBehaviour
 
 	public IEnumerator Disappear()
 	{
+		if(disappearCondition == Condition.Never) yield break;
 		if(!visible) yield break;
-		if(condition == Condition.AllEnemiesDead)
+		if(disappearCondition == Condition.AllEnemiesDead)
 			yield return new WaitUntil(room.AllEnemiesDead);
 		if(disappearSound != null)
 		{

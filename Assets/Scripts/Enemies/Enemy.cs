@@ -63,8 +63,10 @@ public abstract class Enemy : MonoBehaviour
                 if (canKnockback && !isKnockback) Knockback();
                 myAnimator.SetBool("isHit", true);
             } else {
-                Die();
+                Die();       
             } 
+        } else {
+            Die();
         }
     }
 
