@@ -23,11 +23,16 @@ public class Player : MonoBehaviour
     }
     public Direction currentDirection;
     public Vector2Int room;
+
+    public RuntimeAnimatorController easterEggController;
+    public string easterEggString;
+    string easterEggInput;
+
     CameraMovement cam;
     PlayerState currentState;
     bool moving; // True whenever movement keys are pressed
 
-    public AudioSource sound;
+    AudioSource sound;
     public AudioClip itemPickup, slash;
 
     void Start()
@@ -54,6 +59,8 @@ public class Player : MonoBehaviour
 
         currentState = idle;
         room = new Vector2Int(0,0);
+
+        easterEggInput = "";
     }
 
     void FixedUpdate()
@@ -98,6 +105,18 @@ public class Player : MonoBehaviour
 
         QuantizePosition();
         SwitchRoom(old_x, old_y);
+    }
+
+    void Update()
+    {
+        foreach(char c in Input.inputString)
+        {
+            easterEggInput += c;
+            if(easterEggInput.Length > easterEggString.Length) easterEggInput = "";
+            if(easterEggInput != easterEggString.Substring(0, easterEggInput.Length)) easterEggInput = "";
+            if(easterEggInput == easterEggString)
+                GetComponent<Animator>().runtimeAnimatorController = easterEggController as RuntimeAnimatorController;
+        }
     }
 
     void UpdateDirection() 
