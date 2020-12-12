@@ -144,6 +144,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    void OnTriggerStay2D(Collider2D c)
+    {
+        if(c.tag == "Chest" && Input.GetKey(KeyCode.X))
+            c.GetComponent<Chest>().Open();
+    }
+
 ////////////////////////////// GETTERS AND SETTERS //////////////////////////////
     public void SetIdle() => currentState = idle;
 }
