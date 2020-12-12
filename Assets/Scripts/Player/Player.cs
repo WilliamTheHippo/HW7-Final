@@ -23,10 +23,17 @@ public class Player : MonoBehaviour
     }
     public Direction currentDirection;
     public Vector2Int room;
+
+    public RuntimeAnimatorController easterEggController;
+    public string easterEggString;
+    string easterEggInput;
+
     CameraMovement cam;
     PlayerState currentState;
     bool moving; // True whenever movement keys are pressed
 
+    AudioSource sound;
+    public AudioClip itemPickup, slash;
 
     void Start()
     {
@@ -50,6 +57,8 @@ public class Player : MonoBehaviour
 
         currentState = idle;
         room = new Vector2Int(0,0);
+
+        easterEggInput = "";
     }
 
     void FixedUpdate()
@@ -101,6 +110,18 @@ public class Player : MonoBehaviour
         SwitchRoom(old_x, old_y);
     }
 
+    void Update()
+    {
+        foreach(char c in Input.inputString)
+        {
+            easterEggInput += c;
+            if(easterEggInput.Length > easterEggString.Length) easterEggInput = "";
+            if(easterEggInput != easterEggString.Substring(0, easterEggInput.Length)) easterEggInput = "";
+            if(easterEggInput == easterEggString)
+                GetComponent<Animator>().runtimeAnimatorController = easterEggController as RuntimeAnimatorController;
+        }
+    }
+
     void UpdateDirection() 
     {
         // move check if currentState is hit in here 
@@ -144,6 +165,12 @@ public class Player : MonoBehaviour
             if(old_y < transform.position.y) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Up));
             else StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Down));
         }
+    }
+
+    void OnTriggerStay2D(Collider2D c)
+    {
+        if(c.tag == "Chest" && Input.GetKey(KeyCode.X))
+            c.GetComponent<Chest>().Open();
     }
 
 ////////////////////////////// GETTERS AND SETTERS //////////////////////////////
