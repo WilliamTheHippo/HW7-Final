@@ -19,10 +19,6 @@ public class Hit : PlayerState
     bool poking = false;
     bool slashing  = false;
 
-    // This is a constructor that passes through the player's Transform component so the 
-    // states can use it.
-    //public Hit(Player p) => GrabComponents(p);
-
     ////////////////////////////// UTILITIES /////////////////////////////////
     void beginHit() {
         // not sure how animation controller works, but hopefully setting these once at the 
@@ -30,8 +26,15 @@ public class Hit : PlayerState
         linkAnimator.SetFloat("AnimMoveX", Input.GetAxis("Horizontal"));
         linkAnimator.SetFloat("AnimMoveY", Input.GetAxis("Vertical"));
 
+        sound.clip = slash;
+        sound.Play();
+
         slashing = true;
         firstFrame = false;
+        canInterrupt = false;
+        isAction = true;
+
+        Debug.Log("BEGIN HIT");
     }
 
     void keyRelease() {
@@ -43,7 +46,7 @@ public class Hit : PlayerState
                  // to be called somewhere and functionally it feels like it should be here
     }
 
-    public void Reset() {
+    public override void Reset() {
         spinning = poking = slashing = false;
         charge = spinTime = attackTime = 0f;
         firstFrame = true;
@@ -51,7 +54,9 @@ public class Hit : PlayerState
 
         player.SetIdle();
         // When the state is Hit, Player doesn't switch states in FixedUpdate() automatically so 
-        // Link continues to hit when the arrow keys are pressed. 
+        // Link continues to hit when the arrow keys are pressed.
+
+        Debug.Log("END HIT");
     }
 
     ////////////////////////////// UPDATE /////////////////////////////////

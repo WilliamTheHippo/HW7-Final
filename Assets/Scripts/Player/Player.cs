@@ -27,12 +27,9 @@ public class Player : MonoBehaviour
     PlayerState currentState;
     bool moving; // True whenever movement keys are pressed
 
-    public AudioSource sound;
-    public AudioClip itemPickup, slash;
 
     void Start()
     {
-        sound = GetComponent<AudioSource>();
         cam = Camera.main.GetComponent<CameraMovement>();
 
         idle = ScriptableObject.CreateInstance<Idle>();
@@ -51,7 +48,6 @@ public class Player : MonoBehaviour
         fall.GrabComponents(this);
         push.GrabComponents(this);
 
-
         currentState = idle;
         room = new Vector2Int(0,0);
     }
@@ -65,35 +61,38 @@ public class Player : MonoBehaviour
 
         UpdateDirection();
 
-        // these if statements are honestly still hell lmao
-        if (Input.GetKeyDown(KeyCode.X)) {            // ATTACK
-            sound.clip = slash;
-            sound.Play();
-            currentState = hit;
-            Debug.Log("attack");
-        } else if (Input.GetKeyDown(KeyCode.Space)) { // JUMP
-            currentState = jump;
-            Debug.Log("jump");
-        } else if (Input.GetKeyDown(KeyCode.Z)) {     // SHIELD
-            currentState = shield;
-            Debug.Log("shield");
-        
-        } else if (currentState == idle &&  moving) { // WALK
-            currentState = walk;
-            Debug.Log("walk");
-        } else if (currentState == walk && !moving) { // IDLE
-            currentState = idle;
-            Debug.Log("idle");
+        if (oldState.canInterrupt) {
+            // these if statements are honestly still hell lmao
+            if (Input.GetKeyDown(KeyCode.X)) {            // ATTACK
+                currentState = hit;
+                Debug.Log("attack");
+            } else if (Input.GetKeyDown(KeyCode.Space)) { // JUMP
+                currentState = jump;
+                Debug.Log("jump");
+            } else if (Input.GetKeyDown(KeyCode.Z)) {     // SHIELD
+                currentState = shield;
+                Debug.Log("shield");
+            
+            } else if (moving && !oldState.isAction) { // WALK
+                currentState = walk;
+                Debug.Log("walk");
+            } else if (!moving && !oldState.isAction) { // IDLE
+                currentState = idle;
+                Debug.Log("idle");
+            }
+            if (currentState == walk && currentState.CheckPush()) {
+                currentState = push;                      // PUSH
+                Debug.Log("push"); }
+
+            Debug.Log(currentState + " " + oldState);
+
+            currentState.SetDirection(currentDirection);
+            if (currentState != oldState) oldState.Reset();
         }
-        if (currentState == walk && currentState.CheckPush()) {
-            currentState = push;                      // PUSH
-            Debug.Log("push"); }
 
-
-        currentState.SetDirection(currentDirection);
-        if (currentState != oldState) oldState.Reset();
+        if (moving) { currentState.linkAnimator.SetBool("walking", true); currentState.Turn(); }
+               else { currentState.linkAnimator.SetBool("walking", false); }
         
-        Debug.Log("updateOnActive");
         currentState.UpdateOnActive();
 
         QuantizePosition();
