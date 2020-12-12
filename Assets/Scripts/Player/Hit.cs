@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Hit : PlayerState
 {
-    const float CHARGETIMER = 0.4f;
+    const float CHARGETIMER = 0.5f;
     const float SPINTIMER = 0f;
-    const float ATTACKTIMER = 1f;
+    const float ATTACKTIMER = 0.5f;
     float charge = 0f;
     float spinTime = 0f;
     float attackTime = 0f;
@@ -40,7 +40,7 @@ public class Hit : PlayerState
     void keyRelease() {
         if (charge >= CHARGETIMER) spinning = true;
         if (!canPoke) canPoke = true;
-
+        Debug.Log("key is released");
         // charge = 0f;
         Reset(); // The original script sets the charge back to 0 (above), but Reset() needs 
                  // to be called somewhere and functionally it feels like it should be here
@@ -67,7 +67,10 @@ public class Hit : PlayerState
         Move();
 
         charge += Time.deltaTime;
-        if (Input.GetKeyUp(KeyCode.X)) keyRelease();
+        if (Input.GetKeyUp(KeyCode.X)){
+            keyRelease();
+            Debug.Log("getX");
+        } 
         
         if (spinning) spinTime += Time.deltaTime;
         
@@ -115,10 +118,15 @@ public class Hit : PlayerState
         RaycastHit2D hHit = Physics2D.Raycast(hRay.origin, hRay.direction, swordRayLength);
 
         // Check collision––if Link hit an enemy, run that enemy's SwordHit(). 
-        if (vHit.collider != null && vHit.collider.tag == "Enemy")
+        if (vHit.collider != null && vHit.collider.tag == "Enemy"){
             vHit.collider.GetComponent<Enemy>().SwordHit();
-        if (hHit.collider != null && hHit.collider.tag == "Enemy")
+            Debug.Log("YOOOO");
+        }
+
+        if (hHit.collider != null && hHit.collider.tag == "Enemy"){
             hHit.collider.GetComponent<Enemy>().SwordHit();
+            Debug.Log("YOOOO");
+        }
 
         moveSpeed = 0f;
         attackTime += Time.deltaTime;

@@ -25,6 +25,7 @@ public class HardhatBeetle : Enemy
     }
 
     public override void SwordHit() {
+        
         following = false;
         base.SwordHit();
     }
