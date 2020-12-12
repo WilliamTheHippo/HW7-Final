@@ -19,19 +19,27 @@ public class Shield : PlayerState
         firstFrame = false;
         linkAnimator.SetBool("shielding", true);
         moveSpeed = 5f;
+        isAction = true;
+
+        Debug.Log("BEGIN SHIELD");
     }
 
-    public void Reset() 
+    public override void Reset() 
     {
         firstFrame = true;
         linkAnimator.SetBool("shielding", false);
         player.SetIdle();
+
+        Debug.Log("END SHIELD");
     }
 
     public override void UpdateOnActive() 
     {
         if (firstFrame)                 BeginShield();
-        if (Input.GetKeyUp(KeyCode.Z))  Reset();
+        if (Input.GetKeyUp(KeyCode.Z)) {
+            //Reset();
+            return;
+        }  
 
         Vector3 vDirection = GetVDirection(); // update raycast directions based on
         Vector3 hDirection = GetHDirection(); // which way Link is facing
@@ -60,7 +68,7 @@ public class Shield : PlayerState
         else if (rRayHit.collider != null && rRayHit.collider.tag == "Enemy") { BounceOff(rRayHit.collider); }
         else if (lRayHit.collider != null && lRayHit.collider.tag == "Enemy") { BounceOff(lRayHit.collider); }
 
-        else { Move(); } // If Link isn't being knocked back, check arrow key movement
+        else { Move(); } // If Link isn't being knocked back, move him and turn sprite
     }
 
     void BounceOff(Collider2D monster) {
