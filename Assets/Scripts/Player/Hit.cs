@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Hit : PlayerState
 {
-    const float CHARGETIMER = 0f;
+    const float CHARGETIMER = 0.4f;
     const float SPINTIMER = 0f;
-    const float ATTACKTIMER = 0.3f;
+    const float ATTACKTIMER = 1f;
     float charge = 0f;
     float spinTime = 0f;
     float attackTime = 0f;
@@ -23,8 +23,8 @@ public class Hit : PlayerState
     void beginHit() {
         // not sure how animation controller works, but hopefully setting these once at the 
         // beginning of the hit will keep link facing the same direction, but let him move?
-        linkAnimator.SetFloat("AnimMoveX", Input.GetAxis("Horizontal"));
-        linkAnimator.SetFloat("AnimMoveY", Input.GetAxis("Vertical"));
+        //linkAnimator.SetFloat("AnimMoveX", Input.GetAxis("Horizontal"));
+        //linkAnimator.SetFloat("AnimMoveY", Input.GetAxis("Vertical"));
 
         sound.clip = slash;
         sound.Play();

@@ -21,8 +21,8 @@ public class MiniMoldorm : Enemy
 
     public float KnockbackSpeed;
 
-    public float xSpeed;
-    public float ySpeed;
+    //public float xSpeed;
+    //public float ySpeed;
 
     void Start()
     {

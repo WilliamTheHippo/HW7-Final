@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
         float old_y = transform.position.y;
 
         PlayerState oldState = currentState;
-
+        
         UpdateDirection();
 
         if (oldState.canInterrupt) {
@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
                else { currentState.linkAnimator.SetBool("walking", false); }
         
         currentState.UpdateOnActive();
-
+  
         QuantizePosition();
         SwitchRoom(old_x, old_y);
     }
@@ -106,6 +106,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) { // UP
             newDirection = Direction.Up;
+            
         }
         else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) { // LEFT
             newDirection = Direction.Left;
@@ -119,6 +120,7 @@ public class Player : MonoBehaviour
 
         moving = newDirection != Direction.Static;
         if (moving) currentDirection = newDirection;
+        Debug.Log(newDirection);
     }
 
     // Rounds player's position onto the nearest tile.
