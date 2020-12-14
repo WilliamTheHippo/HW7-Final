@@ -33,6 +33,19 @@ public abstract class Enemy : MonoBehaviour
     
     private float knockbackTimer;
 
+    public Vector2Int room;
+    protected AudioSource sound;
+    public AudioClip hitSound, dieSound, fallSound;
+    bool fallFlag = false;
+
+    public void AssignRoom() {
+        if(transform.parent.GetComponent<Room>() != null)
+        {
+            room.x = transform.parent.GetComponent<Room>().coords.x;
+            room.y = transform.parent.GetComponent<Room>().coords.y;
+        }
+    }
+
     public void SetupEnemy() {
         invTimer /= Time.deltaTime; //can't do this in a constructor because unity starts the clock after initialization
         player = GameObject.Find("Player").GetComponent<Player>();
@@ -44,22 +57,28 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void SwordHit() 
     {
+        sound.clip = hitSound;
+        sound.Play();
         if (hasInvFrames && CheckInvTimer()) {
             hp--;
             if (hp > 0) {
                 if (canKnockback && !isKnockback) Knockback();
                 myAnimator.SetBool("isHit", true);
             } else {
-                Die();
-                
+                Die();       
             } 
+        } else {
+            Die();
         }
     }
 
     public void Fall()
     {
-        //Debug.LogError("Haven't implemented falling yet!");
+        //TODO fall animation
+        fallFlag = true;
+        sound.clip = fallSound;
         Die();
+        fallFlag = false;
     }
 
     void OnTriggerEnter2D(Collider2D c)
@@ -90,6 +109,9 @@ public abstract class Enemy : MonoBehaviour
     public void Die() {
         var instantiatedPrefab = Instantiate (deathAnimation, transform.position, Quaternion.identity) as GameObject;
         /*instantiatedPrefab.transform.localScale = new Vector3(0.5f,0.5f,0.5f);*/
+        if(!fallFlag) sound.clip = dieSound;
+        sound.Play();
+        myAnimator.SetBool("isHit", false);
         Destroy(this.gameObject);
     }
 

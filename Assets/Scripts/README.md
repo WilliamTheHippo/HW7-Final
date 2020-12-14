@@ -1,1 +1,0 @@
-Everything in a folder that isn't "To Refactor" should work fine. Most of the stuff in "To Refactor" depends on other stuff in the folder or stuff that's since been deleted, to this'll probably not compile or run properly until more of the refactor is done.

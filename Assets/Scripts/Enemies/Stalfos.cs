@@ -8,11 +8,14 @@ public class Stalfos : Enemy
 
     void Start()
     {
+        sound = GetComponent<AudioSource>();
+        AssignRoom();
         hp = 5;
         SetupEnemy();
     }
     void Update()
     {
+        if(room != player.room) return;
         //Determine random direction.
         if (directionTimer > 1f / Time.deltaTime) RandomizeDirection(); 
         directionTimer++;

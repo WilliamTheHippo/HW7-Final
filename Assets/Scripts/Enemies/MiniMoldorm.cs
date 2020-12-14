@@ -26,6 +26,9 @@ public class MiniMoldorm : Enemy
 
     void Start()
     {
+        sound = GetComponent<AudioSource>();
+        AssignRoom();
+        player = GameObject.Find("Player").GetComponent<Player>();
         randomNumber = Random.Range(0.0f, 1.0f);
         Timer = 0f;
 
@@ -44,6 +47,7 @@ public class MiniMoldorm : Enemy
 
     void FixedUpdate()
     {
+        if(room != player.room) return;
        
     //Moves in a curve, randomly clockwise or counterclockwise about every second
        //Generate a random number from 0.0f to 1.0f;

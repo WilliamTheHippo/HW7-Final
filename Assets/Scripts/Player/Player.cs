@@ -24,10 +24,19 @@ public class Player : MonoBehaviour
         Static
     }
     public Direction currentDirection;
+    public Vector2Int room;
+
+    public RuntimeAnimatorController easterEggController;
+    public string easterEggString;
+    string easterEggInput;
+
     CameraMovement cam;
     public PlayerState currentState;
     //PlayerState PlayerStateScript;
     bool moving; // True whenever movement keys are pressed
+
+    AudioSource sound;
+    public AudioClip itemPickup, slash;
 
     void Start()
     {
@@ -49,11 +58,10 @@ public class Player : MonoBehaviour
         fall.GrabComponents(this);
         push.GrabComponents(this);
 
-
         currentState = idle;
+        room = new Vector2Int(0,0);
 
-        currentDirection = Direction.Up;
-
+        easterEggInput = "";
     }
 
     void FixedUpdate()
@@ -62,40 +70,59 @@ public class Player : MonoBehaviour
         float old_y = transform.position.y;
 
         PlayerState oldState = currentState;
-
+        
         UpdateDirection();
 
-        // these if statements are honestly still hell lmao
-        if (Input.GetKeyDown(KeyCode.X)) {            // ATTACK
-            currentState = hit;
-            Debug.Log("attack");
-        } else if (Input.GetKeyDown(KeyCode.Space)) { // JUMP
-            currentState = jump;
-            Debug.Log("jump");
-        } else if (Input.GetKeyDown(KeyCode.Z)) {     // SHIELD
-            currentState = shield;
-            Debug.Log("shield");
-        
-        } else if (currentState == idle &&  moving) { // WALK
-            currentState = walk;
-            Debug.Log("walk");
-        } else if (currentState == walk && !moving) { // IDLE
-            currentState = idle;
-            Debug.Log("idle");
+        if (oldState.canInterrupt) {
+            // these if statements are honestly still hell lmao
+            if (Input.GetKeyDown(KeyCode.X)) {            // ATTACK
+                currentState = hit;
+                Debug.Log("attack");
+            } else if (Input.GetKeyDown(KeyCode.Space)) { // JUMP
+                currentState = jump;
+                Debug.Log("jump");
+            } else if (Input.GetKeyDown(KeyCode.Z)) {     // SHIELD
+                currentState = shield;
+                Debug.Log("shield");
+            
+            } else if (moving && !oldState.isAction) { // WALK
+                currentState = walk;
+                Debug.Log("walk");
+            } else if (!moving && !oldState.isAction) { // IDLE
+                currentState = idle;
+                Debug.Log("idle");
+            }
+            if (currentState == walk && currentState.CheckPush()) {
+                currentState = push;                      // PUSH
+                Debug.Log("push"); }
+
+            Debug.Log(currentState + " " + oldState);
+
+            currentState.SetDirection(currentDirection);
+            if (currentState != oldState) oldState.Reset();
         }
-        if (currentState == walk && currentState.CheckPush()) {
-            currentState = push;                      // PUSH
-            Debug.Log("push"); }
 
+        if (moving) { currentState.linkAnimator.SetBool("walking", true);  }
+               else { currentState.linkAnimator.SetBool("walking", false); }
 
-        currentState.SetDirection(currentDirection);
-        if (currentState != oldState) oldState.Reset();
+        // currentState.Turn(); 
         
-        Debug.Log("updateOnActive");
         currentState.UpdateOnActive();
-
+  
         QuantizePosition();
         SwitchRoom(old_x, old_y);
+    }
+
+    void Update()
+    {
+        foreach(char c in Input.inputString)
+        {
+            easterEggInput += c;
+            if(easterEggInput.Length > easterEggString.Length) easterEggInput = "";
+            if(easterEggInput != easterEggString.Substring(0, easterEggInput.Length)) easterEggInput = "";
+            if(easterEggInput == easterEggString)
+                GetComponent<Animator>().runtimeAnimatorController = easterEggController as RuntimeAnimatorController;
+        }
     }
 
     void UpdateDirection() 
@@ -104,7 +131,7 @@ public class Player : MonoBehaviour
         Direction newDirection = Direction.Static;
 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) { // UP
-            newDirection = Direction.Up;
+            newDirection = Direction.Up; 
         }
         else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) { // LEFT
             newDirection = Direction.Left;
@@ -118,6 +145,7 @@ public class Player : MonoBehaviour
 
         moving = newDirection != Direction.Static;
         if (moving) currentDirection = newDirection;
+        Debug.Log(newDirection);
     }
 
     // Rounds player's position onto the nearest tile.
@@ -140,6 +168,12 @@ public class Player : MonoBehaviour
             if(old_y < transform.position.y) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Up));
             else StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Down));
         }
+    }
+
+    void OnTriggerStay2D(Collider2D c)
+    {
+        if(c.tag == "Chest" && Input.GetKey(KeyCode.X))
+            c.GetComponent<Chest>().Open();
     }
 
 ////////////////////////////// GETTERS AND SETTERS //////////////////////////////
