@@ -6,7 +6,7 @@ public class Hit : PlayerState
 {
     const float POKETIMER = 0.8f;
     const float SPINTIMER = 1f;
-    const float SLASHTIMER = 0.4f;
+    const float SLASHTIMER = 0.5f;
     const float CHARGETIMER = POKETIMER - SLASHTIMER;  // 0.4f
     float charge = 0f;
     //float spinTime = 0f;
@@ -35,12 +35,10 @@ public class Hit : PlayerState
         sound.clip = slash;
         sound.Play();
 
-        slashing = true;
         firstFrame = false;
         canInterrupt = false;
         isAction = true;
 
-        Debug.Log("BEGIN HIT");
     }
 
     public override void Reset() {
@@ -53,13 +51,12 @@ public class Hit : PlayerState
         player.SetIdle();
         // When the state is Hit, Player doesn't switch states in FixedUpdate() automatically so 
         // Link continues to hit when the arrow keys are pressed.
-
-        Debug.Log("END HIT");
     }
 
     ////////////////////////////// UPDATE /////////////////////////////////
     public override void UpdateOnActive()
     {
+        attackTime += Time.deltaTime;
         if (firstFrame) beginHit();
 
         if (!slashing) Move();
@@ -67,26 +64,29 @@ public class Hit : PlayerState
         if (attackTime < SLASHTIMER) {
             slashing = true;
             moveSpeed = 5f;
-        } else if (attackTime < POKETIMER) {
+        } else if (attackTime > SLASHTIMER) {
             slashing = false;
             poking = true;
             if (Input.GetKey(KeyCode.X)) {
-                charge += Time.deltaTime;
+              charge += Time.deltaTime;
             } else {
                 Reset();
             }
-        } else if (attackTime > SPINTIMER) {
-            if (Input.GetKeyUp(KeyCode.X)) {
-                if (charge >= CHARGETIMER) {
+        } 
+        if (attackTime > SPINTIMER) {
+            Debug.Log("attackTime>spintimer");
+            if (Input.GetKeyUp(KeyCode.X)){
+                Debug.Log("X is let go");
+                if (charge >= CHARGETIMER){
                     spinning = true;
-                    poking = false;
+                    poking = true;
+                    slashing = false;
                 } else {
                     Reset();
                 }
             }
         }
 
-        attackTime += Time.deltaTime;
 
         if (slashing) Slash();
         if (poking)   Poke();
@@ -119,10 +119,13 @@ public class Hit : PlayerState
         RaycastHit2D hHit = Physics2D.Raycast(hRay.origin, hRay.direction, swordRayLength);
 
         // Check collision––if Link hit an enemy, run that enemy's SwordHit(). 
-        if (vHit.collider != null && vHit.collider.tag == "Enemy")
+        if (vHit.collider != null && vHit.collider.tag == "Enemy"){
             vHit.collider.GetComponent<Enemy>().SwordHit();
-        if (hHit.collider != null && hHit.collider.tag == "Enemy")
+        }
+
+        if (hHit.collider != null && hHit.collider.tag == "Enemy"){
             hHit.collider.GetComponent<Enemy>().SwordHit();
+        }
 
         moveSpeed = 0f;
         attackTime += Time.deltaTime;
