@@ -151,7 +151,7 @@ public class Player : MonoBehaviour
 
     void SwitchRoom(float old_x, float old_y)
     {
-        /*if(Mathf.Abs(transform.position.x % 20) == 10f)
+        if(Mathf.Abs(transform.position.x % 20) == 10f)
         {
             if(old_x < transform.position.x) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Right));
             else StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Left));
@@ -160,7 +160,7 @@ public class Player : MonoBehaviour
         {
             if(old_y < transform.position.y) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Up));
             else StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Down));
-        }*/
+        }
     }
 
     void OnTriggerStay2D(Collider2D c)
