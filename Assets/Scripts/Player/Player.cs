@@ -74,26 +74,20 @@ public class Player : MonoBehaviour
             // these if statements are honestly still hell lmao
             if (Input.GetKeyDown(KeyCode.X)) {            // ATTACK
                 currentState = hit;
-                Debug.Log("attack");
             } else if (Input.GetKeyDown(KeyCode.Space)) { // JUMP
                 currentState = jump;
-                Debug.Log("jump");
             } else if (Input.GetKeyDown(KeyCode.Z)) {     // SHIELD
                 currentState = shield;
-                Debug.Log("shield");
             
             } else if (moving && !oldState.isAction) { // WALK
                 currentState = walk;
-                Debug.Log("walk");
             } else if (!moving && !oldState.isAction) { // IDLE
                 currentState = idle;
-                Debug.Log("idle");
             }
             if (currentState == walk && currentState.CheckPush()) {
                 currentState = push;                      // PUSH
-                Debug.Log("push"); }
+                 }
 
-            Debug.Log(currentState + " " + oldState);
 
             currentState.SetDirection(currentDirection);
             if (currentState != oldState) oldState.Reset();
@@ -142,7 +136,6 @@ public class Player : MonoBehaviour
 
         moving = newDirection != Direction.Static;
         if (moving) currentDirection = newDirection;
-        Debug.Log(newDirection);
     }
 
     // Rounds player's position onto the nearest tile.

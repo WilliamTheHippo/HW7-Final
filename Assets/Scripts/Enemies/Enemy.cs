@@ -62,7 +62,8 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public virtual void SwordHit() 
-    {
+    {   
+        Debug.Log("enemywide hit");
         sound.clip = hitSound;
         sound.Play();
         if (hasInvFrames && CheckInvTimer()) {
