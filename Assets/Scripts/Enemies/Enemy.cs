@@ -36,13 +36,13 @@ public abstract class Enemy : MonoBehaviour
     protected AudioClip hitSound, dieSound, fallSound;
     protected bool fallFlag = false;
 
-    public void AssignRoom() {
+    /*public void AssignRoom() {
         if(transform.parent.GetComponent<Room>() != null)
         {
             room.x = transform.parent.GetComponent<Room>().coords.x;
             room.y = transform.parent.GetComponent<Room>().coords.y;
         }
-    }
+    }*/
 
     // All enemies except for MiniMoldorm need to call this in Start()
     public void SetupEnemy() {
@@ -60,7 +60,7 @@ public abstract class Enemy : MonoBehaviour
 
         knockbackDuration = 1f / Time.deltaTime;
 
-        AssignRoom();
+        //AssignRoom();
         RandomizeDirection();
     }
 
