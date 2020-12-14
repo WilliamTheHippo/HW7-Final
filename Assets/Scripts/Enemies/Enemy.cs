@@ -36,11 +36,11 @@ public abstract class Enemy : MonoBehaviour
     protected bool fallFlag = false;
 
     public void AssignRoom() {
-        /*if(transform.parent.GetComponent<Room>() != null)
+        if(transform.parent.GetComponent<Room>() != null)
         {
             room.x = transform.parent.GetComponent<Room>().coords.x;
             room.y = transform.parent.GetComponent<Room>().coords.y;
-        }*/
+        }
     }
 
     // All enemies except for MiniMoldorm need to call this in Start()
