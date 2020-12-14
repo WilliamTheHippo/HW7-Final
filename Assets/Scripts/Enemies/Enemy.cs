@@ -10,7 +10,7 @@ public abstract class Enemy : MonoBehaviour
     protected bool following;
     protected bool canKnockback = false;
     protected bool isKnockback = false;
-    protected float knockbackDuration = 1f;
+    protected float knockbackDuration;
     protected bool hasInvFrames = false;
     protected bool movesDiagonal = false;
     protected float invTimer = 1f;
@@ -21,6 +21,7 @@ public abstract class Enemy : MonoBehaviour
     //protected bool movesRight = true;
     protected float directionTimer = 0f;
     protected float random;
+    public GameObject deathAnimation;
 
     protected float invFrames; //this never seems to be referenced, only assigned in CheckInvTimer()
 
@@ -57,6 +58,8 @@ public abstract class Enemy : MonoBehaviour
         if (canKnockback) knockbackTimer = SetKnockbackTimer(knockbackDuration);
         if (hp > 1) hasInvFrames = true;
 
+        knockbackDuration = 1f / Time.deltaTime;
+
         AssignRoom();
         RandomizeDirection();
     }
@@ -88,7 +91,7 @@ public abstract class Enemy : MonoBehaviour
         fallFlag = false;
     }
 
-    void OnTriggerEnter2D(Collider2D c) => if(c.tag == "Fall") Fall();
+    //void OnTriggerEnter2D(Collider2D c) => if(c.tag == "Fall") Fall();
 
     public void FollowPlayer() {
         Vector3 playerVector = player.transform.position;
@@ -111,6 +114,9 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public void Die() {
+        var instantiatedPrefab = Instantiate (deathAnimation, transform.position, Quaternion.identity) as GameObject; //plug in deathanimation from enemy prefabs
+        instantiatedPrefab.transform.localScale = new Vector3(0.5f,0.5f,0.5f); //scale for the explosion
+
         if(!fallFlag) sound.clip = dieSound;
         sound.Play();
         myAnimator.SetBool("isHit", true);
@@ -166,5 +172,5 @@ public abstract class Enemy : MonoBehaviour
         }
     } 
 
-    public float SetKnockbackTimer(float time) => knockbackDuration / Time.deltaTime;
+    public float SetKnockbackTimer(float time) => knockbackDuration;
 }
