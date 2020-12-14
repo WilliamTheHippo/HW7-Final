@@ -23,6 +23,7 @@ public abstract class Enemy : MonoBehaviour
     protected float directionTimer = 0f;
     protected float random;
     public GameObject deathAnimation;
+    public GameObject fallAnimation;
 
     protected float invFrames; //this never seems to be referenced, only assigned in CheckInvTimer()
 
@@ -76,23 +77,20 @@ public abstract class Enemy : MonoBehaviour
                 if (canKnockback && !isKnockback) Knockback();
                 myAnimator.SetBool("isHit", true);
             } else {
-                Die();       
+                Die(false);       
             } 
         } else {
-            Die();
+            Die(false);
         }
     }
 
     public void Fall()
     {
-        //TODO fall animation
         fallFlag = true;
         sound.clip = fallSound;
-        Die();
+        Die(true);
         fallFlag = false;
     }
-
-    //void OnTriggerEnter2D(Collider2D c) => if(c.tag == "Fall") Fall();
 
     public void FollowPlayer() {
         Vector3 playerVector = player.transform.position;
@@ -114,8 +112,9 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public void Die() {
-        var instantiatedPrefab = Instantiate (deathAnimation, transform.position, Quaternion.identity) as GameObject; //plug in deathanimation from enemy prefabs
+    public void Die(bool falling) {
+    	var anim = falling ? fallAnimation : deathAnimation;
+        var instantiatedPrefab = Instantiate (anim, transform.position, Quaternion.identity) as GameObject; //plug in deathanimation from enemy prefabs
         instantiatedPrefab.transform.localScale = new Vector3(0.5f,0.5f,0.5f); //scale for the explosion
 
         if(!fallFlag) sound.clip = dieSound;
@@ -137,7 +136,7 @@ public abstract class Enemy : MonoBehaviour
     // this function is hell !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public virtual void RandomizeDirection() 
     {
-        Debug.Log(":(");
+        //Debug.Log(":(");
         directionTimer = 0f;
         random = Random.Range(0f, 1f);
 

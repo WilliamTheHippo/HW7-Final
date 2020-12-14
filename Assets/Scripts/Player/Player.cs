@@ -161,4 +161,9 @@ public class Player : MonoBehaviour
 
 ////////////////////////////// GETTERS AND SETTERS //////////////////////////////
     public void SetIdle() => currentState = idle;
+
+    public void Fall()
+    {
+    	Debug.LogError("Haven't implemented falling yet!");
+    }
 }
