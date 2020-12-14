@@ -15,7 +15,8 @@ public class Stalfos : Enemy
     }
     void Update()
     {
-        if(room != player.room) return;
+        // if(room != player.room) return;
+
         //Determine random direction.
         if (directionTimer > 1f / Time.deltaTime) RandomizeDirection(); 
         directionTimer++;
@@ -25,5 +26,9 @@ public class Stalfos : Enemy
         //if (isKnockback) { Knockback(); } 
         //else             { transform.Translate(direction); }
         if (!isKnockback) transform.Translate(direction);        
+    }
+
+    public virtual void RandomizeDirection() {
+        
     }
 }

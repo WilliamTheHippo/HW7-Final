@@ -8,7 +8,6 @@ public class Moldorm : Enemy
     float randomNumber;
     float Timer;
     
-
     public float Lives;
     float LivesTimer;
     public float Hit;
@@ -28,12 +27,7 @@ public class Moldorm : Enemy
 
     void Start()
     {
-        sound = GetComponent<AudioSource>();
-        AssignRoom();
-
-
         KnockbackSpeed = 0f; // why is this set to 0? 
-
         movesDiagonal = true;
         speed = 4.5f;
         hp = 3;
@@ -43,17 +37,17 @@ public class Moldorm : Enemy
 
     void FixedUpdate()
     {
-        if(room != player.room) return;
+        //if(room != player.room) return;
        
-    //Moves in a curve, randomly clockwise or counterclockwise about every second
-       //Generate a random number from 0.0f to 1.0f;
+        //Moves in a curve, randomly clockwise or counterclockwise about every second
+        //Generate a random number from 0.0f to 1.0f;
 		    //time for 1 second
         //Determine random direction.
         if (directionTimer > 1f / Time.deltaTime) RandomizeDirection(); 
         directionTimer++;
 
         if (!isKnockback) {
-            transform.Translate(direction);
+            transform.Translate(direction, Space.World);
             transform.localEulerAngles = angle;
         }
     }
@@ -69,5 +63,27 @@ public class Moldorm : Enemy
         else if (randomNumber <= 0.75f) { randomNumber = 0.4f; } 
         else                            { randomNumber = 0.1f; }
 
+    }
+
+    public override void RandomizeDirection() {
+        directionTimer = 0f;
+        random = Random.Range(0f, 1f);
+
+        if (random <= 0.25f) {
+            direction = new Vector3(xSpeed, ySpeed, 0f);
+            angle = new Vector3(0f, 0f, 90f);
+
+        } else if (random < 0.5f) {
+            direction = new Vector3(xSpeed, -ySpeed, 0f);
+            angle = new Vector3(0f, 0f, 0f);
+
+        } else if (random < 0.75f) {
+            direction = new Vector3(-xSpeed, ySpeed, 0f);
+            angle = new Vector3(0f, 0f, 180f);
+
+        } else {
+            direction = new Vector3(-xSpeed, -ySpeed, 0f);
+            angle = new Vector3(0f, 0f, -90f);
+        }
     }
 }

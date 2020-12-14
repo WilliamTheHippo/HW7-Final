@@ -4,51 +4,60 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {    
-    public int hp = 1;
-    public Player player;
-    public Transform playerTransform;
-    public bool following;
-    public bool canKnockback = false;
-    public bool isKnockback = false;
-    public float knockbackDuration = 1f;
-    public bool hasInvFrames = false;
-    public bool movesDiagonal = false;
-    public float invTimer = 1f;
-    public float knockbackSpeed = 8f;
-    public Animator myAnimator; 
-    public Vector3 direction;
-    public Vector3 angle;
-    public bool movesRight = true;
-    public float directionTimer = 0f;
-    public float random;
+    [HideInInspector] public int hp = 1;
+    protected Player player;
+    protected Transform playerTransform;
+    protected bool following;
+    protected bool canKnockback = false;
+    protected bool isKnockback = false;
+    protected float knockbackDuration = 1f;
+    protected bool hasInvFrames = false;
+    protected bool movesDiagonal = false;
+    protected float invTimer = 1f;
+    protected float knockbackSpeed = 8f;
+    protected Animator myAnimator; 
+    protected Vector3 direction;
+    protected Vector3 angle;
+    //protected bool movesRight = true;
+    protected float directionTimer = 0f;
+    protected float random;
 
-    public float invFrames; //this never seems to be referenced, only assigned in CheckInvTimer()
+    protected float invFrames; //this never seems to be referenced, only assigned in CheckInvTimer()
 
-    public float xSpeed;
-    public float ySpeed;
-    public float speed = 1.5f;
+    protected float xSpeed;
+    protected float ySpeed;
+    protected float speed = 1.5f;
     
     private float knockbackTimer;
 
-    public Vector2Int room;
+    protected Vector2Int room;
     protected AudioSource sound;
-    public AudioClip hitSound, dieSound, fallSound;
-    bool fallFlag = false;
+    protected AudioClip hitSound, dieSound, fallSound;
+    protected bool fallFlag = false;
 
     public void AssignRoom() {
-        if(transform.parent.GetComponent<Room>() != null)
+        /*if(transform.parent.GetComponent<Room>() != null)
         {
             room.x = transform.parent.GetComponent<Room>().coords.x;
             room.y = transform.parent.GetComponent<Room>().coords.y;
-        }
+        }*/
     }
 
+    // All enemies except for MiniMoldorm need to call this in Start()
     public void SetupEnemy() {
-        invTimer /= Time.deltaTime; //can't do this in a constructor because unity starts the clock after initialization
+        // not sure what this line does v
+        // invTimer /= Time.deltaTime; //can't do this in a constructor because unity starts the clock after initialization
+
         player = GameObject.Find("Player").GetComponent<Player>();
+        playerTransform = player.GetComponent<Transform>();
+
+        sound = GetComponent<AudioSource>();
         myAnimator = GetComponent<Animator>();
+
         if (canKnockback) knockbackTimer = SetKnockbackTimer(knockbackDuration);
         if (hp > 1) hasInvFrames = true;
+
+        AssignRoom();
         RandomizeDirection();
     }
 
@@ -78,10 +87,7 @@ public abstract class Enemy : MonoBehaviour
         fallFlag = false;
     }
 
-    void OnTriggerEnter2D(Collider2D c)
-    {
-        if(c.tag == "Fall") Fall();
-    }
+    void OnTriggerEnter2D(Collider2D c) => if(c.tag == "Fall") Fall();
 
     public void FollowPlayer() {
         Vector3 playerVector = player.transform.position;
@@ -106,7 +112,7 @@ public abstract class Enemy : MonoBehaviour
     public void Die() {
         if(!fallFlag) sound.clip = dieSound;
         sound.Play();
-        myAnimator.SetBool("isHit", false);
+        myAnimator.SetBool("isHit", true);
         Destroy(this.gameObject);
     }
 
@@ -120,33 +126,35 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public void RandomizeDirection() 
+    // this function is hell !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public virtual void RandomizeDirection() 
     {
+        Debug.Log(":(");
         directionTimer = 0f;
         random = Random.Range(0f, 1f);
 
         xSpeed = speed * Time.deltaTime;
         ySpeed = speed * Time.deltaTime;
-        movesRight = true;
-        angle = new Vector3 (0f, 0f, -45f);
+        //movesRight = true;
+        angle = new Vector3 (0f, 0f, 90f);
 
         if(random < 0.25f) {
             xSpeed *= -1;
-            movesRight = false;
-            angle = new Vector3 (0f, 0f, 45f);
+            //movesRight = false;
+            angle = new Vector3 (0f, 0f, 180f);
         }
         else if(random < 0.5f) { 
             ySpeed *= -1;
-            angle = new Vector3 (0f, 0f, -135f);
+            angle = new Vector3 (0f, 0f, 0f);
         }
         else if(random < 0.75f) {
             xSpeed *= -1;
             ySpeed *= -1;
-            movesRight = false;
-            angle = new Vector3 (0f, 0f, 135f);
+            //movesRight = false;
+            angle = new Vector3 (0f, 0f, -90f);
         }
 
-        if (movesDiagonal) {
+        if (!movesDiagonal) {
             direction = new Vector3 (xSpeed, ySpeed, 0f);
 
         } else if (random < 0.5f) {
