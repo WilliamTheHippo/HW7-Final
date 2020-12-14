@@ -14,6 +14,9 @@ public class Gel : Enemy
     //GameObject playerTransform;  
     void Start()
     {
+        following = true;
+        canKnockback = true;
+
         SetupEnemy();        
     }
 
@@ -22,6 +25,7 @@ public class Gel : Enemy
         if(room != player.room) return;
         
         FollowPlayer();
+        if (isKnockback) Knockback();
 
             /*var playerVector = playerTransform.transform.position;
             Vector3 followVector = playerVector - transform.position;
@@ -31,6 +35,9 @@ public class Gel : Enemy
     }
 
     public override void SwordHit() {
+        following = false;
+        base.SwordHit();
+        
         //isDead = 1;
 
         /*var instantiatedPrefab = Instantiate (deathAnimation, transform.position, Quaternion.identity) as GameObject;
