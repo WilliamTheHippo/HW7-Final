@@ -7,6 +7,7 @@ public class HardhatBeetle : Enemy
 
     void Start()
     {
+        noSwordHit = true;
         knockbackDuration = 0.5f / Time.deltaTime;
         knockbackSpeed = 6f;
         following = true;
