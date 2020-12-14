@@ -122,7 +122,7 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public void Die(bool falling) {
-    	var anim = falling ? fallAnimation : deathAnimation;
+        var anim = falling ? fallAnimation : deathAnimation;
         var instantiatedPrefab = Instantiate (anim, transform.position, Quaternion.identity) as GameObject; //plug in deathanimation from enemy prefabs
         instantiatedPrefab.transform.localScale = new Vector3(0.5f,0.5f,0.5f); //scale for the explosion
 
@@ -144,15 +144,15 @@ public abstract class Enemy : MonoBehaviour
 
     protected bool CheckHoles(Direction d, float distance = 1.5f)
     {
-    	Ray2D r;
-    	if(d == Direction.Up) r = new Ray2D(transform.position, Vector2.up);
-    	else if(d == Direction.Down) r = new Ray2D(transform.position, Vector2.down);
-    	else if(d == Direction.Left) r = new Ray2D(transform.position, Vector2.left);
-    	else r = new Ray2D(transform.position, Vector2.right);
-    	Debug.DrawRay(r.origin, r.direction * distance, Color.blue);
-    	RaycastHit2D h = Physics2D.Raycast(r.origin, r.direction, distance);
-    	if(h.collider != null && h.collider.tag == "Fall") return true;
-    	else return false;
+        Ray2D r;
+        if(d == Direction.Up) r = new Ray2D(transform.position, Vector2.up);
+        else if(d == Direction.Down) r = new Ray2D(transform.position, Vector2.down);
+        else if(d == Direction.Left) r = new Ray2D(transform.position, Vector2.left);
+        else r = new Ray2D(transform.position, Vector2.right);
+        Debug.DrawRay(r.origin, r.direction * distance, Color.blue);
+        RaycastHit2D h = Physics2D.Raycast(r.origin, r.direction, distance);
+        if(h.collider != null && h.collider.tag == "Fall") return true;
+        else return false;
     } 
 
     // this function is hell !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
