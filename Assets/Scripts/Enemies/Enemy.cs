@@ -15,6 +15,7 @@ public abstract class Enemy : MonoBehaviour
     protected bool movesDiagonal = false;
     protected float invTimer = 1f;
     protected float knockbackSpeed = 8f;
+    protected bool noSwordHit = false;
     protected Animator myAnimator; 
     protected Vector3 direction;
     protected Vector3 angle;
@@ -70,7 +71,7 @@ public abstract class Enemy : MonoBehaviour
         sound.clip = hitSound;
         sound.Play();
         if (hasInvFrames && CheckInvTimer()) {
-            hp--;
+            /*if(!noSwordHit)*/ hp--;
             if (hp > 0) {
                 if (canKnockback && !isKnockback) Knockback();
                 myAnimator.SetBool("isHit", true);

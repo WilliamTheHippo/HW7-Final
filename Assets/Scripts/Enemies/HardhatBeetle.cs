@@ -7,6 +7,7 @@ public class HardhatBeetle : Enemy
 
     void Start()
     {
+        noSwordHit = true;
         knockbackDuration = 0.5f / Time.deltaTime;
         knockbackSpeed = 6f;
         following = true;
@@ -18,9 +19,11 @@ public class HardhatBeetle : Enemy
     void FixedUpdate()
     {
         if(room != player.room) return;
+
+        if(! following && !isKnockback) following = true;
         
-        if (following) FollowPlayer();
         if (isKnockback) Knockback();
+        else if(following) FollowPlayer();
     }
 
     void OnTriggerEnter2D(Collider2D c)
@@ -37,6 +40,7 @@ public class HardhatBeetle : Enemy
     public override void SwordHit() {
         
         following = false;
-        base.SwordHit();
+        if(canKnockback && !isKnockback) Knockback();
+        //base.SwordHit();
     }
 }

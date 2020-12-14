@@ -68,38 +68,6 @@ public class Player : MonoBehaviour
     {
         float old_x = transform.position.x;
         float old_y = transform.position.y;
-
-        PlayerState oldState = currentState;
-        
-        UpdateDirection();
-
-        if (oldState.canInterrupt) {
-            // these if statements are honestly still hell lmao
-            if (Input.GetKeyDown(KeyCode.X)) {            // ATTACK
-                currentState = hit;
-            } else if (Input.GetKeyDown(KeyCode.Space)) { // JUMP
-                currentState = jump;
-            } else if (Input.GetKeyDown(KeyCode.Z)) {     // SHIELD
-                currentState = shield;
-            
-            } else if (moving && !oldState.isAction) { // WALK
-                currentState = walk;
-            } else if (!moving && !oldState.isAction) { // IDLE
-                currentState = idle;
-            }
-            if (currentState == walk && currentState.CheckPush()) {
-                currentState = push;                      // PUSH
-                 }
-
-
-            currentState.SetDirection(currentDirection);
-            if (currentState != oldState) oldState.Reset();
-        }
-
-        if (moving) { currentState.linkAnimator.SetBool("walking", true);  }
-               else { currentState.linkAnimator.SetBool("walking", false); }
-
-        // currentState.Turn(); 
         
         currentState.UpdateOnActive();
   
@@ -109,6 +77,28 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+    	PlayerState oldState = currentState;
+    	UpdateDirection();
+
+    	if(oldState.canInterrupt)
+    	{
+    		if(Input.GetKeyDown(KeyCode.X)) currentState = hit;
+    		else if(Input.GetKeyDown(KeyCode.Space)) currentState = jump;
+    		else if(Input.GetKeyDown(KeyCode.Z)) currentState = shield;
+    		else if(!oldState.isAction)
+    		{
+    			if(moving) currentState = walk;
+    			else currentState = idle;
+    		}
+
+    		if(currentState == walk && currentState.CheckPush()) currentState = push;
+    		currentState.SetDirection(currentDirection);
+    		if(currentState != oldState) currentState.Reset();
+    	}
+
+    	if(moving) currentState.linkAnimator.SetBool("walking", true);
+    	else currentState.linkAnimator.SetBool("walking", false);
+
         foreach(char c in Input.inputString)
         {
             easterEggInput += c;
@@ -151,7 +141,7 @@ public class Player : MonoBehaviour
 
     void SwitchRoom(float old_x, float old_y)
     {
-        /*if(Mathf.Abs(transform.position.x % 20) == 10f)
+        if(Mathf.Abs(transform.position.x % 20) == 10f)
         {
             if(old_x < transform.position.x) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Right));
             else StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Left));
@@ -160,7 +150,7 @@ public class Player : MonoBehaviour
         {
             if(old_y < transform.position.y) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Up));
             else StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Down));
-        }*/
+        }
     }
 
     void OnTriggerStay2D(Collider2D c)
