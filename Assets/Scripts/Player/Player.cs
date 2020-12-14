@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     Fall fall;
     Push push;
 
+    
+
     public enum Direction {
         Up,
         Down,
@@ -29,7 +31,8 @@ public class Player : MonoBehaviour
     string easterEggInput;
 
     CameraMovement cam;
-    PlayerState currentState;
+    public PlayerState currentState;
+    //PlayerState PlayerStateScript;
     bool moving; // True whenever movement keys are pressed
 
     AudioSource sound;

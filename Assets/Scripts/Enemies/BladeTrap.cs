@@ -14,8 +14,7 @@ public class BladeTrap : Enemy
     void Start()
     {
         sound = GetComponent<AudioSource>();
-        AssignRoom();
-        player = GameObject.Find("Player").GetComponent<Player>();
+        SetupEnemy();
         c = moveLeft ? -1 : 1;
         move = false;
         reset = false;
@@ -24,7 +23,8 @@ public class BladeTrap : Enemy
 
     void FixedUpdate()
     {
-        if(room != player.room) return;
+        //if(room != player.room) return;
+
         if(!reset)
         {
             //player within 3 units
@@ -34,7 +34,7 @@ public class BladeTrap : Enemy
         }
         else
         {
-            if (transform.position != resetPosition) transform.Translate(c * 3.0f * Time.deltaTime, 0f, 0f);
+            if (transform.position != resetPosition) transform.Translate(-c * 3.0f * Time.deltaTime, 0f, 0f);
             if (moveLeft && transform.position.x >= resetPosition.x) reset = false;
             if (!moveLeft && transform.position.x <= resetPosition.x) reset = false;
         }
