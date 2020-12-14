@@ -71,7 +71,7 @@ public abstract class Enemy : MonoBehaviour
         sound.clip = hitSound;
         sound.Play();
         if (hasInvFrames && CheckInvTimer()) {
-            if(!noSwordHit) hp--;
+            /*if(!noSwordHit)*/ hp--;
             if (hp > 0) {
                 if (canKnockback && !isKnockback) Knockback();
                 myAnimator.SetBool("isHit", true);
