@@ -7,8 +7,6 @@ public class HardhatBeetle : Enemy
 
     void Start()
     {
-        sound = GetComponent<AudioSource>();
-        AssignRoom();
         knockbackDuration = 0.5f;
         knockbackSpeed = 6f;
         following = true;
@@ -20,6 +18,7 @@ public class HardhatBeetle : Enemy
     void FixedUpdate()
     {
         if(room != player.room) return;
+        
         if (following) FollowPlayer();
         if (isKnockback) Knockback();
     }

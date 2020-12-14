@@ -14,20 +14,13 @@ public class Gel : Enemy
     //GameObject playerTransform;  
     void Start()
     {
-        sound = GetComponent<AudioSource>();
-    	AssignRoom();
-        player = GameObject.Find("Player").GetComponent<Player>();
-        //playerTransform = player.GetComponent<Transform>();
-        //playerTransform = GameObject.Find("Player");
-
-        //myAnimator = GetComponent<Animator>();
-
-        //isDead = 0;
+        SetupEnemy();        
     }
 
     void FixedUpdate()
     {
         if(room != player.room) return;
+        
         FollowPlayer();
 
             /*var playerVector = playerTransform.transform.position;
