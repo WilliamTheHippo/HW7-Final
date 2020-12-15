@@ -51,7 +51,7 @@ public class Jump : PlayerState
     }
 
     public override void Reset() 
-    {   
+    {
         player.SetIdle();
         jumpDirection = 1;
         linkAnimator.SetBool("jumping", false);

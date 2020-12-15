@@ -7,6 +7,7 @@ public class Moldorm : Enemy
 {
     float randomNumber;
     float Timer;
+    public bool active;
 
     bool clockwise;
     float degrees;
@@ -45,7 +46,9 @@ public class Moldorm : Enemy
 
     void FixedUpdate()
     {
+        active = false;
         if(room != player.room) return;
+        active = true;
 
         MoveInCircle();
        
@@ -86,7 +89,7 @@ public class Moldorm : Enemy
     {
         degrees += clockwise ? Time.deltaTime : -Time.deltaTime;
         degrees %= 360;
-        Debug.Log(degrees);
+        //Debug.Log(degrees);
         transform.position /*+*/= new Vector3( Mathf.Cos(degrees) * 10f, Mathf.Sin(degrees) * 10f, 0f);
 
     }

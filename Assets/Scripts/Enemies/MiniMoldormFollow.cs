@@ -9,6 +9,8 @@ public class MiniMoldormFollow : Enemy
     public Transform BallToFollow;
     public float LerpScale=5f;
 
+    public MiniMoldorm moldorm; 
+
     void Start()
     {
         sound = GetComponent<AudioSource>();
@@ -19,7 +21,7 @@ public class MiniMoldormFollow : Enemy
 
     void FixedUpdate()
     {
-        if(room != player.room) return;
+        if(!moldorm.active) return;
         
         if(BallToFollow == null){
             Destroy(this.gameObject);

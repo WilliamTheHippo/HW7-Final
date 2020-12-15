@@ -78,7 +78,7 @@ public class Hit : PlayerState
                     slashing = false;
                 } 
             }
-        } else if(attackTime < SPINTIMER){
+        } else/* if(attackTime < SPINTIMER)*/{
             if(Input.GetKeyUp(KeyCode.X)){
                 Reset();
                 slashing = false;
