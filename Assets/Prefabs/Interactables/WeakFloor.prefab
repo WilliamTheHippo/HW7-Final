@@ -565,4 +565,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesCanTrigger: 0
   broken: 0
-  breakSound: {fileID: 0}
+  breakSound: {fileID: 8300000, guid: 894f45281a3124e318a4c123b3fe60a3, type: 3}
