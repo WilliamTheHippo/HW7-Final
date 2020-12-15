@@ -14,10 +14,12 @@ public class Gel : Enemy
     //GameObject playerTransform;  
     void Start()
     {
+        SetupEnemy(); 
+
         following = true;
         canKnockback = true;
 
-        SetupEnemy();        
+        DeathScale = new Vector3(0.5f,0.5f,0.5f); //scale for the explosion       
     }
 
     void FixedUpdate()

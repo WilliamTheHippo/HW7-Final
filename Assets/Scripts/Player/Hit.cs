@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Hit : PlayerState
 {
-    const float POKETIMER = 0.8f;
+    const float POKETIMER = 1.6f;
     const float SPINTIMER = 1f;
-    const float SLASHTIMER = 0.5f;
-    const float CHARGETIMER = POKETIMER - SLASHTIMER;  // 0.4f
+    const float SLASHTIMER = 0.8f;
+    const float CHARGETIMER = 0.5f;  // 0.4f
     float charge = 0f;
-    //float spinTime = 0f;
+    float spinTime = 0.5f;
     float attackTime = 0f;
     float pokeOffset = 0.4f;
     float swordRayLength = 1.8f;
@@ -42,11 +42,11 @@ public class Hit : PlayerState
     }
 
     public override void Reset() {
-
-        spinning = poking = slashing = false;
+        spinning = poking = false;
         charge = attackTime = 0f;
         firstFrame = true;
         moveSpeed = 5f;
+        spinTime = 0.5f;
 
         player.SetIdle();
         // When the state is Hit, Player doesn't switch states in FixedUpdate() automatically so 
@@ -58,40 +58,38 @@ public class Hit : PlayerState
     {
         attackTime += Time.deltaTime;
         if (firstFrame) beginHit();
-
         if (!slashing) Move();
-        
+        // SLASHTIMER = 0.8f;
         if (attackTime < SLASHTIMER) {
             slashing = true;
             moveSpeed = 5f;
         } else if (attackTime > SLASHTIMER) {
             slashing = false;
             poking = true;
-            if (Input.GetKey(KeyCode.X)) {
+            if (Input.GetKey(KeyCode.X)){
               charge += Time.deltaTime;
-            } else {
-                Reset();
-            }
+            } 
         } 
-        if (attackTime > SPINTIMER) {
-            Debug.Log("attackTime>spintimer");
+        if (attackTime >= SPINTIMER) {
+            Debug.Log("go for it");
             if (Input.GetKeyUp(KeyCode.X)){
-                Debug.Log("X is let go");
                 if (charge >= CHARGETIMER){
                     spinning = true;
                     poking = true;
                     slashing = false;
-                } else {
-                    Reset();
                 }
             }
+        } else if(attackTime < SPINTIMER){
+            if(Input.GetKeyUp(KeyCode.X)){
+                Debug.Log("i wanna see this");
+                Reset();
+                slashing = false;
+            }
         }
-
-
         if (slashing) Slash();
         if (poking)   Poke();
         if (spinning) Spin();
-
+        
         linkAnimator.SetBool("spinning", spinning);
         linkAnimator.SetBool("poking",   poking);
         linkAnimator.SetBool("slashing", slashing);
@@ -126,7 +124,6 @@ public class Hit : PlayerState
         if (hHit.collider != null && hHit.collider.tag == "Enemy"){
             hHit.collider.GetComponent<Enemy>().SwordHit();
         }
-
         moveSpeed = 0f;
         attackTime += Time.deltaTime;
     }
@@ -135,7 +132,7 @@ public class Hit : PlayerState
     void Poke() 
     {
         Ray2D pokeRay;
-
+        moveSpeed = 5f;
         switch (direction) {
             case (Player.Direction.Up):
                 pokeRay = new Ray2D(playerTransform.position + new Vector3(-pokeOffset, 0f, 0f),  playerTransform.up);
@@ -158,8 +155,11 @@ public class Hit : PlayerState
     }
 
     void Spin()
-    {
-        Reset();
+    {   
+        spinTime -= Time.deltaTime;
+        if(spinTime< 0){
+            Reset();
+        }
     }
 
     void SwordKnockback() 

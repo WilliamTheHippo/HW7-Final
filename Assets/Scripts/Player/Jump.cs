@@ -39,6 +39,7 @@ public class Jump : PlayerState
 
     public override void Reset() 
     {
+        Debug.Log("reset");
         jumpDirection = 1;
         linkAnimator.SetBool("jumping", false);
         playerCollider.enabled = true;

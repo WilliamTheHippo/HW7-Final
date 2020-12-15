@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {    
-    [HideInInspector] public int hp = 1;
+    public int hp = 1;
     protected Player player;
     protected Transform playerTransform;
     protected bool following;
@@ -23,6 +23,7 @@ public abstract class Enemy : MonoBehaviour
     protected float directionTimer = 0f;
     protected float random;
     public GameObject deathAnimation;
+    public GameObject fallAnimation;
 
     protected float invFrames; //this never seems to be referenced, only assigned in CheckInvTimer()
 
@@ -33,9 +34,14 @@ public abstract class Enemy : MonoBehaviour
     private float knockbackTimer;
 
     protected Vector2Int room;
+
+    protected Vector3 DeathScale;
+
     protected AudioSource sound;
     protected AudioClip hitSound, dieSound, fallSound;
     protected bool fallFlag = false;
+
+    protected enum Direction {Up, Down, Left, Right}
 
     public void AssignRoom() {
         if(transform.parent.GetComponent<Room>() != null)
@@ -48,7 +54,7 @@ public abstract class Enemy : MonoBehaviour
     // All enemies except for MiniMoldorm need to call this in Start()
     public void SetupEnemy() {
         // not sure what this line does v
-        // invTimer /= Time.deltaTime; //can't do this in a constructor because unity starts the clock after initialization
+        invTimer /= Time.deltaTime; //can't do this in a constructor because unity starts the clock after initialization
 
         player = GameObject.Find("Player").GetComponent<Player>();
         playerTransform = player.GetComponent<Transform>();
@@ -76,28 +82,32 @@ public abstract class Enemy : MonoBehaviour
                 if (canKnockback && !isKnockback) Knockback();
                 myAnimator.SetBool("isHit", true);
             } else {
-                Die();       
+                Die(false);       
             } 
         } else {
-            Die();
+            Die(false);
         }
     }
 
     public void Fall()
     {
-        //TODO fall animation
         fallFlag = true;
         sound.clip = fallSound;
-        Die();
+        Die(true);
         fallFlag = false;
     }
-
-    //void OnTriggerEnter2D(Collider2D c) => if(c.tag == "Fall") Fall();
 
     public void FollowPlayer() {
         Vector3 playerVector = player.transform.position;
         Vector3 followVector = playerVector - transform.position;
-        transform.position += followVector.normalized * Time.deltaTime * 2;
+        float truncatedX = followVector.x;
+        float truncatedY = followVector.y;
+        if(CheckHoles(Direction.Up) && truncatedY > 0f) truncatedY = 0f;
+        if(CheckHoles(Direction.Down) && truncatedY < 0f) truncatedY = 0f;
+        if(CheckHoles(Direction.Left) && truncatedX < 0f) truncatedX = 0f;
+        if(CheckHoles(Direction.Right) && truncatedX > 0f) truncatedX = 0f;
+        Vector3 truncated = new Vector3(truncatedX, truncatedY, 0f);
+        transform.position += truncated.normalized * Time.deltaTime * 2;
         Debug.DrawLine (transform.position, playerVector, Color.yellow);
     }
 
@@ -114,8 +124,9 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public void Die() {
-        var instantiatedPrefab = Instantiate (deathAnimation, transform.position, Quaternion.identity) as GameObject; //plug in deathanimation from enemy prefabs
+    public void Die(bool falling) {
+        var anim = falling ? fallAnimation : deathAnimation;
+        var instantiatedPrefab = Instantiate (anim, transform.position, Quaternion.identity) as GameObject; //plug in deathanimation from enemy prefabs
         instantiatedPrefab.transform.localScale = new Vector3(0.5f,0.5f,0.5f); //scale for the explosion
 
         if(!fallFlag) sound.clip = dieSound;
@@ -134,10 +145,23 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
+    protected bool CheckHoles(Direction d, float distance = 1.5f)
+    {
+        Ray2D r;
+        if(d == Direction.Up) r = new Ray2D(transform.position, Vector2.up);
+        else if(d == Direction.Down) r = new Ray2D(transform.position, Vector2.down);
+        else if(d == Direction.Left) r = new Ray2D(transform.position, Vector2.left);
+        else r = new Ray2D(transform.position, Vector2.right);
+        Debug.DrawRay(r.origin, r.direction * distance, Color.blue);
+        RaycastHit2D h = Physics2D.Raycast(r.origin, r.direction, distance);
+        if(h.collider != null && h.collider.tag == "Fall") return true;
+        else return false;
+    } 
+
     // this function is hell !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public virtual void RandomizeDirection() 
     {
-        Debug.Log(":(");
+        //Debug.Log(":(");
         directionTimer = 0f;
         random = Random.Range(0f, 1f);
 
