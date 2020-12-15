@@ -63,7 +63,7 @@ public class Hit : PlayerState
         if (attackTime < SLASHTIMER) {
             slashing = true;
             moveSpeed = 5f;
-        } else if (attackTime > SLASHTIMER) {
+        } else/* if (attackTime > SLASHTIMER)*/ {
             slashing = false;
             poking = true;
             if (Input.GetKey(KeyCode.X)){
@@ -75,11 +75,11 @@ public class Hit : PlayerState
             if (Input.GetKeyUp(KeyCode.X)){
                 if (charge >= CHARGETIMER){
                     spinning = true;
-                    poking = true;
+                    poking = false;
                     slashing = false;
                 }
             }
-        } else if(attackTime < SPINTIMER){
+        } else/* if(attackTime < SPINTIMER)*/{
             if(Input.GetKeyUp(KeyCode.X)){
                 Debug.Log("i wanna see this");
                 Reset();
