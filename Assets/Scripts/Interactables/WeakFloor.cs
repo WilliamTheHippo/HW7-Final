@@ -6,29 +6,34 @@ using UnityEngine.Tilemaps;
 public class WeakFloor : Interactable
 {
 	public bool broken;
-	Tilemap hole;
+	Collider2D hole;
 	Renderer r;
 	Collider2D c;
+
+	public AudioClip breakSound;
+	AudioSource sound;
 
 	void Start()
 	{
 		broken = false;
-		hole = transform.GetChild(0).GetComponent<Tilemap>();
-		hole.GetComponent<Collider2D>().enabled = false;
+		hole = transform.GetChild(0).GetComponent<Collider2D>();
+		hole.enabled = false;
 		r = GetComponent<Renderer>();
 		c = GetComponent<Collider2D>();
+		sound = GetComponent<AudioSource>();
 		r.enabled = true;
 		c.enabled = true;
 	}
 
-	void Activate() {StartCoroutine(Break());}
+	public override void Activate() {StartCoroutine(Break());}
 
 	IEnumerator Break()
 	{
-		Debug.Log("floor breaks");
+		sound.clip = breakSound;
+		sound.Play();
 		c.enabled = false;
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.75f);
 		r.enabled = false;
-		hole.GetComponent<Collider2D>().enabled = true;
+		hole.enabled = true;
 	}
 }
