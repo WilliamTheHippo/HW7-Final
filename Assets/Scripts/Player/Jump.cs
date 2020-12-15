@@ -39,12 +39,13 @@ public class Jump : PlayerState
 
     public override void Reset() 
     {
-        Debug.Log("reset");
+        player.SetIdle();
         jumpDirection = 1;
         linkAnimator.SetBool("jumping", false);
         playerCollider.enabled = true;
         firstFrame = true;
-        player.SetIdle();
+        jumpTime = 0f;
+        //player.SetIdle();
     }
 
 }
