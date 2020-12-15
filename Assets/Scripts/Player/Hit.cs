@@ -6,7 +6,7 @@ public class Hit : PlayerState
 {
     const float POKETIMER = 1.6f;
     const float SPINTIMER = 1f;
-    const float SLASHTIMER = 0.8f;
+    const float SLASHTIMER = 0.5f;
     const float CHARGETIMER = 0.5f;  // 0.4f
     float charge = 0f;
     float spinTime = 0.5f;
@@ -63,7 +63,7 @@ public class Hit : PlayerState
         if (attackTime < SLASHTIMER) {
             slashing = true;
             moveSpeed = 5f;
-        } else if (attackTime > SLASHTIMER) {
+        } else /*if (attackTime > SLASHTIMER)*/ {
             slashing = false;
             poking = true;
             if (Input.GetKey(KeyCode.X)){
@@ -71,17 +71,15 @@ public class Hit : PlayerState
             } 
         } 
         if (attackTime >= SPINTIMER) {
-            Debug.Log("go for it");
             if (Input.GetKeyUp(KeyCode.X)){
                 if (charge >= CHARGETIMER){
                     spinning = true;
-                    poking = true;
+                    poking = false;
                     slashing = false;
-                }
+                } 
             }
         } else if(attackTime < SPINTIMER){
             if(Input.GetKeyUp(KeyCode.X)){
-                Debug.Log("i wanna see this");
                 Reset();
                 slashing = false;
             }

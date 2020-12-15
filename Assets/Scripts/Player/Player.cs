@@ -13,8 +13,9 @@ public class Player : MonoBehaviour
     Jump jump;
     Fall fall;
     Push push;
-
-    
+    float health = 3;
+    float knockbackTime = 1f;
+    bool knockback;
 
     public enum Direction {
         Up,
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
 
     AudioSource sound;
     public AudioClip itemPickup, slash;
-
+    
     void Start()
     {
         cam = Camera.main.GetComponent<CameraMovement>();
@@ -57,7 +58,7 @@ public class Player : MonoBehaviour
         jump.GrabComponents(this);
         fall.GrabComponents(this);
         push.GrabComponents(this);
-
+    
         currentState = idle;
         room = new Vector2Int(0,0);
 
@@ -71,8 +72,6 @@ public class Player : MonoBehaviour
         float old_y = transform.position.y;
 
         PlayerState oldState = currentState;
-        
-        
 
         if (oldState.canInterrupt) {
             // these if statements are honestly still hell lmao
@@ -82,7 +81,6 @@ public class Player : MonoBehaviour
                 currentState = jump;
             } else if (Input.GetKeyDown(KeyCode.Z)) {     // SHIELD
                 currentState = shield;
-            
             } else if (moving && !oldState.isAction) { // WALK
                 currentState = walk;
             } else if (!moving && !oldState.isAction) { // IDLE
@@ -96,8 +94,8 @@ public class Player : MonoBehaviour
             currentState.SetDirection(currentDirection);
             if (currentState != oldState) oldState.Reset();
         }
-
-        if (moving) { currentState.linkAnimator.SetBool("walking", true);  }
+        
+        if (moving) { currentState.linkAnimator.SetBool("walking", true); }
                else { currentState.linkAnimator.SetBool("walking", false); }
 
         // currentState.Turn(); 
@@ -107,6 +105,12 @@ public class Player : MonoBehaviour
         QuantizePosition();
         SwitchRoom(old_x, old_y);
 
+        if(knockbackTime < 0f ){
+            knockback = false;
+            Debug.Log ("knockbackreseet");
+            GetComponent<Rigidbody2D>().velocity = new Vector3 (0f,0f,0f);
+            knockbackTime = 1f;
+        }
         currentState.UpdateOnActive();
         foreach(char c in Input.inputString)
         {
@@ -118,7 +122,25 @@ public class Player : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D activator){
+        if(activator.tag == "Enemy"){
+            knockback = true;
+            health -= 0.5f;
+            if(knockback){
+                GetComponent<Animator>().SetBool("gothit",true);
+                Vector2 fromMonsterToPlayer = new Vector2 (
+                transform.position.x - activator.transform.position.x,
+                transform.position.y - activator.transform.position.y);
+                fromMonsterToPlayer.Normalize();
+                GetComponent<Rigidbody2D>().velocity = fromMonsterToPlayer*6;
+                knockbackTime -= Time.deltaTime;
+            }
+        }
+    }
 
+    void die(){
+
+    }
     void UpdateDirection() 
     {
         // move check if currentState is hit in here 
@@ -126,7 +148,6 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) { // UP
             newDirection = Direction.Up; 
-            Debug.Log(newDirection);
         }
         else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) { // LEFT
             newDirection = Direction.Left;

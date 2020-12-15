@@ -1078,12 +1078,12 @@ PrefabInstance:
     - target: {fileID: 3208204332620647373, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.52
       objectReference: {fileID: 0}
     - target: {fileID: 3208204332620647373, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.14
+      value: -2.26
       objectReference: {fileID: 0}
     - target: {fileID: 3208204332620647373, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
         type: 3}
@@ -1130,10 +1130,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3208204332620647374, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.018941283
+      objectReference: {fileID: 0}
+    - target: {fileID: 3208204332620647374, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.5189413
+      objectReference: {fileID: 0}
+    - target: {fileID: 3208204332620647374, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3208204332620647375, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
         type: 3}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3208204332620647375, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f064ee3a3169d49a2d0b67f3c259c8, type: 3}

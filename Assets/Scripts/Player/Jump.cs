@@ -24,11 +24,12 @@ public class Jump : PlayerState
             BeginJump();
             Debug.Log("first frame is true");
         }
-        //Move();
+        Move();
 
         if (jumpTime >= JUMPTIMER) {
             if (jumpDirection == 1) {
                 jumpDirection = -1;
+                jumpTime = 0f;
             } else {
                 Reset();
                 return;
@@ -36,7 +37,16 @@ public class Jump : PlayerState
         }
 
         jumpTime += Time.deltaTime;
+        //if(player.currentDirection == Player.Direction.Up){
         playerTransform.position += new Vector3 (0f, JUMPSPEED * jumpDirection, 0f);
+        //} else if(player.currentDirection == Player.Direction.Down){
+        //     playerTransform.position += new Vector3 (0f,- JUMPSPEED * jumpDirection, 0f);
+        //} else if(player.currentDirection == Player.Direction.Right){
+        //     playerTransform.position += new Vector3 (JUMPSPEED * jumpDirection, 0f, 0f);
+        //} else if(player.currentDirection == Player.Direction.Left){
+        //     playerTransform.position += new Vector3 (-JUMPSPEED * jumpDirection, 0f, 0f);
+        //}
+       
         
     }
 
