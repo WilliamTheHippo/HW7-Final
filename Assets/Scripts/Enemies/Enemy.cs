@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {    
-    [HideInInspector] public int hp = 1;
+    public int hp = 1;
     protected Player player;
     protected Transform playerTransform;
     protected bool following;

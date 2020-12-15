@@ -7,13 +7,14 @@ public class HardhatBeetle : Enemy
 
     void Start()
     {
+        SetupEnemy();
+
         noSwordHit = true;
         knockbackDuration = 0.5f / Time.deltaTime;
         knockbackSpeed = 6f;
         following = true;
         canKnockback = true;
 
-        SetupEnemy();
     }
 
     void FixedUpdate()

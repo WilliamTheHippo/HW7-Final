@@ -8,10 +8,10 @@ public class Stalfos : Enemy
 
     void Start()
     {
+        SetupEnemy();
         sound = GetComponent<AudioSource>();
        // AssignRoom();
         hp = 5;
-        SetupEnemy();
     }
     void Update()
     {
