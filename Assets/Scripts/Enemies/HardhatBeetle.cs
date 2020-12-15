@@ -15,6 +15,8 @@ public class HardhatBeetle : Enemy
         following = true;
         canKnockback = true;
 
+        DeathScale = new Vector3(0.5f,0.5f,0.5f); //scale for the explosion  
+
     }
 
     void FixedUpdate()

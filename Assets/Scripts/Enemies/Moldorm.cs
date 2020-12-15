@@ -30,6 +30,8 @@ public class Moldorm : Enemy
 
     void Start()
     {
+        SetupEnemy();
+        
         clockwise = false;
         degrees = 0;
         KnockbackSpeed = 0f; // why is this set to 0? 
@@ -37,7 +39,7 @@ public class Moldorm : Enemy
         speed = 4.5f;
         hp = 3;
 
-        SetupEnemy();
+        DeathScale = new Vector3(1f,1f,1f); //scale for the explosion  
     }
 
     void FixedUpdate()

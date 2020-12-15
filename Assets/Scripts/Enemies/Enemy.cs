@@ -33,6 +33,9 @@ public abstract class Enemy : MonoBehaviour
     private float knockbackTimer;
 
     protected Vector2Int room;
+
+    protected Vector3 DeathScale;
+
     protected AudioSource sound;
     protected AudioClip hitSound, dieSound, fallSound;
     protected bool fallFlag = false;
@@ -116,7 +119,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void Die() {
         var instantiatedPrefab = Instantiate (deathAnimation, transform.position, Quaternion.identity) as GameObject; //plug in deathanimation from enemy prefabs
-        instantiatedPrefab.transform.localScale = new Vector3(0.5f,0.5f,0.5f); //scale for the explosion
+        instantiatedPrefab.transform.localScale = DeathScale; //scale for the explosion
 
         if(!fallFlag) sound.clip = dieSound;
         sound.Play();
