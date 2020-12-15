@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visible: 0
-  appearCondition: 0
+  appearCondition: 3
   disappearCondition: 4
   secondsUntilAppearance: 0
   appearanceDuration: 0

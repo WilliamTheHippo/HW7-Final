@@ -12,6 +12,7 @@ public class Item : Conditional
 
 	void Start()
 	{
+		base.Start();
 		pickedUp = false;
 		sound = GetComponent<AudioSource>();
 	}

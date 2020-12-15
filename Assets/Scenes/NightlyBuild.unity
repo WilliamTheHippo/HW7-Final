@@ -253,6 +253,12 @@ PrefabInstance:
       propertyPath: disappearCondition
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 9053237093236455206, guid: 4e77da50d061c48388e14f12bcb714e2,
+        type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 6269466205032404980, guid: e26652454ffdc42999550bcf21e7e49f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e77da50d061c48388e14f12bcb714e2, type: 3}
 --- !u!4 &87501094 stripped
@@ -514,6 +520,11 @@ PrefabInstance:
       propertyPath: room
       value: 
       objectReference: {fileID: 779074352}
+    - target: {fileID: 6269466205032404980, guid: e26652454ffdc42999550bcf21e7e49f,
+        type: 3}
+      propertyPath: appearCondition
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e26652454ffdc42999550bcf21e7e49f, type: 3}
 --- !u!4 &181394515 stripped
