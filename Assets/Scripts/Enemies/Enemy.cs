@@ -25,6 +25,8 @@ public abstract class Enemy : MonoBehaviour
     public GameObject deathAnimation;
     public Sprite fallSprite;
 
+    bool alreadyHitting;
+
     protected float invFrames; //this never seems to be referenced, only assigned in CheckInvTimer()
 
     protected float xSpeed;
@@ -66,27 +68,36 @@ public abstract class Enemy : MonoBehaviour
         if (hp > 1) hasInvFrames = true;
 
         knockbackDuration = 1f / Time.deltaTime;
+        alreadyHitting = false;
 
         AssignRoom();
         RandomizeDirection();
     }
 
     public virtual void SwordHit() 
-    {   
-        Debug.Log("enemywide hit");
+    {
+        if(alreadyHitting) return;
+        if(player.currentState is Hit) alreadyHitting = true;
         sound.clip = hitSound;
         sound.Play();
-        if (hasInvFrames && CheckInvTimer()) {
+        if (hasInvFrames) {
             /*if(!noSwordHit)*/ hp--;
             if (hp > 0) {
                 if (canKnockback && !isKnockback) Knockback();
                 myAnimator.SetBool("isHit", true);
+                StartCoroutine(InvFrames());
             } else {
                 StartCoroutine(Die(false));       
             } 
         } else {
             StartCoroutine(Die(false));
         }
+    }
+
+    IEnumerator InvFrames()
+    {
+        yield return new WaitForSeconds(0.5f);
+        alreadyHitting = false;
     }
 
     public void Fall()
@@ -144,15 +155,16 @@ public abstract class Enemy : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public bool CheckInvTimer() {
-        if (invTimer > 0) {
-            invTimer--;
-            return false;
-        } else {
-            invFrames = 1f / Time.deltaTime;
-            return true;
-        }
-    }
+    // public bool CheckInvTimer() {
+    //     if (invTimer > 0) {
+    //         invTimer--;
+    //         return true;
+    //     } else {
+    //         invFrames = 1f / Time.deltaTime;
+    //         alreadyHitting = false;
+    //         return false;
+    //     }
+    // }
 
     protected bool CheckHoles(Direction d, float distance = 1.5f)
     {
