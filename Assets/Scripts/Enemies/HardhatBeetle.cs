@@ -29,16 +29,6 @@ public class HardhatBeetle : Enemy
         else if(following) FollowPlayer();
     }
 
-    void OnTriggerEnter2D(Collider2D c)
-	{
-		/*if(c.tag == "Fall"){
-            if(Knockback == 1){
-
-            Destroy(this.gameObject);
-            }
-        }*/
-	}
-
 
     public override void SwordHit() {
         

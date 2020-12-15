@@ -23,7 +23,7 @@ public abstract class Enemy : MonoBehaviour
     protected float directionTimer = 0f;
     protected float random;
     public GameObject deathAnimation;
-    public GameObject fallAnimation;
+    public Sprite fallSprite;
 
     protected float invFrames; //this never seems to be referenced, only assigned in CheckInvTimer()
 
@@ -39,7 +39,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected AudioSource sound;
     protected AudioClip hitSound, dieSound, fallSound;
-    protected bool fallFlag = false;
+    //protected bool fallFlag = false;
 
     protected enum Direction {Up, Down, Left, Right}
 
@@ -82,19 +82,19 @@ public abstract class Enemy : MonoBehaviour
                 if (canKnockback && !isKnockback) Knockback();
                 myAnimator.SetBool("isHit", true);
             } else {
-                Die(false);       
+                StartCoroutine(Die(false));       
             } 
         } else {
-            Die(false);
+            StartCoroutine(Die(false));
         }
     }
 
     public void Fall()
     {
-        fallFlag = true;
-        sound.clip = fallSound;
-        Die(true);
-        fallFlag = false;
+        //fallFlag = true;
+        //sound.clip = fallSound;
+        StartCoroutine(Die(true));
+        //fallFlag = false; //don't actually need this if we're just destroying the object
     }
 
     public void FollowPlayer() {
@@ -124,14 +124,23 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public void Die(bool falling) {
-        var anim = falling ? fallAnimation : deathAnimation;
-        var instantiatedPrefab = Instantiate (anim, transform.position, Quaternion.identity) as GameObject; //plug in deathanimation from enemy prefabs
-        instantiatedPrefab.transform.localScale = new Vector3(0.5f,0.5f,0.5f); //scale for the explosion
-
-        if(!fallFlag) sound.clip = dieSound;
+    public IEnumerator Die(bool falling) {
+        if(!falling)
+        {
+	        var instantiatedPrefab = Instantiate (deathAnimation, transform.position, Quaternion.identity) as GameObject; //plug in deathanimation from enemy prefabs
+	        instantiatedPrefab.transform.localScale = new Vector3(0.5f,0.5f,0.5f); //scale for the explosion
+	    }
+	    else {
+	    	myAnimator.enabled = false;
+	    	GetComponent<SpriteRenderer>().sprite = fallSprite;
+	    	GetComponent<Collider2D>().enabled = false;
+	    }
+        if(falling) sound.clip = fallSound;
+        else sound.clip = dieSound;
         sound.Play();
         myAnimator.SetBool("isHit", true);
+        if(falling) yield return new WaitForSeconds(0.25f);
+        else yield return null;
         Destroy(this.gameObject);
     }
 
