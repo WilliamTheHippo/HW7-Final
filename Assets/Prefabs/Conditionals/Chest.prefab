@@ -388,8 +388,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visible: 0
+  secondsUntilAppearance: 0
+  appearanceDuration: 0
   appearCondition: 0
-  disappearCondition: 2
+  disappearCondition: 4
   room: {fileID: 0}
   appearSound: {fileID: 8300000, guid: 69205cde6be9441ddba64666d4b4e06b, type: 3}
   disappearSound: {fileID: 0}
