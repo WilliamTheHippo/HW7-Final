@@ -93,5 +93,6 @@ public class Moldorm : Enemy
     void SwitchDirection() //TODO actually call this
     {
         clockwise = !clockwise;
+        
     }
 }
