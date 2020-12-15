@@ -178,6 +178,7 @@ public class Player : MonoBehaviour
 
     public void Fall()
     {
-    	Debug.LogError("Haven't implemented falling yet!");
+    	Debug.Log("falling");
+        currentState = fall;
     }
 }

@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Fall : PlayerState 
 {
-    // This is a constructor that passes through the Player Transform component so the 
-    // states can use it.
-    //public Fall(Player p) => GrabComponents(p);
+	public override void UpdateOnActive()
+	{
+		if(firstFrame)
+		{
+			//disable animators
+			//set player.sr.sprite to falling
+			//call player.Die(), which'll just reload the scene
+		}
+	}
 }
