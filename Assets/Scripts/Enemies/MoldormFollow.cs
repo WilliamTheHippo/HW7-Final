@@ -12,12 +12,13 @@ public class MoldormFollow : Enemy
     void Start()
     {
         //SetupEnemy();
+        AssignRoom();
         moldorm = GameObject.Find("Moldorm").GetComponent<Moldorm>();
     }
     
     void FixedUpdate()
     {
-        //if(room != player.room) return;
+        if(room != player.room) return;
 
         if(BallToFollow == null) Destroy(this.gameObject);
         if(moldorm.hp <= 0) Destroy(this.gameObject);

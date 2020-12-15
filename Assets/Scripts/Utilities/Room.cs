@@ -9,6 +9,7 @@ public class Room : MonoBehaviour
 	public bool selfSealing;
 	public List<Door> doors;
 	public List<Conditional> conditionals;
+	public Switch t_switch;
 	List<Enemy> enemies;
 
 	bool unvisited;

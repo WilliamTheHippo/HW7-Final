@@ -31,6 +31,7 @@ public class Moldorm : Enemy
     void Start()
     {
         SetupEnemy();
+        AssignRoom();
         
         clockwise = false;
         degrees = 0;
@@ -44,7 +45,7 @@ public class Moldorm : Enemy
 
     void FixedUpdate()
     {
-        //if(room != player.room) return;
+        if(room != player.room) return;
 
         MoveInCircle();
        

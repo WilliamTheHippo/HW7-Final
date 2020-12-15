@@ -12,14 +12,14 @@ public class MiniMoldormFollow : Enemy
     void Start()
     {
         sound = GetComponent<AudioSource>();
-        //AssignRoom();
+        AssignRoom();
         player = GameObject.Find("Player").GetComponent<Player>();
         //BallToFollow = transform.parent;
     }
 
     void FixedUpdate()
     {
-        // if(room != player.room) return;
+        if(room != player.room) return;
         
         if(BallToFollow == null){
             Destroy(this.gameObject);
