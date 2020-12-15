@@ -7,6 +7,7 @@ public class Conditional : MonoBehaviour
 	public bool visible;
 	public enum Condition {
 		AllEnemiesDead,
+		Switch,
 		Immediately,
 		Never
 	}
@@ -35,6 +36,8 @@ public class Conditional : MonoBehaviour
 		if(visible) yield break;
 		if(appearCondition == Condition.AllEnemiesDead)
 			yield return new WaitUntil(room.AllEnemiesDead);
+		if(appearCondition == Condition.Switch)
+			yield return new WaitUntil(() => room.t_switch.active);
 		sound.clip = appearSound;
 		sound.Play();
 		visible = true;
@@ -48,6 +51,8 @@ public class Conditional : MonoBehaviour
 		if(!visible) yield break;
 		if(disappearCondition == Condition.AllEnemiesDead)
 			yield return new WaitUntil(room.AllEnemiesDead);
+		if(disappearCondition == Condition.Switch)
+			yield return new WaitUntil(() => room.t_switch.active);
 		if(disappearSound != null)
 		{
 			sound.clip = disappearSound;
