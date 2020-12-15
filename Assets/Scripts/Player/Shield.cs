@@ -33,7 +33,7 @@ public class Shield : PlayerState
 
     public override void UpdateOnActive() 
     {
-        if (firstFrame)                 BeginShield();
+        if (firstFrame) BeginShield();
         if (Input.GetKeyUp(KeyCode.Z)) {
             Reset();
             return;
