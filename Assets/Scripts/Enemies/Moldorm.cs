@@ -30,6 +30,8 @@ public class Moldorm : Enemy
 
     void Start()
     {
+        SetupEnemy();
+        
         clockwise = false;
         degrees = 0;
         KnockbackSpeed = 0f; // why is this set to 0? 
@@ -37,7 +39,7 @@ public class Moldorm : Enemy
         speed = 4.5f;
         hp = 3;
 
-        SetupEnemy();
+        DeathScale = new Vector3(1f,1f,1f); //scale for the explosion  
     }
 
     void FixedUpdate()
@@ -53,7 +55,10 @@ public class Moldorm : Enemy
 
         //TODO REPLACE THIS WITH THE ACTUAL LOGIC
         //HE USES TO SWITCH DIRECTION (ONCE WE KNOW IT)
-        if (directionTimer > 1f / Time.deltaTime) SwitchDirection(); 
+        if (directionTimer > 1f / Time.deltaTime) {
+            SwitchDirection(); 
+            directionTimer = 0f; 
+        }
         directionTimer++;
 
         if (!isKnockback) {
@@ -64,14 +69,15 @@ public class Moldorm : Enemy
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+       SwitchDirection();
         /*xSpeed = -xSpeed;
         ySpeed = -ySpeed;
         transform.Rotate(0f, 0f, 180f);*/
 
-             if (randomNumber <= 0.25f) { randomNumber = 0.8f; } 
+            /* if (randomNumber <= 0.25f) { randomNumber = 0.8f; } 
         else if (randomNumber <= 0.5f)  { randomNumber = 0.6f; } 
         else if (randomNumber <= 0.75f) { randomNumber = 0.4f; } 
-        else                            { randomNumber = 0.1f; }
+        else                            { randomNumber = 0.1f; }*/
 
     }
 
@@ -80,16 +86,13 @@ public class Moldorm : Enemy
         degrees += clockwise ? Time.deltaTime : -Time.deltaTime;
         degrees %= 360;
         Debug.Log(degrees);
-        transform.position /*+*/= new Vector3(
-            Mathf.Cos(degrees) * 10f,
-            Mathf.Sin(degrees) * 10f,
-            0f
-        );
+        transform.position /*+*/= new Vector3( Mathf.Cos(degrees) * 10f, Mathf.Sin(degrees) * 10f, 0f);
 
     }
 
     void SwitchDirection() //TODO actually call this
     {
         clockwise = !clockwise;
+        
     }
 }

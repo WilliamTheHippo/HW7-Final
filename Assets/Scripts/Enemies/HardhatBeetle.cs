@@ -7,13 +7,16 @@ public class HardhatBeetle : Enemy
 
     void Start()
     {
+        SetupEnemy();
+
         noSwordHit = true;
         knockbackDuration = 0.5f / Time.deltaTime;
         knockbackSpeed = 6f;
         following = true;
         canKnockback = true;
 
-        SetupEnemy();
+        DeathScale = new Vector3(0.5f,0.5f,0.5f); //scale for the explosion  
+
     }
 
     void FixedUpdate()

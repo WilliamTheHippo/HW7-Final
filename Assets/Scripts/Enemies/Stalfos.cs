@@ -8,10 +8,12 @@ public class Stalfos : Enemy
 
     void Start()
     {
-        sound = GetComponent<AudioSource>();
-        AssignRoom();
-        hp = 5;
         SetupEnemy();
+        sound = GetComponent<AudioSource>();
+       // AssignRoom();
+        hp = 5;
+
+        DeathScale = new Vector3(0.7f,0.7f,0.7f); //scale for the explosion
     }
     void Update()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {    
-    [HideInInspector] public int hp = 1;
+    public int hp = 1;
     protected Player player;
     protected Transform playerTransform;
     protected bool following;
@@ -34,19 +34,22 @@ public abstract class Enemy : MonoBehaviour
     private float knockbackTimer;
 
     protected Vector2Int room;
+
+    protected Vector3 DeathScale;
+
     protected AudioSource sound;
     protected AudioClip hitSound, dieSound, fallSound;
     protected bool fallFlag = false;
 
     protected enum Direction {Up, Down, Left, Right}
 
-    public void AssignRoom() {
+    /*public void AssignRoom() {
         if(transform.parent.GetComponent<Room>() != null)
         {
             room.x = transform.parent.GetComponent<Room>().coords.x;
             room.y = transform.parent.GetComponent<Room>().coords.y;
         }
-    }
+    }*/
 
     // All enemies except for MiniMoldorm need to call this in Start()
     public void SetupEnemy() {
@@ -64,7 +67,7 @@ public abstract class Enemy : MonoBehaviour
 
         knockbackDuration = 1f / Time.deltaTime;
 
-        AssignRoom();
+        //AssignRoom();
         RandomizeDirection();
     }
 

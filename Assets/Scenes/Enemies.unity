@@ -1295,6 +1295,12 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 36593745}
+    - target: {fileID: 597888014926003358, guid: 7e17b50c89c386045b8ae26cfbe0641a,
+        type: 3}
+      propertyPath: deathAnimation
+      value: 
+      objectReference: {fileID: 9178090810995816017, guid: 64bdf02d25708d4418516e67294ef2ea,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e17b50c89c386045b8ae26cfbe0641a, type: 3}
 --- !u!1001 &1170763028651231297
@@ -1363,6 +1369,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170763028732941565, guid: 9b711c841c029a449ab217916ff2c80f,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1170763028732941567, guid: 9b711c841c029a449ab217916ff2c80f,
         type: 3}
@@ -1517,6 +1528,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3964588869038677511, guid: 9b33e3f814311e8478fbe8795a87227c,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3964588869038677528, guid: 9b33e3f814311e8478fbe8795a87227c,
         type: 3}
@@ -1690,6 +1706,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6086792318677186500, guid: 319b8d292ce68bf4aaa651a90abcf112,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6086792318677186501, guid: 319b8d292ce68bf4aaa651a90abcf112,
         type: 3}
       propertyPath: m_Name
@@ -1828,6 +1849,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6637975936082535183, guid: c10e4c12380cecf4593d6774b99d6d1e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c10e4c12380cecf4593d6774b99d6d1e, type: 3}
@@ -1977,6 +2003,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7697909411404140955, guid: b8a5c4eff8224ad4a97d469b9c049cfd,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7697909411404140957, guid: b8a5c4eff8224ad4a97d469b9c049cfd,
         type: 3}
       propertyPath: BallToFollow
@@ -1995,6 +2026,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mini-Moldorm-Tail-2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7798298864354783020, guid: c9a8a57f341a08042b7bd8c7cf7315d0,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7798298864354783021, guid: c9a8a57f341a08042b7bd8c7cf7315d0,
         type: 3}
