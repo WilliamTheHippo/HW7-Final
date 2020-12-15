@@ -64,14 +64,15 @@ public class Player : MonoBehaviour
         easterEggInput = "";
     }
 
-    void FixedUpdate()
+    void Update()
     {
+        UpdateDirection();
         float old_x = transform.position.x;
         float old_y = transform.position.y;
 
         PlayerState oldState = currentState;
         
-        UpdateDirection();
+        
 
         if (oldState.canInterrupt) {
             // these if statements are honestly still hell lmao
@@ -101,14 +102,12 @@ public class Player : MonoBehaviour
 
         // currentState.Turn(); 
         
-        currentState.UpdateOnActive();
+        
   
         QuantizePosition();
         SwitchRoom(old_x, old_y);
-    }
 
-    void Update()
-    {
+        currentState.UpdateOnActive();
         foreach(char c in Input.inputString)
         {
             easterEggInput += c;
@@ -119,6 +118,7 @@ public class Player : MonoBehaviour
         }
     }
 
+
     void UpdateDirection() 
     {
         // move check if currentState is hit in here 
@@ -126,6 +126,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) { // UP
             newDirection = Direction.Up; 
+            Debug.Log(newDirection);
         }
         else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) { // LEFT
             newDirection = Direction.Left;
@@ -144,9 +145,10 @@ public class Player : MonoBehaviour
     // Rounds player's position onto the nearest tile.
     void QuantizePosition() 
     {
+
         float x = Mathf.Round(transform.position.x * 8) / 8;
         float y = Mathf.Round(transform.position.y * 8) / 8;
-        transform.position = new Vector3 (x, y, 0f);
+        this.transform.position = new Vector3 (x, y, 0f);
     }
 
     void SwitchRoom(float old_x, float old_y)

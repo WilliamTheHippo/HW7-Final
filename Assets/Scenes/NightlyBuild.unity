@@ -875,12 +875,12 @@ PrefabInstance:
     - target: {fileID: 3078356377780078134, guid: 3d4c69f2c69672146ac56fa7e13a2bdf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3078356377780078134, guid: 3d4c69f2c69672146ac56fa7e13a2bdf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 3078356377780078134, guid: 3d4c69f2c69672146ac56fa7e13a2bdf,
         type: 3}
@@ -1083,7 +1083,7 @@ PrefabInstance:
     - target: {fileID: 3208204332620647373, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.14
       objectReference: {fileID: 0}
     - target: {fileID: 3208204332620647373, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
         type: 3}
@@ -1129,6 +1129,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3208204332620647375, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f064ee3a3169d49a2d0b67f3c259c8, type: 3}
@@ -1496,6 +1501,7 @@ GameObject:
   - component: {fileID: 743305729}
   - component: {fileID: 743305728}
   - component: {fileID: 743305727}
+  - component: {fileID: 743305730}
   m_Layer: 0
   m_Name: Pits
   m_TagString: Fall
@@ -6761,6 +6767,18 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &743305730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743305723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0ce0c3fdd0bd48c0af8463b67881d99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &779074350
 GameObject:
   m_ObjectHideFlags: 0
@@ -42035,6 +42053,12 @@ PrefabInstance:
       propertyPath: room.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6726819428835716376, guid: a1de2d2f5909e654ba5fc1f22e74fe49,
+        type: 3}
+      propertyPath: fallSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4e9319b50a81b4eca90ffe4f5337a675,
+        type: 3}
     - target: {fileID: 6726819428835716379, guid: a1de2d2f5909e654ba5fc1f22e74fe49,
         type: 3}
       propertyPath: m_Name
@@ -81748,11 +81772,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Chest
-      objectReference: {fileID: 0}
-    - target: {fileID: 3434734260655324520, guid: 4e77da50d061c48388e14f12bcb714e2,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3434734260655324521, guid: 4e77da50d061c48388e14f12bcb714e2,
         type: 3}

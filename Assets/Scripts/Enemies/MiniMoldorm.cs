@@ -7,6 +7,7 @@ public class MiniMoldorm : Enemy
 {
     float randomNumber;
     float Timer;
+    public bool active;
     
     public float Lives;
     float LivesTimer;
@@ -26,6 +27,7 @@ public class MiniMoldorm : Enemy
 
     void Start()
     {
+        player = GameObject.Find("Player").GetComponent<Player>();//minimoldorm doesn't call SetupEnemy()
         AssignRoom();
         randomNumber = Random.Range(0.0f, 1.0f);
         Timer = 0f;
@@ -47,7 +49,9 @@ public class MiniMoldorm : Enemy
 
     void FixedUpdate()
     {
-        if(room != player.room) return;
+        active = false;
+        //if(room != player.room) return;
+        active = true;
        
         //Moves in a curve, randomly clockwise or counterclockwise about every second
         //Generate a random number from 0.0f to 1.0f;
