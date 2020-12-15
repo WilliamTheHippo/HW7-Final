@@ -20,9 +20,11 @@ public class Jump : PlayerState
 
     public override void UpdateOnActive()
     {
-        if (firstFrame) BeginJump();
-
-        Move();
+        if (firstFrame) {
+            BeginJump();
+            Debug.Log("first frame is true");
+        }
+        //Move();
 
         if (jumpTime >= JUMPTIMER) {
             if (jumpDirection == 1) {
@@ -35,6 +37,7 @@ public class Jump : PlayerState
 
         jumpTime += Time.deltaTime;
         playerTransform.position += new Vector3 (0f, JUMPSPEED * jumpDirection, 0f);
+        
     }
 
     public override void Reset() 
@@ -45,7 +48,5 @@ public class Jump : PlayerState
         playerCollider.enabled = true;
         firstFrame = true;
         jumpTime = 0f;
-        //player.SetIdle();
     }
-
 }
