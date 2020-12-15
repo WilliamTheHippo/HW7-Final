@@ -10,14 +10,14 @@ public class Stalfos : Enemy
     {
         SetupEnemy();
         sound = GetComponent<AudioSource>();
-       // AssignRoom();
+        AssignRoom();
         hp = 5;
 
         DeathScale = new Vector3(0.7f,0.7f,0.7f); //scale for the explosion
     }
     void Update()
     {
-         if(room != player.room) return;
+        if(room != player.room) return;
 
         //Determine random direction.
         if (directionTimer > 1f / Time.deltaTime) RandomizeDirection(); 

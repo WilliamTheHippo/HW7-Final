@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
         currentState.UpdateOnActive();
   
         QuantizePosition();
-        //SwitchRoom(old_x, old_y);
+        SwitchRoom(old_x, old_y);
     }
 
     void Update()
@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
         transform.position = new Vector3 (x, y, 0f);
     }
 
-    /*void SwitchRoom(float old_x, float old_y)
+    void SwitchRoom(float old_x, float old_y)
     {
         if(Mathf.Abs(transform.position.x % 20) == 10f)
         {
@@ -161,7 +161,7 @@ public class Player : MonoBehaviour
             if(old_y < transform.position.y) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Up));
             else StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Down));
         }
-    }*/
+    }
 
     void OnTriggerStay2D(Collider2D c)
     {

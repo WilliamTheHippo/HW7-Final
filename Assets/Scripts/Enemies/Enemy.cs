@@ -43,18 +43,18 @@ public abstract class Enemy : MonoBehaviour
 
     protected enum Direction {Up, Down, Left, Right}
 
-    /*public void AssignRoom() {
+    public void AssignRoom() {
         if(transform.parent.GetComponent<Room>() != null)
         {
             room.x = transform.parent.GetComponent<Room>().coords.x;
             room.y = transform.parent.GetComponent<Room>().coords.y;
         }
-    }*/
+    }
 
     // All enemies except for MiniMoldorm need to call this in Start()
     public void SetupEnemy() {
         // not sure what this line does v
-        // invTimer /= Time.deltaTime; //can't do this in a constructor because unity starts the clock after initialization
+        invTimer /= Time.deltaTime; //can't do this in a constructor because unity starts the clock after initialization
 
         player = GameObject.Find("Player").GetComponent<Player>();
         playerTransform = player.GetComponent<Transform>();
@@ -67,7 +67,7 @@ public abstract class Enemy : MonoBehaviour
 
         knockbackDuration = 1f / Time.deltaTime;
 
-        //AssignRoom();
+        AssignRoom();
         RandomizeDirection();
     }
 
