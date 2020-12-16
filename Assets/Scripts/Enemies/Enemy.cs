@@ -23,7 +23,9 @@ public abstract class Enemy : MonoBehaviour
     protected float directionTimer = 0f;
     protected float random;
     public GameObject deathAnimation;
-    public GameObject fallAnimation;
+    public Sprite fallSprite;
+
+    bool alreadyHitting;
 
     protected float invFrames; //this never seems to be referenced, only assigned in CheckInvTimer()
 
@@ -39,7 +41,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected AudioSource sound;
     protected AudioClip hitSound, dieSound, fallSound;
-    protected bool fallFlag = false;
+    //protected bool fallFlag = false;
 
     protected enum Direction {Up, Down, Left, Right}
 
@@ -66,35 +68,44 @@ public abstract class Enemy : MonoBehaviour
         if (hp > 1) hasInvFrames = true;
 
         knockbackDuration = 1f / Time.deltaTime;
+        alreadyHitting = false;
 
         AssignRoom();
         RandomizeDirection();
     }
 
     public virtual void SwordHit() 
-    {   
-        Debug.Log("enemywide hit");
+    {
+        if(alreadyHitting) return;
+        if(player.currentState is Hit) alreadyHitting = true;
         sound.clip = hitSound;
         sound.Play();
-        if (hasInvFrames && CheckInvTimer()) {
+        if (hasInvFrames) {
             /*if(!noSwordHit)*/ hp--;
             if (hp > 0) {
                 if (canKnockback && !isKnockback) Knockback();
                 myAnimator.SetBool("isHit", true);
+                StartCoroutine(InvFrames());
             } else {
-                Die(false);       
+                StartCoroutine(Die(false));       
             } 
         } else {
-            Die(false);
+            StartCoroutine(Die(false));
         }
+    }
+
+    IEnumerator InvFrames()
+    {
+        yield return new WaitForSeconds(0.5f);
+        alreadyHitting = false;
     }
 
     public void Fall()
     {
-        fallFlag = true;
-        sound.clip = fallSound;
-        Die(true);
-        fallFlag = false;
+        //fallFlag = true;
+        //sound.clip = fallSound;
+        StartCoroutine(Die(true));
+        //fallFlag = false; //don't actually need this if we're just destroying the object
     }
 
     public void FollowPlayer() {
@@ -124,26 +135,36 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public void Die(bool falling) {
-        var anim = falling ? fallAnimation : deathAnimation;
-        var instantiatedPrefab = Instantiate (anim, transform.position, Quaternion.identity) as GameObject; //plug in deathanimation from enemy prefabs
-        instantiatedPrefab.transform.localScale = new Vector3(0.5f,0.5f,0.5f); //scale for the explosion
-
-        if(!fallFlag) sound.clip = dieSound;
+    public IEnumerator Die(bool falling) {
+        if(!falling)
+        {
+	        var instantiatedPrefab = Instantiate (deathAnimation, transform.position, Quaternion.identity) as GameObject; //plug in deathanimation from enemy prefabs
+	        instantiatedPrefab.transform.localScale = new Vector3(0.5f,0.5f,0.5f); //scale for the explosion
+	    }
+	    else {
+	    	myAnimator.enabled = false;
+	    	GetComponent<SpriteRenderer>().sprite = fallSprite;
+	    	GetComponent<Collider2D>().enabled = false;
+	    }
+        if(falling) sound.clip = fallSound;
+        else sound.clip = dieSound;
         sound.Play();
         myAnimator.SetBool("isHit", true);
+        if(falling) yield return new WaitForSeconds(0.25f);
+        else yield return null;
         Destroy(this.gameObject);
     }
 
-    public bool CheckInvTimer() {
-        if (invTimer > 0) {
-            invTimer--;
-            return false;
-        } else {
-            invFrames = 1f / Time.deltaTime;
-            return true;
-        }
-    }
+    // public bool CheckInvTimer() {
+    //     if (invTimer > 0) {
+    //         invTimer--;
+    //         return true;
+    //     } else {
+    //         invFrames = 1f / Time.deltaTime;
+    //         alreadyHitting = false;
+    //         return false;
+    //     }
+    // }
 
     protected bool CheckHoles(Direction d, float distance = 1.5f)
     {

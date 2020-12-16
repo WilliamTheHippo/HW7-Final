@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2193221071866061072}
   - component: {fileID: 9053237093236455206}
   m_Layer: 0
-  m_Name: Chest 1
+  m_Name: Chest
   m_TagString: Chest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,7 +197,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -389,9 +389,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visible: 0
   appearCondition: 0
-  disappearCondition: 2
+  disappearCondition: 4
+  secondsUntilAppearance: 0
+  appearanceDuration: 0
   room: {fileID: 0}
   appearSound: {fileID: 8300000, guid: 69205cde6be9441ddba64666d4b4e06b, type: 3}
   disappearSound: {fileID: 0}
+  itemPrefab: {fileID: 0}
   openTile: {fileID: 11400000, guid: 9e2b63ea0dff54072be4b939f00efcb7, type: 2}
-  itemSound: {fileID: 0}
+  itemSound: {fileID: 8300000, guid: f3d3a9ef6481a4b4a8e0dfe29d07213d, type: 3}
