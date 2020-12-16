@@ -130,8 +130,8 @@ public abstract class Enemy : MonoBehaviour
 
         if (knockbackTimer <= 0) {
             knockbackTimer = SetKnockbackTimer(knockbackDuration);
-            myAnimator.SetBool("isHit", false);
             isKnockback = false;
+            myAnimator.SetBool("isHit", false);
         }
     }
 

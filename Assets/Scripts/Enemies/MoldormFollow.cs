@@ -7,18 +7,18 @@ public class MoldormFollow : Enemy
     public Transform BallToFollow; // ASSIGN IN INSPECTOR 
     public float LerpScale = 5f;
 
-    Moldorm moldorm;
+    public Moldorm moldorm;
 
     void Start()
     {
         //SetupEnemy();
         AssignRoom();
-        moldorm = GameObject.Find("Moldorm").GetComponent<Moldorm>();
+        //moldorm = GameObject.Find("Moldorm").GetComponent<Moldorm>();
     }
     
     void FixedUpdate()
     {
-        if(room != player.room) return;
+        if(!moldorm.active) return;
 
         if(BallToFollow == null) Destroy(this.gameObject);
         if(moldorm.hp <= 0) Destroy(this.gameObject);
