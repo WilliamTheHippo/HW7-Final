@@ -8,7 +8,7 @@ public abstract class Enemy : MonoBehaviour
     protected Player player;
     protected Transform playerTransform;
     protected bool following;
-    protected bool canKnockback = false;
+    protected bool canKnockback = true;
     protected bool isKnockback = false;
     protected float knockbackDuration;
     protected bool hasInvFrames = false;
@@ -83,6 +83,7 @@ public abstract class Enemy : MonoBehaviour
         if (hasInvFrames) {
             /*if(!noSwordHit)*/ hp--;
             if (hp > 0) {
+                Debug.Log("canknockback: " + canKnockback + "isknockback: " + isKnockback);
                 if (canKnockback && !isKnockback) Knockback();
                 myAnimator.SetBool("isHit", true);
                 StartCoroutine(InvFrames());

@@ -13,12 +13,13 @@ public class Stalfos : Enemy
         sound = GetComponent<AudioSource>();
         knockbackDuration = 2f / Time.deltaTime;
         knockbackSpeed = 6f;
+        canKnockback = true;
         
         AssignRoom();
 
-
-
         DeathScale = new Vector3(0.7f,0.7f,0.7f); //scale for the explosion
+
+
     }
     void Update()
     {
@@ -51,4 +52,11 @@ public class Stalfos : Enemy
         else if(random < 0.75f) direction = new Vector3(0f,ySpeed,0f);
         else direction = new Vector3(0f,-ySpeed,0f);
     }
+
+    /*public override void SwordHit() {
+        
+        //following = false;
+        if(canKnockback && !isKnockback) Knockback();
+        base.SwordHit();
+    }*/
 }

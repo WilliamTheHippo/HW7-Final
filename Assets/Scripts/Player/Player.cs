@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
         if(isKnockback){
                 knockbackTime -= Time.deltaTime;
             }
-            Debug.Log(knockbackTime);
+            //Debug.Log(knockbackTime);
             if(knockbackTime <= 0){
                 knockbackTime = 1f;
                 GetComponent<Animator>().SetBool("gothit",false);
