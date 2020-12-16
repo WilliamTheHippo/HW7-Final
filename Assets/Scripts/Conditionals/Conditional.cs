@@ -8,10 +8,13 @@ public class Conditional : MonoBehaviour
 	public enum Condition {
 		AllEnemiesDead,
 		Switch,
+		Timed,
 		Immediately,
 		Never
 	}
 	public Condition appearCondition, disappearCondition;
+	[Tooltip("For use with the \"Timed\" condition.")]
+	public float secondsUntilAppearance, appearanceDuration;
 	public Room room;
 
 	protected AudioSource sound;
@@ -38,6 +41,8 @@ public class Conditional : MonoBehaviour
 			yield return new WaitUntil(room.AllEnemiesDead);
 		if(appearCondition == Condition.Switch)
 			yield return new WaitUntil(() => room.t_switch.active);
+		if(appearCondition == Condition.Timed)
+			yield return new WaitForSeconds(secondsUntilAppearance);
 		sound.clip = appearSound;
 		sound.Play();
 		visible = true;
@@ -53,6 +58,8 @@ public class Conditional : MonoBehaviour
 			yield return new WaitUntil(room.AllEnemiesDead);
 		if(disappearCondition == Condition.Switch)
 			yield return new WaitUntil(() => room.t_switch.active);
+		if(appearCondition == Condition.Timed)
+			yield return new WaitForSeconds(appearanceDuration - secondsUntilAppearance);
 		if(disappearSound != null)
 		{
 			sound.clip = disappearSound;

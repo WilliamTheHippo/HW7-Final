@@ -466,7 +466,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -565,4 +565,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesCanTrigger: 0
   broken: 0
-  breakSound: {fileID: 0}
+  breakSound: {fileID: 8300000, guid: 894f45281a3124e318a4c123b3fe60a3, type: 3}
