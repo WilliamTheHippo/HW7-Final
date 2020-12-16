@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -18,6 +18,10 @@ public class Player : MonoBehaviour
     bool knockback;
     bool canKnockback = true;
     bool isKnockback;
+    bool fallingFirstFrame = false;
+    int numberOfFallingsLinks = 0;
+    public GameObject fallPrefab;
+	float ResetTimer = 3f;
 
     public enum Direction {
         Up,
@@ -42,7 +46,7 @@ public class Player : MonoBehaviour
 
     AudioSource sound;
     public AudioClip itemPickup, slash;
-    
+    public Animator linkAnimator;
     void Start()
     {
         sound = GetComponent<AudioSource>();
@@ -110,7 +114,6 @@ public class Player : MonoBehaviour
         if(isKnockback){
                 knockbackTime -= Time.deltaTime;
             }
-            Debug.Log(knockbackTime);
             if(knockbackTime <= 0){
                 knockbackTime = 1f;
                 GetComponent<Animator>().SetBool("gothit",false);
@@ -148,6 +151,8 @@ public class Player : MonoBehaviour
                     isKnockback = true;
                 }
             }
+        } else if (activator.tag == "Fall"){
+            Fall();
         }
     }
         public void Knockback(){
@@ -214,7 +219,22 @@ public class Player : MonoBehaviour
 
     public void Fall()
     {
-    	Debug.Log("falling");
-        currentState = fall;
+        fallingFirstFrame = true;
+        if(fallingFirstFrame)
+		{
+			linkAnimator.enabled = false;
+            if(numberOfFallingsLinks == 0){
+                Instantiate(fallPrefab, transform.position, Quaternion.identity);
+                numberOfFallingsLinks +=1;
+            }
+			ResetTimer -= Time.deltaTime;
+            
+		}
+		if(ResetTimer == 0f){
+            Debug.Log("FDSADSFASDF");
+            fallingFirstFrame = false;
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		}
+        //currentState = fall;
     }
 }

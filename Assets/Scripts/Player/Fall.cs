@@ -5,13 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Fall : PlayerState 
 {
+
+	public GameObject fallPrefab;
+	float ResetTimer = 3f;
 	public override void UpdateOnActive()
 	{
-		if(firstFrame)
-		{
-			linkAnimator.enabled = false;
-			//new anim
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-		}
+		Debug.Log("GOGOGOOGOGOG");
+		
 	}
 }
