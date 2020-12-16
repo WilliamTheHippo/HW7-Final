@@ -33,7 +33,7 @@ public class Hit : PlayerState
         //linkAnimator.SetFloat("AnimMoveX", Input.GetAxis("Horizontal"));
         //linkAnimator.SetFloat("AnimMoveY", Input.GetAxis("Vertical"));
 
-        sound.clip = slash;
+        sound.clip = player.slash;
         sound.Play();
 
         firstFrame = false;

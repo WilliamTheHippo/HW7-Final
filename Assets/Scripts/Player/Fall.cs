@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Fall : PlayerState 
 {
@@ -8,9 +9,9 @@ public class Fall : PlayerState
 	{
 		if(firstFrame)
 		{
-			//disable animators
-			//set player.sr.sprite to falling
-			//call player.Die(), which'll just reload the scene
+			linkAnimator.enabled = false;
+			//new anim
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 	}
 }
