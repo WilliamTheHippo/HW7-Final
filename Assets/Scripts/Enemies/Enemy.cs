@@ -40,7 +40,7 @@ public abstract class Enemy : MonoBehaviour
     protected Vector3 DeathScale;
 
     protected AudioSource sound;
-    protected AudioClip hitSound, dieSound, fallSound;
+    public AudioClip hitSound, dieSound, fallSound;
     //protected bool fallFlag = false;
 
     protected enum Direction {Up, Down, Left, Right}

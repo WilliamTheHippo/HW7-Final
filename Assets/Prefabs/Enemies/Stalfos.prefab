@@ -102,6 +102,10 @@ MonoBehaviour:
   hp: 1
   deathAnimation: {fileID: 9178090810995816017, guid: 64bdf02d25708d4418516e67294ef2ea,
     type: 3}
+  fallSprite: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: f4d7f6467ac604579a03431c159329df, type: 3}
+  dieSound: {fileID: 8300000, guid: 67670539f25974147afd3cf876487782, type: 3}
+  fallSound: {fileID: 8300000, guid: adea0ea1059304d809d3e46bf5416a03, type: 3}
 --- !u!50 &6726819428835716377
 Rigidbody2D:
   serializedVersion: 4
