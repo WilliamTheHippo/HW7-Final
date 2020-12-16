@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
     //PlayerState PlayerStateScript;
     bool moving; // True whenever movement keys are pressed
 
+    public int keys;
+
     AudioSource sound;
     public AudioClip itemPickup, slash;
 
@@ -60,6 +62,8 @@ public class Player : MonoBehaviour
 
         currentState = idle;
         room = new Vector2Int(0,0);
+
+        keys = 0;
 
         easterEggInput = "";
     }
@@ -176,6 +180,7 @@ public class Player : MonoBehaviour
 
     public void Fall()
     {
-    	Debug.LogError("Haven't implemented falling yet!");
+    	Debug.Log("falling");
+        currentState = fall;
     }
 }
