@@ -11,7 +11,12 @@ public class Stalfos : Enemy
     	hp = 5;
         SetupEnemy();
         sound = GetComponent<AudioSource>();
+        knockbackDuration = 2f / Time.deltaTime;
+        knockbackSpeed = 6f;
+        
         AssignRoom();
+
+
 
         DeathScale = new Vector3(0.7f,0.7f,0.7f); //scale for the explosion
     }
@@ -27,7 +32,13 @@ public class Stalfos : Enemy
         // Translate in predetermined random direction. 
         //if (isKnockback) { Knockback(); } 
         //else             { transform.Translate(direction); }
-        if (!isKnockback) transform.Translate(direction);        
+        
+        if (!isKnockback){
+            myAnimator.SetBool("isHit", false);
+            transform.Translate(direction); 
+        }     
+
+        if (isKnockback) Knockback();   
     }
 
     public virtual void RandomizeDirection() {
