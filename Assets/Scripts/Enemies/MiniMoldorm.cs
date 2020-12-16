@@ -50,7 +50,7 @@ public class MiniMoldorm : Enemy
     void FixedUpdate()
     {
         active = false;
-        //if(room != player.room) return;
+        if(room != player.room) return;
         active = true;
        
         //Moves in a curve, randomly clockwise or counterclockwise about every second
