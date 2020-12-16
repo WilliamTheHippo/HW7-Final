@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-public class Fall : PlayerState 
+public class fall : MonoBehaviour
 {
+    float ResetTimer = 45f;
+    
+    void Update()
+    {   
+        ResetTimer -= Time.deltaTime;
+        Debug.Log(ResetTimer);
+        if(ResetTimer <= 0f){
+             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
-	public GameObject fallPrefab;
-	float ResetTimer = 3f;
-	public override void UpdateOnActive()
-	{
-		Debug.Log("GOGOGOOGOGOG");
-		
-	}
+             Debug.Log("Scene Reset");
+        }
+    }
 }
