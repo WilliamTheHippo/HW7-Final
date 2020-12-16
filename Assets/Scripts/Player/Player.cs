@@ -13,8 +13,11 @@ public class Player : MonoBehaviour
     Jump jump;
     Fall fall;
     Push push;
-
-    
+    float health = 3;
+    float knockbackTime = 1f;
+    bool knockback;
+    bool canKnockback = true;
+    bool isKnockback;
 
     public enum Direction {
         Up,
@@ -39,9 +42,10 @@ public class Player : MonoBehaviour
 
     AudioSource sound;
     public AudioClip itemPickup, slash;
-
+    
     void Start()
     {
+        sound = GetComponent<AudioSource>();
         cam = Camera.main.GetComponent<CameraMovement>();
 
         idle = ScriptableObject.CreateInstance<Idle>();
@@ -59,7 +63,7 @@ public class Player : MonoBehaviour
         jump.GrabComponents(this);
         fall.GrabComponents(this);
         push.GrabComponents(this);
-
+    
         currentState = idle;
         room = new Vector2Int(0,0);
 
@@ -75,8 +79,6 @@ public class Player : MonoBehaviour
         float old_y = transform.position.y;
 
         PlayerState oldState = currentState;
-        
-        
 
         if (oldState.canInterrupt) {
             // these if statements are honestly still hell lmao
@@ -86,7 +88,6 @@ public class Player : MonoBehaviour
                 currentState = jump;
             } else if (Input.GetKeyDown(KeyCode.Z)) {     // SHIELD
                 currentState = shield;
-            
             } else if (moving && !oldState.isAction) { // WALK
                 currentState = walk;
             } else if (!moving && !oldState.isAction) { // IDLE
@@ -100,16 +101,25 @@ public class Player : MonoBehaviour
             currentState.SetDirection(currentDirection);
             if (currentState != oldState) oldState.Reset();
         }
-
-        if (moving) { currentState.linkAnimator.SetBool("walking", true);  }
+        
+        if (moving) { currentState.linkAnimator.SetBool("walking", true); }
                else { currentState.linkAnimator.SetBool("walking", false); }
 
         // currentState.Turn(); 
         
-        
+        if(isKnockback){
+                knockbackTime -= Time.deltaTime;
+            }
+            Debug.Log(knockbackTime);
+            if(knockbackTime <= 0){
+                knockbackTime = 1f;
+                GetComponent<Animator>().SetBool("gothit",false);
+                GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+                isKnockback = false;
+            }
   
         QuantizePosition();
-        //SwitchRoom(old_x, old_y);
+        SwitchRoom(old_x, old_y);
 
         currentState.UpdateOnActive();
         foreach(char c in Input.inputString)
@@ -122,7 +132,32 @@ public class Player : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D activator){
+        if(activator.tag == "Enemy"){
+            knockback = true;
+            health -= 0.5f;
+            if(health > 0){
+                if(canKnockback && !isKnockback){
+                    Knockback();
+                    GetComponent<Animator>().SetBool("gothit",true);
+                    Vector2 fromMonsterToPlayer = new Vector2 (
+                    transform.position.x - activator.transform.position.x,
+                    transform.position.y - activator.transform.position.y);
+                    fromMonsterToPlayer.Normalize();
+                    GetComponent<Rigidbody2D>().velocity = fromMonsterToPlayer*4;
+                    isKnockback = true;
+                }
+            }
+        }
+    }
+        public void Knockback(){
+           
+            
+        }
+         
+    void die(){
 
+    }
     void UpdateDirection() 
     {
         // move check if currentState is hit in here 
@@ -130,7 +165,6 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) { // UP
             newDirection = Direction.Up; 
-            Debug.Log(newDirection);
         }
         else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) { // LEFT
             newDirection = Direction.Left;
@@ -155,7 +189,7 @@ public class Player : MonoBehaviour
         this.transform.position = new Vector3 (x, y, 0f);
     }
 
-    /*void SwitchRoom(float old_x, float old_y)
+    void SwitchRoom(float old_x, float old_y)
     {
         if(Mathf.Abs(transform.position.x % 20) == 10f)
         {
@@ -167,7 +201,7 @@ public class Player : MonoBehaviour
             if(old_y < transform.position.y) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Up));
             else StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Down));
         }
-    }*/
+    }
 
     void OnTriggerStay2D(Collider2D c)
     {
