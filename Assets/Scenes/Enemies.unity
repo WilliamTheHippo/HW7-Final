@@ -314,7 +314,7 @@ PrefabInstance:
     - target: {fileID: 5226104271119795601, guid: 979a166f55da19741b2749c5ecff7985,
         type: 3}
       propertyPath: m_Name
-      value: BladeTrap (1)
+      value: BladeTrap
       objectReference: {fileID: 0}
     - target: {fileID: 5226104271119795628, guid: 979a166f55da19741b2749c5ecff7985,
         type: 3}
