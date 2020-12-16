@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class fall : MonoBehaviour
 {
-    float ResetTimer = 45f;
+    float ResetTimer = 3f;
     
     void Update()
     {   
