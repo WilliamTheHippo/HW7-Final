@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     float health = 3;
     float knockbackTime = 1f;
     bool knockback;
+    bool canKnockback = true;
+    bool isKnockback;
 
     public enum Direction {
         Up,
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour
     
     void Start()
     {
+        sound = GetComponent<AudioSource>();
         cam = Camera.main.GetComponent<CameraMovement>();
 
         idle = ScriptableObject.CreateInstance<Idle>();
@@ -104,17 +107,20 @@ public class Player : MonoBehaviour
 
         // currentState.Turn(); 
         
-        
+        if(isKnockback){
+                knockbackTime -= Time.deltaTime;
+            }
+            Debug.Log(knockbackTime);
+            if(knockbackTime <= 0){
+                knockbackTime = 1f;
+                GetComponent<Animator>().SetBool("gothit",false);
+                GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+                isKnockback = false;
+            }
   
         QuantizePosition();
         SwitchRoom(old_x, old_y);
 
-        if(knockbackTime < 0f ){
-            knockback = false;
-            Debug.Log ("knockbackreseet");
-            GetComponent<Rigidbody2D>().velocity = new Vector3 (0f,0f,0f);
-            knockbackTime = 1f;
-        }
         currentState.UpdateOnActive();
         foreach(char c in Input.inputString)
         {
@@ -130,18 +136,25 @@ public class Player : MonoBehaviour
         if(activator.tag == "Enemy"){
             knockback = true;
             health -= 0.5f;
-            if(knockback){
-                GetComponent<Animator>().SetBool("gothit",true);
-                Vector2 fromMonsterToPlayer = new Vector2 (
-                transform.position.x - activator.transform.position.x,
-                transform.position.y - activator.transform.position.y);
-                fromMonsterToPlayer.Normalize();
-                GetComponent<Rigidbody2D>().velocity = fromMonsterToPlayer*6;
-                knockbackTime -= Time.deltaTime;
+            if(health > 0){
+                if(canKnockback && !isKnockback){
+                    Knockback();
+                    GetComponent<Animator>().SetBool("gothit",true);
+                    Vector2 fromMonsterToPlayer = new Vector2 (
+                    transform.position.x - activator.transform.position.x,
+                    transform.position.y - activator.transform.position.y);
+                    fromMonsterToPlayer.Normalize();
+                    GetComponent<Rigidbody2D>().velocity = fromMonsterToPlayer*4;
+                    isKnockback = true;
+                }
             }
         }
     }
-
+        public void Knockback(){
+           
+            
+        }
+         
     void die(){
 
     }
