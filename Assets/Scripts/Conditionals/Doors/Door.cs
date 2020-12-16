@@ -50,6 +50,7 @@ public class Door : MonoBehaviour
 
 	public IEnumerator Open()
 	{
+		if(open) yield break;
 		sound.clip = openSound;
 		sound.Play();
 		HalfOpen();
@@ -61,6 +62,7 @@ public class Door : MonoBehaviour
 
 	public IEnumerator Close()
 	{
+		if(!open) yield break;
 		sound.clip = closeSound;
 		sound.Play();
 		r.enabled = true;
