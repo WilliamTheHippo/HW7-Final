@@ -26,17 +26,21 @@ public class Chest : Conditional
 		if(open) return;
 		open = true;
 		sound.clip = itemSound;
-		Item item = Instantiate(
-			itemPrefab,
-			new Vector3(
-				transform.position.x,
-				transform.position.y - 3f, 
-				0
-			),
-		Quaternion.identity);
-		room.conditionals.Add(item);
-		StartCoroutine(item.Appear());
-		StartCoroutine(item.Disappear());
+		if(itemPrefab != null)
+		{
+			Item item = Instantiate(
+				itemPrefab,
+				new Vector3(
+					transform.position.x,
+					transform.position.y - 3f, 
+					0
+				),
+				Quaternion.identity
+			);
+			room.conditionals.Add(item);
+			StartCoroutine(item.Appear());
+			StartCoroutine(item.Disappear());
+		}
 		sound.Play();
 		tilemap.SetTile(tilemap.origin + new Vector3Int(0,1,0), openTile);
 		tilemap.SetTile(tilemap.origin + new Vector3Int(1,1,0), openTile);
