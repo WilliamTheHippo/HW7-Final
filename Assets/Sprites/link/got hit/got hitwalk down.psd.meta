@@ -1,0 +1,1661 @@
+fileFormatVersion: 2
+guid: 4fe072c9d29f2104dbd0a6fb1e0f86b8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4243072647597934163
+    second: got hitwalk down_0
+  - first:
+      213: -6656204268920048074
+    second: got hitwalk down_1
+  - first:
+      213: -8858348674537207062
+    second: got hitwalk down_2
+  - first:
+      213: 8796104206637530277
+    second: got hitwalk down_3
+  - first:
+      213: -4512769468093493001
+    second: got hitwalk down_4
+  - first:
+      213: 831311577287765560
+    second: got hitwalk down_5
+  - first:
+      213: 3770045309465187539
+    second: got hitwalk down_6
+  - first:
+      213: 2520254113429261382
+    second: got hitwalk down_7
+  - first:
+      213: -6532438113261878709
+    second: got hitwalk down_8
+  - first:
+      213: 1305829450593045867
+    second: got hitwalk down_9
+  - first:
+      213: 7329805601292266816
+    second: got hitwalk down_10
+  - first:
+      213: -6614093877059084688
+    second: got hitwalk down_11
+  - first:
+      213: 4387457762897606350
+    second: got hitwalk down_12
+  - first:
+      213: -8769314122399272275
+    second: got hitwalk down_13
+  - first:
+      213: 1125447710982183175
+    second: got hitwalk down_14
+  - first:
+      213: 3178638704168768322
+    second: got hitwalk down_15
+  - first:
+      213: 2911227203092204938
+    second: got hitwalk down_16
+  - first:
+      213: -7449663069202598789
+    second: got hitwalk down_17
+  - first:
+      213: -1653118853127714153
+    second: got hitwalk down_18
+  - first:
+      213: -4319343471420143593
+    second: got hitwalk down_19
+  - first:
+      213: -6442892182815894888
+    second: got hitwalk down_20
+  - first:
+      213: 5018895928505118748
+    second: got hitwalk down_21
+  - first:
+      213: -1191916871148201216
+    second: got hitwalk down_22
+  - first:
+      213: 6812891850457478453
+    second: got hitwalk down_23
+  - first:
+      213: -3108236401203744653
+    second: got hitwalk down_24
+  - first:
+      213: 3108063076635992569
+    second: got hitwalk down_25
+  - first:
+      213: -4345799438502453524
+    second: got hitwalk down_26
+  - first:
+      213: 5276999761639792026
+    second: got hitwalk down_27
+  - first:
+      213: -4522639568246635691
+    second: got hitwalk down_28
+  - first:
+      213: -6792293146343839004
+    second: got hitwalk down_29
+  - first:
+      213: -1690391464521592298
+    second: got hitwalk down_30
+  - first:
+      213: -7430936408514668966
+    second: got hitwalk down_31
+  - first:
+      213: 260498592166362288
+    second: got hitwalk down_32
+  - first:
+      213: -5041820399048145618
+    second: got hitwalk down_33
+  - first:
+      213: -6237055837034936451
+    second: got hitwalk down_34
+  - first:
+      213: -1927608690334319301
+    second: got hitwalk down_35
+  - first:
+      213: 5522547769650010603
+    second: got hitwalk down_36
+  - first:
+      213: -6675357794739024491
+    second: got hitwalk down_37
+  - first:
+      213: -6610669738985549370
+    second: got hitwalk down_38
+  - first:
+      213: 7296927171580349572
+    second: got hitwalk down_39
+  - first:
+      213: 7321289611236445690
+    second: got hitwalk down_40
+  - first:
+      213: 4805627025004416575
+    second: got hitwalk down_41
+  - first:
+      213: 8707922232325169597
+    second: got hitwalk down_42
+  - first:
+      213: 1520216456879513746
+    second: got hitwalk down_43
+  - first:
+      213: -4916704480533110719
+    second: got hitwalk down_44
+  - first:
+      213: 5590411163178993897
+    second: got hitwalk down_45
+  - first:
+      213: -4377613813258638794
+    second: got hitwalk down_46
+  - first:
+      213: -7225495678605061023
+    second: got hitwalk down_47
+  - first:
+      213: 6962534599034198121
+    second: got hitwalk down_48
+  - first:
+      213: -8848841413112072770
+    second: got hitwalk down_49
+  - first:
+      213: 5761552648121820913
+    second: got hitwalk down_50
+  - first:
+      213: 1477293758918947320
+    second: got hitwalk down_51
+  - first:
+      213: -596812507406653821
+    second: got hitwalk down_52
+  - first:
+      213: 25717225777519237
+    second: got hitwalk down_53
+  - first:
+      213: 8428502605538092525
+    second: got hitwalk down_54
+  - first:
+      213: 5389575668346123542
+    second: got hitwalk down_55
+  - first:
+      213: 7639963005841744499
+    second: got hitwalk down_56
+  - first:
+      213: 4494397900832327881
+    second: got hitwalk down_57
+  - first:
+      213: -2209616774387212798
+    second: got hitwalk down_58
+  - first:
+      213: 5510576025666663691
+    second: got hitwalk down_59
+  - first:
+      213: -6441295729826097304
+    second: got hitwalk down_60
+  - first:
+      213: -8897760880475592733
+    second: got hitwalk down_61
+  - first:
+      213: -4239885855496030572
+    second: got hitwalk down_62
+  - first:
+      213: 6795406543960551075
+    second: got hitwalk down_63
+  - first:
+      213: 8596495707787547790
+    second: got hitwalk down_64
+  - first:
+      213: -4806585449918950835
+    second: got hitwalk down_65
+  - first:
+      213: 2081559312455150984
+    second: got hitwalk down_66
+  - first:
+      213: 7663751651832346052
+    second: got hitwalk down_67
+  - first:
+      213: -4990141338116471392
+    second: got hitwalk down_68
+  - first:
+      213: 5956971265268128491
+    second: got hitwalk down_69
+  - first:
+      213: -5936216465097020695
+    second: got hitwalk down_70
+  - first:
+      213: 1041129675327374793
+    second: got hitwalk down_71
+  - first:
+      213: -5819230141940486250
+    second: got hitwalk down_72
+  - first:
+      213: -1325608717661667146
+    second: got hitwalk down_73
+  - first:
+      213: 666833253397880944
+    second: got hitwalk down_74
+  - first:
+      213: -176148820506811845
+    second: got hitwalk down_75
+  - first:
+      213: -289663923369151337
+    second: got hitwalk down_76
+  - first:
+      213: 4805871546744878286
+    second: got hitwalk down_77
+  - first:
+      213: -3060115285100317799
+    second: got hitwalk down_78
+  - first:
+      213: 505272873122111777
+    second: got hitwalk down_79
+  - first:
+      213: -936339279512126930
+    second: got hitwalk down_80
+  - first:
+      213: 1984574147852463192
+    second: got hitwalk down_81
+  - first:
+      213: -5262147342741410777
+    second: got hitwalk down_82
+  - first:
+      213: -4086465309393339922
+    second: got hitwalk down_83
+  - first:
+      213: 566387489830156778
+    second: got hitwalk down_84
+  - first:
+      213: -5138426516056583366
+    second: got hitwalk down_85
+  - first:
+      213: -2484007374798924075
+    second: got hitwalk down_86
+  - first:
+      213: -7822434780826187242
+    second: got hitwalk down_87
+  - first:
+      213: -2483721098068378221
+    second: got hitwalk down_88
+  - first:
+      213: 8557520851380569363
+    second: got hitwalk down_89
+  - first:
+      213: 2968384589478684592
+    second: got hitwalk down_90
+  - first:
+      213: 7625134335534683086
+    second: got hitwalk down_91
+  - first:
+      213: 6869145663158755136
+    second: got hitwalk down_92
+  - first:
+      213: 3781957477008199105
+    second: got hitwalk down_93
+  - first:
+      213: -7895669765912485846
+    second: got hitwalk down_94
+  - first:
+      213: -4974308361835474375
+    second: got hitwalk down_95
+  - first:
+      213: -5542102920220117333
+    second: got hitwalk down_96
+  - first:
+      213: -8900527965304855297
+    second: got hitwalk down_97
+  - first:
+      213: 8909055147323612231
+    second: got hitwalk down_98
+  - first:
+      213: -5692413712667053936
+    second: got hitwalk down_99
+  - first:
+      213: 8386107177493803709
+    second: got hitwalk down_100
+  - first:
+      213: 9087253993214344272
+    second: got hitwalk down_101
+  - first:
+      213: -8424565451396119081
+    second: got hitwalk down_102
+  - first:
+      213: 7104462311756141681
+    second: got hitwalk down_103
+  - first:
+      213: -4998587058322632679
+    second: got hitwalk down_104
+  - first:
+      213: -1784118163355535895
+    second: got hitwalk down_105
+  - first:
+      213: -1186141564020172070
+    second: got hitwalk down_106
+  - first:
+      213: 9214870452512369664
+    second: got hitwalk down_107
+  - first:
+      213: 9016840064271451330
+    second: got hitwalk down_108
+  - first:
+      213: 1623753073151342676
+    second: got hitwalk down_109
+  - first:
+      213: -4911566723644429642
+    second: got hitwalk down_110
+  - first:
+      213: 1584725513974982570
+    second: got hitwalk down_111
+  - first:
+      213: -1889649662521681999
+    second: got hitwalk down_112
+  - first:
+      213: -8101768618997980567
+    second: got hitwalk down_113
+  - first:
+      213: -6024334204374181528
+    second: got hitwalk down_114
+  - first:
+      213: -172579063051488730
+    second: got hitwalk down_115
+  - first:
+      213: -555165896200640172
+    second: got hitwalk down_116
+  - first:
+      213: 3497922224623791444
+    second: got hitwalk down_117
+  - first:
+      213: 2980754715133214718
+    second: got hitwalk down_118
+  - first:
+      213: -1459144231215488151
+    second: got hitwalk down_119
+  - first:
+      213: -8488357054821089040
+    second: got hitwalk down_120
+  - first:
+      213: 5565131449309637709
+    second: got hitwalk down_121
+  - first:
+      213: -8528989517035772959
+    second: got hitwalk down_122
+  - first:
+      213: -2115609804015192731
+    second: got hitwalk down_123
+  - first:
+      213: 7851628576590314513
+    second: got hitwalk down_124
+  - first:
+      213: -6096204094462608421
+    second: got hitwalk down_125
+  - first:
+      213: -337530038530490199
+    second: got hitwalk down_126
+  - first:
+      213: 6493427678111437577
+    second: got hitwalk down_127
+  - first:
+      213: -5180230034008142122
+    second: got hitwalk down_128
+  - first:
+      213: 2858863817137049892
+    second: got hitwalk down_129
+  - first:
+      213: 1021291539406396682
+    second: got hitwalk down_130
+  - first:
+      213: -9016627358417733688
+    second: got hitwalk down_131
+  - first:
+      213: 2045045011499184419
+    second: got hitwalk down_132
+  - first:
+      213: 5075936286658570286
+    second: got hitwalk down_133
+  - first:
+      213: 1022088303147239121
+    second: got hitwalk down_134
+  - first:
+      213: 3761572407469453091
+    second: got hitwalk down_135
+  - first:
+      213: 2724037352157684789
+    second: got hitwalk down_136
+  - first:
+      213: -6158404144448081986
+    second: got hitwalk down_137
+  - first:
+      213: 7833504578703663070
+    second: got hitwalk down_138
+  - first:
+      213: -5355971829420268852
+    second: got hitwalk down_139
+  - first:
+      213: -6586190529336760623
+    second: got hitwalk down_140
+  - first:
+      213: -8273628369062786607
+    second: got hitwalk down_141
+  - first:
+      213: -3356818636362784507
+    second: got hitwalk down_142
+  - first:
+      213: 4538836382159531590
+    second: got hitwalk down_143
+  - first:
+      213: -4053923709849859204
+    second: got hitwalk down_144
+  - first:
+      213: -410293678168548342
+    second: got hitwalk down_145
+  - first:
+      213: 7068541148051113516
+    second: got hitwalk down_146
+  - first:
+      213: 474816238748522588
+    second: got hitwalk down_147
+  - first:
+      213: 3738546378368495025
+    second: got hitwalk down_148
+  - first:
+      213: 8324179701924049270
+    second: got hitwalk down_149
+  - first:
+      213: -2645589079295972929
+    second: got hitwalk down_150
+  - first:
+      213: -5814579635935497667
+    second: got hitwalk down_151
+  - first:
+      213: 8377657800972278574
+    second: got hitwalk down_152
+  - first:
+      213: 8176619376582054720
+    second: got hitwalk down_153
+  - first:
+      213: 5390554181915839957
+    second: got hitwalk down_154
+  - first:
+      213: 8621169623267837946
+    second: got hitwalk down_155
+  - first:
+      213: 7833007183229984501
+    second: got hitwalk down_156
+  - first:
+      213: 4455699032261723094
+    second: got hitwalk down_157
+  - first:
+      213: 401926158544562068
+    second: got hitwalk down_158
+  - first:
+      213: -1656881251376893557
+    second: got hitwalk down_159
+  - first:
+      213: -7344911278104875753
+    second: got hitwalk down_160
+  - first:
+      213: -7849480751818121140
+    second: got hitwalk down_161
+  - first:
+      213: 110036486894654330
+    second: got hitwalk down_162
+  - first:
+      213: -1714999606570049132
+    second: got hitwalk down_163
+  - first:
+      213: -8659928247809233918
+    second: got hitwalk down_164
+  - first:
+      213: 3124346457207050923
+    second: got hitwalk down_165
+  - first:
+      213: 3353526077968860598
+    second: got hitwalk down_166
+  - first:
+      213: -7794363566646962650
+    second: got hitwalk down_167
+  - first:
+      213: -1654213029340321704
+    second: got hitwalk down_168
+  - first:
+      213: -5780992408927743689
+    second: got hitwalk down_169
+  - first:
+      213: -1555404542534770085
+    second: got hitwalk down_170
+  - first:
+      213: -3835187732588810117
+    second: got hitwalk down_171
+  - first:
+      213: -8958145550058348967
+    second: got hitwalk down_172
+  - first:
+      213: 8617817922079317606
+    second: got hitwalk down_173
+  - first:
+      213: -331470560319991026
+    second: got hitwalk down_174
+  - first:
+      213: 2619216376802160247
+    second: got hitwalk down_175
+  - first:
+      213: -8810053166979760347
+    second: got hitwalk down_176
+  - first:
+      213: 5071531923373464753
+    second: got hitwalk down_177
+  - first:
+      213: 2666417448833215448
+    second: got hitwalk down_178
+  - first:
+      213: -2227158549812322374
+    second: got hitwalk down_179
+  - first:
+      213: -3252661243652098649
+    second: got hitwalk down_180
+  - first:
+      213: -4808099180194629332
+    second: got hitwalk down_181
+  - first:
+      213: -7820721551731327697
+    second: got hitwalk down_182
+  - first:
+      213: -9146901886956249729
+    second: got hitwalk down_183
+  - first:
+      213: 1076768909796949602
+    second: got hitwalk down_184
+  - first:
+      213: -8139440017723949078
+    second: got hitwalk down_185
+  - first:
+      213: 1591124345716280406
+    second: got hitwalk down_186
+  - first:
+      213: -3093089175354513548
+    second: got hitwalk down_187
+  - first:
+      213: -4125663317727837337
+    second: got hitwalk down_188
+  - first:
+      213: 8081460440250291392
+    second: got hitwalk down_189
+  - first:
+      213: 3921955266030199162
+    second: got hitwalk down_190
+  - first:
+      213: 5806617069502236789
+    second: got hitwalk down_191
+  - first:
+      213: -2743491787793066263
+    second: got hitwalk down_192
+  - first:
+      213: 4309743731322828836
+    second: got hitwalk down_193
+  - first:
+      213: 2622486246154354650
+    second: got hitwalk down_194
+  - first:
+      213: 6386604877075400970
+    second: got hitwalk down_195
+  - first:
+      213: 6804093390874198863
+    second: got hitwalk down_196
+  - first:
+      213: 7926554624273109196
+    second: got hitwalk down_197
+  - first:
+      213: -2184202200794751699
+    second: got hitwalk down_198
+  - first:
+      213: -2394678855625517423
+    second: got hitwalk down_199
+  - first:
+      213: 3125341303257242151
+    second: got hitwalk down_200
+  - first:
+      213: 2111600175875185742
+    second: got hitwalk down_201
+  - first:
+      213: -3943851646364569371
+    second: got hitwalk down_202
+  - first:
+      213: -5131962220667255863
+    second: got hitwalk down_203
+  - first:
+      213: 7752618618497337090
+    second: got hitwalk down_204
+  - first:
+      213: -1344356427823359508
+    second: got hitwalk down_205
+  - first:
+      213: 2818459125011355290
+    second: got hitwalk down_206
+  - first:
+      213: 2874529835369618047
+    second: got hitwalk down_207
+  - first:
+      213: -5189271752340676818
+    second: got hitwalk down_208
+  - first:
+      213: 7650129829445108315
+    second: got hitwalk down_209
+  - first:
+      213: 9146172477745962137
+    second: got hitwalk down_210
+  - first:
+      213: 890580281776008317
+    second: got hitwalk down_211
+  - first:
+      213: 1547259302072267827
+    second: got hitwalk down_212
+  - first:
+      213: -1702194157726092515
+    second: got hitwalk down_213
+  - first:
+      213: -1611214617914797238
+    second: got hitwalk down_214
+  - first:
+      213: -6835781197930427392
+    second: got hitwalk down_215
+  - first:
+      213: -2337375076492771872
+    second: got hitwalk down_216
+  - first:
+      213: -4591230291951793560
+    second: got hitwalk down_217
+  - first:
+      213: 7401597022779329400
+    second: got hitwalk down_218
+  - first:
+      213: -6928385204322830615
+    second: got hitwalk down_219
+  - first:
+      213: -3685382608793102682
+    second: got hitwalk down_220
+  - first:
+      213: -1493494080289231016
+    second: got hitwalk down_221
+  - first:
+      213: -5100182442199474105
+    second: got hitwalk down_222
+  - first:
+      213: -1463713217508985389
+    second: got hitwalk down_223
+  - first:
+      213: 5771877220191665836
+    second: got hitwalk down_224
+  - first:
+      213: 1407590281734111083
+    second: got hitwalk down_225
+  - first:
+      213: -8873214078943652633
+    second: got hitwalk down_226
+  - first:
+      213: 4517045943078758203
+    second: got hitwalk down_227
+  - first:
+      213: -4352053171010153110
+    second: got hitwalk down_228
+  - first:
+      213: -11738110926194266
+    second: got hitwalk down_229
+  - first:
+      213: -4108791949666056361
+    second: got hitwalk down_230
+  - first:
+      213: 6904337303925498038
+    second: got hitwalk down_231
+  - first:
+      213: -3247405466597565147
+    second: got hitwalk down_232
+  - first:
+      213: 8308450495468934088
+    second: got hitwalk down_233
+  - first:
+      213: 5640263721610511891
+    second: got hitwalk down_234
+  - first:
+      213: -3570033289855970548
+    second: got hitwalk down_235
+  - first:
+      213: 839243133453992040
+    second: got hitwalk down_236
+  - first:
+      213: 8718450579829870391
+    second: got hitwalk down_237
+  - first:
+      213: -473266425803907821
+    second: got hitwalk down_238
+  - first:
+      213: -968273645381361330
+    second: got hitwalk down_239
+  - first:
+      213: 9023763400137381549
+    second: got hitwalk down_240
+  - first:
+      213: -5913982407194834309
+    second: got hitwalk down_241
+  - first:
+      213: 2528932867038138861
+    second: got hitwalk down_242
+  - first:
+      213: 5079849773342205384
+    second: got hitwalk down_243
+  - first:
+      213: -7016223457001542599
+    second: got hitwalk down_244
+  - first:
+      213: -1695832484098028588
+    second: got hitwalk down_245
+  - first:
+      213: 4333091018666572734
+    second: got hitwalk down_246
+  - first:
+      213: 4192653546536734583
+    second: got hitwalk down_247
+  - first:
+      213: 5326614724345388603
+    second: got hitwalk down_248
+  - first:
+      213: 6829213588670629698
+    second: got hitwalk down_249
+  - first:
+      213: 187665323937055340
+    second: got hitwalk down_250
+  - first:
+      213: 7266500857443451183
+    second: got hitwalk down_251
+  - first:
+      213: -3573529646795988178
+    second: got hitwalk down_252
+  - first:
+      213: 8508023098904677550
+    second: got hitwalk down_253
+  - first:
+      213: -4573913001890928634
+    second: got hitwalk down_254
+  - first:
+      213: 7416774255576233006
+    second: got hitwalk down_255
+  - first:
+      213: 7249628250494253818
+    second: got hitwalk down_256
+  - first:
+      213: 1637978293796182122
+    second: got hitwalk down_257
+  - first:
+      213: -3234011806077576265
+    second: got hitwalk down_258
+  - first:
+      213: 1290958868583944213
+    second: got hitwalk down_259
+  - first:
+      213: 1527584048702089633
+    second: got hitwalk down_260
+  - first:
+      213: 3135763479331602128
+    second: got hitwalk down_261
+  - first:
+      213: 5989774638224499509
+    second: got hitwalk down_262
+  - first:
+      213: 8736226172474585219
+    second: got hitwalk down_263
+  - first:
+      213: -1763908567739788183
+    second: got hitwalk down_264
+  - first:
+      213: 2462387193145950426
+    second: got hitwalk down_265
+  - first:
+      213: 417576960784161025
+    second: got hitwalk down_266
+  - first:
+      213: 1720206718805987368
+    second: got hitwalk down_267
+  - first:
+      213: 628339057141442063
+    second: got hitwalk down_268
+  - first:
+      213: -2391885965412833727
+    second: got hitwalk down_269
+  - first:
+      213: -4632524166045693594
+    second: got hitwalk down_270
+  - first:
+      213: -5464225284788108731
+    second: got hitwalk down_271
+  - first:
+      213: 5265630637091388956
+    second: got hitwalk down_272
+  - first:
+      213: -1230498579847346236
+    second: got hitwalk down_273
+  - first:
+      213: 5608722625947231839
+    second: got hitwalk down_274
+  - first:
+      213: 8337865777319586783
+    second: got hitwalk down_275
+  - first:
+      213: 6801865267482749769
+    second: got hitwalk down_276
+  - first:
+      213: 5263091738312158154
+    second: got hitwalk down_277
+  - first:
+      213: 9123233142769306872
+    second: got hitwalk down_278
+  - first:
+      213: -5587830742546188436
+    second: got hitwalk down_279
+  - first:
+      213: -7081662985816014957
+    second: got hitwalk down_280
+  - first:
+      213: 9128802570848805701
+    second: got hitwalk down_281
+  - first:
+      213: -6312456514254284357
+    second: got hitwalk down_282
+  - first:
+      213: 4482060787588098889
+    second: got hitwalk down_283
+  - first:
+      213: -7765309387962410356
+    second: got hitwalk down_284
+  - first:
+      213: 6883284762222356080
+    second: got hitwalk down_285
+  - first:
+      213: -8420125835797127843
+    second: got hitwalk down_286
+  - first:
+      213: 2068353854399467572
+    second: got hitwalk down_287
+  - first:
+      213: -2491402742811056598
+    second: got hitwalk down_288
+  - first:
+      213: 4853394991187954914
+    second: got hitwalk down_289
+  - first:
+      213: -2818233217239335510
+    second: got hitwalk down_290
+  - first:
+      213: -752802341275240107
+    second: got hitwalk down_291
+  - first:
+      213: 5975817246148447733
+    second: got hitwalk down_292
+  - first:
+      213: 163738642725048708
+    second: got hitwalk down_293
+  - first:
+      213: 2798412430993735753
+    second: got hitwalk down_294
+  - first:
+      213: -5863787722251475820
+    second: got hitwalk down_295
+  - first:
+      213: -8624967813991258176
+    second: got hitwalk down_296
+  - first:
+      213: 2268078923171847616
+    second: got hitwalk down_297
+  - first:
+      213: -9119707872277826180
+    second: got hitwalk down_298
+  - first:
+      213: 6746265390674560244
+    second: got hitwalk down_299
+  - first:
+      213: 5010601647369438631
+    second: got hitwalk down_300
+  - first:
+      213: 5784139861542128368
+    second: got hitwalk down_301
+  - first:
+      213: -5184058749600593152
+    second: got hitwalk down_302
+  - first:
+      213: 1285023705455929788
+    second: got hitwalk down_303
+  - first:
+      213: 8213825390792417984
+    second: got hitwalk down_304
+  - first:
+      213: 174134623765515704
+    second: got hitwalk down_305
+  - first:
+      213: 5573147554337570482
+    second: got hitwalk down_306
+  - first:
+      213: -5397312458785753960
+    second: got hitwalk down_307
+  - first:
+      213: 7137815248747482896
+    second: got hitwalk down_308
+  - first:
+      213: -6767787931169221306
+    second: got hitwalk down_309
+  - first:
+      213: 5039267400686847399
+    second: got hitwalk down_310
+  - first:
+      213: 6769704999693297871
+    second: got hitwalk down_311
+  - first:
+      213: 5600507324259014185
+    second: got hitwalk down_312
+  - first:
+      213: -6602835680583830193
+    second: got hitwalk down_313
+  - first:
+      213: 627467515660400578
+    second: got hitwalk down_314
+  - first:
+      213: 6483881811431514375
+    second: got hitwalk down_315
+  - first:
+      213: -1077533606005519784
+    second: got hitwalk down_316
+  - first:
+      213: 3473669164397296341
+    second: got hitwalk down_317
+  - first:
+      213: 5798730562534110083
+    second: got hitwalk down_318
+  - first:
+      213: -5549775727171346351
+    second: got hitwalk down_319
+  - first:
+      213: 1195614192457908068
+    second: got hitwalk down_320
+  - first:
+      213: 5364490232984272688
+    second: got hitwalk down_321
+  - first:
+      213: -8074412299913285686
+    second: got hitwalk down_322
+  - first:
+      213: 4945758376810739512
+    second: got hitwalk down_323
+  - first:
+      213: -8377814669248375454
+    second: got hitwalk down_324
+  - first:
+      213: 7013370617603904965
+    second: got hitwalk down_325
+  - first:
+      213: -2271338425276461798
+    second: got hitwalk down_326
+  - first:
+      213: 1009835776676616172
+    second: got hitwalk down_327
+  - first:
+      213: 8119580177297953966
+    second: got hitwalk down_328
+  - first:
+      213: 1346901665621657322
+    second: got hitwalk down_329
+  - first:
+      213: -3123611121886598419
+    second: got hitwalk down_330
+  - first:
+      213: -5551859061326633792
+    second: got hitwalk down_331
+  - first:
+      213: 569298187478496631
+    second: got hitwalk down_332
+  - first:
+      213: 1266381093616057598
+    second: got hitwalk down_333
+  - first:
+      213: -8306721316815620479
+    second: got hitwalk down_334
+  - first:
+      213: 1938238981597770132
+    second: got hitwalk down_335
+  - first:
+      213: 5055409975998555128
+    second: got hitwalk down_336
+  - first:
+      213: -1263857978853926899
+    second: got hitwalk down_337
+  - first:
+      213: 6260870176745308262
+    second: got hitwalk down_338
+  - first:
+      213: -3590298594610682049
+    second: got hitwalk down_339
+  - first:
+      213: 2092414844796997210
+    second: got hitwalk down_340
+  - first:
+      213: -5758897378387401287
+    second: got hitwalk down_341
+  - first:
+      213: -3980410492889943353
+    second: got hitwalk down_342
+  - first:
+      213: -5654455346032089040
+    second: got hitwalk down_343
+  - first:
+      213: 2102948437471389734
+    second: got hitwalk down_344
+  - first:
+      213: -6653268983605182482
+    second: got hitwalk down_345
+  - first:
+      213: -1937603767768197585
+    second: got hitwalk down_346
+  - first:
+      213: -795171235709147053
+    second: got hitwalk down_347
+  - first:
+      213: -2758142577817430639
+    second: got hitwalk down_348
+  - first:
+      213: 6419513900145191308
+    second: got hitwalk down_349
+  - first:
+      213: -8174405426145212262
+    second: got hitwalk down_350
+  - first:
+      213: -8191726061624397219
+    second: got hitwalk down_351
+  - first:
+      213: 5296468667895186159
+    second: got hitwalk down_352
+  - first:
+      213: 2147204930058790360
+    second: got hitwalk down_353
+  - first:
+      213: 4687377291473843177
+    second: got hitwalk down_354
+  - first:
+      213: 184701440442863339
+    second: got hitwalk down_355
+  - first:
+      213: 1455602108500991932
+    second: got hitwalk down_356
+  - first:
+      213: 4594249989421994002
+    second: got hitwalk down_357
+  - first:
+      213: -6382178344450883685
+    second: got hitwalk down_358
+  - first:
+      213: -8803432539926508563
+    second: got hitwalk down_359
+  - first:
+      213: 4882290570992968755
+    second: got hitwalk down_360
+  - first:
+      213: 3896389572473604729
+    second: got hitwalk down_361
+  - first:
+      213: 3540447769772788503
+    second: got hitwalk down_362
+  - first:
+      213: -7116093448729739985
+    second: got hitwalk down_363
+  - first:
+      213: 6208508602113933160
+    second: got hitwalk down_364
+  - first:
+      213: -1417993062638768599
+    second: got hitwalk down_365
+  - first:
+      213: 8518085565416413108
+    second: got hitwalk down_366
+  - first:
+      213: -5402045411379560030
+    second: got hitwalk down_367
+  - first:
+      213: 4679499672485894753
+    second: got hitwalk down_368
+  - first:
+      213: -5285719236989693879
+    second: got hitwalk down_369
+  - first:
+      213: -5673059028406682499
+    second: got hitwalk down_370
+  - first:
+      213: 5250674143052819397
+    second: got hitwalk down_371
+  - first:
+      213: -3524741108274799785
+    second: got hitwalk down_372
+  - first:
+      213: -4836722883038977089
+    second: got hitwalk down_373
+  - first:
+      213: -4202588305068281149
+    second: got hitwalk down_374
+  - first:
+      213: 7911887891454097415
+    second: got hitwalk down_375
+  - first:
+      213: 2351798545365071825
+    second: got hitwalk down_376
+  - first:
+      213: 5002013880791138109
+    second: got hitwalk down_377
+  - first:
+      213: 3676763846525365422
+    second: got hitwalk down_378
+  - first:
+      213: 2522917763027172963
+    second: got hitwalk down_379
+  - first:
+      213: 3026242615803064341
+    second: got hitwalk down_380
+  - first:
+      213: 1587449388633025660
+    second: got hitwalk down_381
+  - first:
+      213: 2266915974595059075
+    second: got hitwalk down_382
+  - first:
+      213: 1994681211468121234
+    second: got hitwalk down_383
+  - first:
+      213: 2248894137488567588
+    second: got hitwalk down_384
+  - first:
+      213: 2072579348536838674
+    second: got hitwalk down_385
+  - first:
+      213: 8534360325052005565
+    second: got hitwalk down_386
+  - first:
+      213: -6218675492453389354
+    second: got hitwalk down_387
+  - first:
+      213: 7258716937306041289
+    second: got hitwalk down_388
+  - first:
+      213: -5864913777578599746
+    second: got hitwalk down_389
+  - first:
+      213: 9014904777780215113
+    second: got hitwalk down_390
+  - first:
+      213: -3480895030283102232
+    second: got hitwalk down_391
+  - first:
+      213: 970281396519545247
+    second: got hitwalk down_392
+  - first:
+      213: -6094284830499488291
+    second: got hitwalk down_393
+  - first:
+      213: -1931483394661930143
+    second: got hitwalk down_394
+  - first:
+      213: -7316436396638277015
+    second: got hitwalk down_395
+  - first:
+      213: -3492363403504616112
+    second: got hitwalk down_396
+  - first:
+      213: 826870083296865196
+    second: got hitwalk down_397
+  - first:
+      213: -5879299406552033380
+    second: got hitwalk down_398
+  - first:
+      213: 5802679762498151025
+    second: got hitwalk down_399
+  - first:
+      213: 8671123502921363755
+    second: got hitwalk down_400
+  - first:
+      213: 3628797807283049557
+    second: got hitwalk down_401
+  - first:
+      213: -2712814634300208465
+    second: got hitwalk down_402
+  - first:
+      213: -5283182506012908032
+    second: got hitwalk down_403
+  - first:
+      213: 5756570803403817551
+    second: got hitwalk down_404
+  - first:
+      213: 3939074883012993885
+    second: got hitwalk down_405
+  - first:
+      213: -4012706746486242349
+    second: got hitwalk down_406
+  - first:
+      213: -6250997971865575260
+    second: got hitwalk down_407
+  - first:
+      213: 45455592393878392
+    second: got hitwalk down_408
+  - first:
+      213: -5517364204315218453
+    second: got hitwalk down_409
+  - first:
+      213: -4716702253222637072
+    second: got hitwalk down_410
+  - first:
+      213: -4640913255057555411
+    second: got hitwalk down_411
+  - first:
+      213: 6859238260085919455
+    second: got hitwalk down_412
+  - first:
+      213: -8961977608737746824
+    second: got hitwalk down_413
+  - first:
+      213: -6629486789932606169
+    second: got hitwalk down_414
+  - first:
+      213: -6248761704662189183
+    second: got hitwalk down_415
+  - first:
+      213: 2522397204703954063
+    second: got hitwalk down_416
+  - first:
+      213: 5204714765201868641
+    second: got hitwalk down_417
+  - first:
+      213: -4026416379416258697
+    second: got hitwalk down_418
+  - first:
+      213: -5527709559160173223
+    second: got hitwalk down_419
+  - first:
+      213: -7697404119303357871
+    second: got hitwalk down_420
+  - first:
+      213: 4267456805767938094
+    second: got hitwalk down_421
+  - first:
+      213: -8310294608870042306
+    second: got hitwalk down_422
+  - first:
+      213: 7402928233062313982
+    second: got hitwalk down_423
+  - first:
+      213: -8576107062676459359
+    second: got hitwalk down_424
+  - first:
+      213: -5919874550690919082
+    second: got hitwalk down_425
+  - first:
+      213: 1106202176779939053
+    second: got hitwalk down_426
+  - first:
+      213: -5045659533931447037
+    second: got hitwalk down_427
+  - first:
+      213: -5148976316792319525
+    second: got hitwalk down_428
+  - first:
+      213: 8688383023901702393
+    second: got hitwalk down_429
+  - first:
+      213: -8512140094793110662
+    second: got hitwalk down_430
+  - first:
+      213: -989278751217773112
+    second: got hitwalk down_431
+  - first:
+      213: -8926697198631980245
+    second: got hitwalk down_432
+  - first:
+      213: -6355852712589610707
+    second: got hitwalk down_433
+  - first:
+      213: 3033309014343626146
+    second: got hitwalk down_434
+  - first:
+      213: -3962679600220242766
+    second: got hitwalk down_435
+  - first:
+      213: 2545021782382051388
+    second: got hitwalk down_436
+  - first:
+      213: 4143549735905671246
+    second: got hitwalk down_437
+  - first:
+      213: -5225983428751480637
+    second: got hitwalk down_438
+  - first:
+      213: 3241975169733696868
+    second: got hitwalk down_439
+  - first:
+      213: 8632188440014062112
+    second: got hitwalk down_440
+  - first:
+      213: 1909399932763737329
+    second: got hitwalk down_441
+  - first:
+      213: -7080233849018898055
+    second: got hitwalk down_442
+  - first:
+      213: -1393597875869765383
+    second: got hitwalk down_443
+  - first:
+      213: 4334684061922177409
+    second: got hitwalk down_444
+  - first:
+      213: 3162607334586837089
+    second: got hitwalk down_445
+  - first:
+      213: 5544209364232735492
+    second: got hitwalk down_446
+  - first:
+      213: -4835973706486913745
+    second: got hitwalk down_447
+  - first:
+      213: -4896667622841578431
+    second: got hitwalk down_448
+  - first:
+      213: -3030848524073495286
+    second: got hitwalk down_449
+  - first:
+      213: 1015158278884673291
+    second: got hitwalk down_450
+  - first:
+      213: -2340304697494991304
+    second: got hitwalk down_451
+  - first:
+      213: -7494319929713890651
+    second: got hitwalk down_452
+  - first:
+      213: 4520929753846698393
+    second: got hitwalk down_453
+  - first:
+      213: -4684188358255721582
+    second: got hitwalk down_454
+  - first:
+      213: 2872879983010215419
+    second: got hitwalk down_455
+  - first:
+      213: -1063785174939479104
+    second: got hitwalk down_456
+  - first:
+      213: 4149120778043201580
+    second: got hitwalk down_457
+  - first:
+      213: -5160339981631384019
+    second: got hitwalk down_458
+  - first:
+      213: 7331875739680537460
+    second: got hitwalk down_459
+  - first:
+      213: -2864881861380069899
+    second: got hitwalk down_460
+  - first:
+      213: 330946786783319343
+    second: got hitwalk down_461
+  - first:
+      213: 6628683070599608976
+    second: got hitwalk down_462
+  - first:
+      213: 306130240474312331
+    second: got hitwalk down_463
+  - first:
+      213: 5617140914594252659
+    second: got hitwalk down_464
+  - first:
+      213: 683714872123964956
+    second: got hitwalk down_465
+  - first:
+      213: 1478394353728267758
+    second: got hitwalk down_466
+  - first:
+      213: -9165280948156681338
+    second: got hitwalk down_467
+  - first:
+      213: -4464265339548591907
+    second: got hitwalk down_468
+  - first:
+      213: 958179554826091733
+    second: got hitwalk down_469
+  - first:
+      213: -3436726149752984079
+    second: got hitwalk down_470
+  - first:
+      213: -2375077497191064157
+    second: got hitwalk down_471
+  - first:
+      213: -1281333197640645945
+    second: got hitwalk down_472
+  - first:
+      213: 4894971693120904617
+    second: got hitwalk down_473
+  - first:
+      213: 3007616986017114515
+    second: got hitwalk down_474
+  - first:
+      213: -5008540460077469297
+    second: got hitwalk down_475
+  - first:
+      213: 953206123445424142
+    second: got hitwalk down_476
+  - first:
+      213: 3359935163569850475
+    second: got hitwalk down_477
+  - first:
+      213: 7691027909718727913
+    second: got hitwalk down_478
+  - first:
+      213: -3939217072156504882
+    second: got hitwalk down_479
+  - first:
+      213: -6807086099483691996
+    second: got hitwalk down_480
+  - first:
+      213: -7412141552786578108
+    second: got hitwalk down_481
+  - first:
+      213: 4729434889673441787
+    second: got hitwalk down_482
+  - first:
+      213: -6190071587831016938
+    second: got hitwalk down_483
+  - first:
+      213: -465546156461518596
+    second: got hitwalk down_0
+  - first:
+      213: 2414393824277742347
+    second: got hitwalk down_1
+  - first:
+      213: -7410994440948284405
+    second: got hitwalk down_2
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 8
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: got hitwalk down_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 31
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5acf2f31c2a021a70800000000000000
+      internalID: 8796104206637530277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: got hitwalk down_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da9bfb368e39d15c0800000000000000
+      internalID: -4243072647597934163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: got hitwalk down_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 636f496cb7960a3a0800000000000000
+      internalID: -6656204268920048074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: got hitwalk down_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 28
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aea48a560d2d01580800000000000000
+      internalID: -8858348674537207062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -6,13 +6,14 @@ public class Hit : PlayerState
 {
     const float POKETIMER = 1.6f;
     const float SPINTIMER = 1f;
-    const float SLASHTIMER = 0.8f;
+    const float SLASHTIMER = 0.5f;
     const float CHARGETIMER = 0.5f;  // 0.4f
     float charge = 0f;
     float spinTime = 0.5f;
     float attackTime = 0f;
     float pokeOffset = 0.4f;
     float swordRayLength = 1.8f;
+    float swordSpinRayLength = 2.5f;
     Vector3 vDirection;
     Vector3 hDirection;
     bool spinning = false;
@@ -63,7 +64,7 @@ public class Hit : PlayerState
         if (attackTime < SLASHTIMER) {
             slashing = true;
             moveSpeed = 5f;
-        } else/* if (attackTime > SLASHTIMER)*/ {
+        } else /*if (attackTime > SLASHTIMER)*/ {
             slashing = false;
             poking = true;
             if (Input.GetKey(KeyCode.X)){
@@ -71,17 +72,15 @@ public class Hit : PlayerState
             } 
         } 
         if (attackTime >= SPINTIMER) {
-            Debug.Log("go for it");
             if (Input.GetKeyUp(KeyCode.X)){
                 if (charge >= CHARGETIMER){
                     spinning = true;
                     poking = false;
                     slashing = false;
-                }
+                } 
             }
         } else/* if(attackTime < SPINTIMER)*/{
             if(Input.GetKeyUp(KeyCode.X)){
-                Debug.Log("i wanna see this");
                 Reset();
                 slashing = false;
             }
@@ -156,7 +155,63 @@ public class Hit : PlayerState
 
     void Spin()
     {   
+        Vector3 vDirection = GetVDirection(); 
+        Vector3 hDirection = GetHDirection();
+
+        Ray2D upRay = new Ray2D(playerTransform.position, vDirection);
+        Ray2D upRightRay = new Ray2D(playerTransform.position, vDirection + hDirection);
+        Ray2D RightRay = new Ray2D(playerTransform.position, hDirection);
+        Ray2D downRightRay = new Ray2D(playerTransform.position, -vDirection + hDirection);
+        Ray2D downRay = new Ray2D(playerTransform.position, -vDirection);
+        Ray2D downLeftRay = new Ray2D(playerTransform.position, -vDirection - hDirection);
+        Ray2D leftRay = new Ray2D(playerTransform.position, -hDirection);
+        Ray2D upLeftRay = new Ray2D(playerTransform.position, - hDirection + vDirection);
+        RaycastHit2D upHit = Physics2D.Raycast(upRay.origin, upRay.direction, swordSpinRayLength);
+        RaycastHit2D upRightHit = Physics2D.Raycast(upRightRay.origin, upRightRay.direction, swordSpinRayLength);
+        RaycastHit2D RightHit = Physics2D.Raycast(RightRay.origin, RightRay.direction, swordSpinRayLength);
+        RaycastHit2D downRightHit = Physics2D.Raycast(downRightRay.origin, downRightRay.direction, swordSpinRayLength);
+        RaycastHit2D downHit = Physics2D.Raycast(downRay.origin, downRay.direction, swordSpinRayLength);
+        RaycastHit2D downLeftHit = Physics2D.Raycast(downLeftRay.origin, downLeftRay.direction, swordSpinRayLength);
+        RaycastHit2D leftHit = Physics2D.Raycast(leftRay.origin, leftRay.direction, swordSpinRayLength);
+        RaycastHit2D upLeftHit = Physics2D.Raycast(upLeftRay.origin, upLeftRay.direction, swordSpinRayLength);
+        Debug.DrawRay(upRay.origin, upRay.direction * swordSpinRayLength, Color.red);
+        Debug.DrawRay(upRightRay.origin, upRightRay.direction * swordSpinRayLength, Color.red);
+        Debug.DrawRay(RightRay.origin, RightRay.direction * swordSpinRayLength, Color.red);
+        Debug.DrawRay(downRightRay.origin, downRightRay.direction * swordSpinRayLength, Color.red);
+        Debug.DrawRay(downRay.origin, downRay.direction * swordSpinRayLength, Color.red);
+        Debug.DrawRay(downLeftRay.origin, downLeftRay.direction * swordSpinRayLength, Color.red);
+        Debug.DrawRay(leftRay.origin, leftRay.direction * swordSpinRayLength, Color.red);
+        Debug.DrawRay(upLeftRay.origin, upLeftRay.direction * swordSpinRayLength, Color.red);
         spinTime -= Time.deltaTime;
+        Debug.Log("yo");
+        if (upHit.collider != null && upHit.collider.tag == "Enemy"){
+            upHit.collider.GetComponent<Enemy>().SwordHit();
+        }
+        if (upRightHit.collider != null && upRightHit.collider.tag == "Enemy"){
+            upRightHit.collider.GetComponent<Enemy>().SwordHit();
+        }
+        if (RightHit.collider != null && RightHit.collider.tag == "Enemy"){
+            RightHit.collider.GetComponent<Enemy>().SwordHit();
+        }
+        if (downRightHit.collider != null && downRightHit.collider.tag == "Enemy"){
+            downRightHit.collider.GetComponent<Enemy>().SwordHit();
+        }
+        if (downHit.collider != null && downHit.collider.tag == "Enemy"){
+            downHit.collider.GetComponent<Enemy>().SwordHit();
+        }
+        if (downLeftHit.collider != null && downLeftHit.collider.tag == "Enemy"){
+            upHit.collider.GetComponent<Enemy>().SwordHit();
+        }
+        if (leftHit.collider != null && leftHit.collider.tag == "Enemy"){
+            upHit.collider.GetComponent<Enemy>().SwordHit();
+        }
+
+        if (upLeftHit.collider != null && upLeftHit.collider.tag == "Enemy"){
+            upLeftHit.collider.GetComponent<Enemy>().SwordHit();
+        }
+
+
+
         if(spinTime< 0){
             Reset();
         }
@@ -166,7 +221,7 @@ public class Hit : PlayerState
     {
         Vector3 hitDestination = -playerTransform.up * 10;
         Vector3 hitVector = hitDestination - playerTransform.position;
-        playerTransform.position += hitVector.normalized;
+        playerTransform.position += hitVector.normalized ;
         Reset();
     }
 }

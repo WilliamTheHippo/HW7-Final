@@ -11,15 +11,16 @@ public class Shield : PlayerState
     
     float rayOffset = 0.5f;
     float maxRayDist = 1.8f;
-
+    bool ShieldUp;
+    bool ShieldDown;
+    bool ShieldLeft;
+    bool ShieldRight;
     void BeginShield() 
     {
         firstFrame = false;
         linkAnimator.SetBool("shielding", true);
         moveSpeed = 5f;
         isAction = true;
-
-        Debug.Log("BEGIN SHIELD");
     }
 
     public override void Reset() 
@@ -27,7 +28,6 @@ public class Shield : PlayerState
         firstFrame = true;
         linkAnimator.SetBool("shielding", false);
         player.SetIdle();
-
         Debug.Log("END SHIELD");
     }
 
@@ -38,11 +38,22 @@ public class Shield : PlayerState
             Reset();
             return;
         }  
-
         Vector3 vDirection = GetVDirection(); // update raycast directions based on
         Vector3 hDirection = GetHDirection(); // which way Link is facing
         Ray2D cRay, rRay, lRay; // Raycast CENTER, RIGHT, and LEFT from where Link is facing
-
+        if(direction == Player.Direction.Up){
+            linkAnimator.SetFloat("AnimMoveX",0f);
+            linkAnimator.SetFloat("AnimMoveY",1f);
+        } else if (direction == Player.Direction.Right){
+            linkAnimator.SetFloat("AnimMoveX",1f);
+            linkAnimator.SetFloat("AnimMoveY",0f);
+        } else if (direction == Player.Direction.Left){
+            linkAnimator.SetFloat("AnimMoveX",-1f);
+            linkAnimator.SetFloat("AnimMoveY",0f);
+        }else if (direction == Player.Direction.Down){
+            linkAnimator.SetFloat("AnimMoveX",0f);
+            linkAnimator.SetFloat("AnimMoveY",-1f);
+        }
         //////////////////////////// RAYCAST //////////////////////////////
         if (direction == Player.Direction.Up || direction == Player.Direction.Down) {
             cRay = new Ray2D (playerTransform.position,  vDirection);
@@ -56,7 +67,6 @@ public class Shield : PlayerState
         Debug.DrawRay(cRay.origin, cRay.direction * maxRayDist, Color.blue);
         Debug.DrawRay(rRay.origin, rRay.direction * maxRayDist, Color.blue);
         Debug.DrawRay(lRay.origin, lRay.direction * maxRayDist, Color.blue);
-
         RaycastHit2D cRayHit = Physics2D.Raycast(cRay.origin, cRay.direction, maxRayDist);
         RaycastHit2D rRayHit = Physics2D.Raycast(rRay.origin, rRay.direction, maxRayDist);
         RaycastHit2D lRayHit = Physics2D.Raycast(lRay.origin, lRay.direction, maxRayDist);
@@ -71,9 +81,10 @@ public class Shield : PlayerState
         } else if (lRayHit.collider != null && lRayHit.collider.tag == "Enemy") { 
             BounceOff(lRayHit.collider); 
             //isKnockback = true;
-        }
-
-        else { Move(); Turn(); } // If Link isn't being knocked back, move him and turn sprite
+        }  else { 
+            Move(); 
+            //Turn();
+            } // If Link isn't being knocked back, move him and turn sprite
     }
 
     void BounceOff(Collider2D monster) {
@@ -84,7 +95,6 @@ public class Shield : PlayerState
             Vector2 fromMonsterToPlayer = new Vector2 (
             playerTransform.position.x - monster.transform.position.x,
             playerTransform.position.y - monster.transform.position.y);
-        
             fromMonsterToPlayer.Normalize();
             player_rb.velocity = fromMonsterToPlayer * knockbackForce;
 
