@@ -48,7 +48,7 @@ public class Door : MonoBehaviour
 		tilemap.SetTile(tilemap.origin + new Vector3Int(1,0,0), null);
 	}
 
-	public IEnumerator Open()
+	public virtual IEnumerator Open()
 	{
 		if(open) yield break;
 		sound.clip = openSound;
@@ -60,7 +60,7 @@ public class Door : MonoBehaviour
 		open = true;
 	}
 
-	public IEnumerator Close()
+	public virtual IEnumerator Close()
 	{
 		if(!open) yield break;
 		sound.clip = closeSound;
