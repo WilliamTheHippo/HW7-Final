@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class fall : MonoBehaviour
+public class Fall : MonoBehaviour
 {
     float ResetTimer = 0.8f;
     
