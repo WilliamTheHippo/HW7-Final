@@ -83,7 +83,7 @@ public abstract class Enemy : MonoBehaviour
         if (hasInvFrames) {
             /*if(!noSwordHit)*/ hp--;
             if (hp > 0) {
-                Debug.Log("canknockback: " + canKnockback + "isknockback: " + isKnockback);
+                //Debug.Log("canknockback: " + canKnockback + "isknockback: " + isKnockback);
                 if (canKnockback && !isKnockback) Knockback();
                 myAnimator.SetBool("isHit", true);
                 StartCoroutine(InvFrames());
