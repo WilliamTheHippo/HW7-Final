@@ -249,7 +249,7 @@ Transform:
   - {fileID: 743305724}
   - {fileID: 981149566}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &84213658
 PrefabInstance:
@@ -650,7 +650,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &145864370
 GameObject:
@@ -1655,7 +1655,7 @@ PrefabInstance:
     - target: {fileID: 3208204332620647373, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.19
+      value: 1.77
       objectReference: {fileID: 0}
     - target: {fileID: 3208204332620647373, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
         type: 3}
@@ -1685,7 +1685,7 @@ PrefabInstance:
     - target: {fileID: 3208204332620647373, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3208204332620647373, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
         type: 3}
@@ -1783,7 +1783,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &624860675
 AudioSource:
@@ -82081,7 +82081,7 @@ Transform:
   - {fileID: 99381339}
   - {fileID: 979612099}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1677506400 stripped
 Transform:
@@ -82209,7 +82209,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1727249696
 MonoBehaviour:
@@ -82483,7 +82483,7 @@ RectTransform:
   m_Children:
   - {fileID: 395743888}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
