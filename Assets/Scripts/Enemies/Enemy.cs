@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -148,7 +148,7 @@ public abstract class Enemy : MonoBehaviour
 	    	GetComponent<Collider2D>().enabled = false;
 	    }
         if(falling) sound.clip = fallSound;
-        else sound.clip = dieSound;
+        //else sound.clip = dieSound;
         sound.Play();
         myAnimator.SetBool("isHit", true);
         if(falling) yield return new WaitForSeconds(0.25f);

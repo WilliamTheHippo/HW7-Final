@@ -11,13 +11,13 @@ public class Stalfos : Enemy
     	hp = 5;
         SetupEnemy();
         sound = GetComponent<AudioSource>();
-        knockbackDuration = 2f / Time.deltaTime;
+        knockbackDuration = 1f / Time.deltaTime;
         knockbackSpeed = 6f;
         canKnockback = true;
         
         AssignRoom();
 
-        DeathScale = new Vector3(0.7f,0.7f,0.7f); //scale for the explosion
+        DeathScale = new Vector3(1f,1f,1f); //scale for the explosion
 
 
     }
