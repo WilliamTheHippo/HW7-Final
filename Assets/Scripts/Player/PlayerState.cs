@@ -40,8 +40,6 @@ public abstract class PlayerState : ScriptableObject
     public bool CheckPush () 
     {
     // Runs when an arrow key is pressed to check whether Link should be pushing or walking
-        Debug.Log("CHECK PUSH");
-
         bool pushing = false;
         float pushRayLength = 1f;
         Ray2D pushCheckRay;
@@ -50,15 +48,16 @@ public abstract class PlayerState : ScriptableObject
             pushCheckRay = new Ray2D (playerTransform.position, GetVDirection());
         } else { 
             pushCheckRay = new Ray2D (playerTransform.position, GetHDirection());
+            //Debug.Log(linkAnimator.GetFloat("AnimMoveX"));
+            //Debug.Log(Input.GetAxis("Horizontal"));
         }
         Debug.DrawRay(pushCheckRay.origin, pushCheckRay.direction * pushRayLength, Color.green);
-        RaycastHit2D pushRayHit = Physics2D.Raycast (
+        RaycastHit2D pushRayHit = Physics2D.Raycast(
             pushCheckRay.origin, 
             pushCheckRay.direction, 
             pushRayLength);
         if (pushRayHit.collider != null && pushRayHit.collider.tag == "Wall") 
             pushing = true;
-        
         linkAnimator.SetBool("pushing", pushing);
         return pushing;
     }

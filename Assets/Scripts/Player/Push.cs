@@ -15,8 +15,6 @@ public class Push : PlayerState
     public override void UpdateOnActive() 
     {
         if (firstFrame) BeginPush();
-        Debug.Log("PUSHING");
-
         if (direction != pushDirection) player.SetIdle();
     }
 }
