@@ -18,7 +18,7 @@ public class MoldormFollow : Enemy
     
     void FixedUpdate()
     {
-        if(!moldorm.active) return;
+        //if(!moldorm.active) return;
 
         if(BallToFollow == null) Destroy(this.gameObject);
         if(moldorm.hp <= 0) Destroy(this.gameObject);

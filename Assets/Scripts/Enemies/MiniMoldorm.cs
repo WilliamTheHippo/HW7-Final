@@ -26,12 +26,13 @@ public class MiniMoldorm : Enemy
     //public float ySpeed;
 
     void Start()
-    {
+    {  
         player = GameObject.Find("Player").GetComponent<Player>();//minimoldorm doesn't call SetupEnemy()
         AssignRoom();
         randomNumber = Random.Range(0.0f, 1.0f);
         Timer = 0f;
 
+        hp = 3;
         Lives = 3;
         LivesTimer = 0f;
 
@@ -39,12 +40,17 @@ public class MiniMoldorm : Enemy
         KnockbackTimerReset = 1f / Time.deltaTime;
         KnockbackTimer = KnockbackTimerReset;
 
-        KnockbackSpeed = 8f;
+        KnockbackSpeed = 2f;
 
-        xSpeed = 1.5f * Time.deltaTime * 3f;
-        ySpeed = 1.5f * Time.deltaTime * 3f;
+        canKnockback = true;
 
+        xSpeed = 1.5f * Time.deltaTime * 2.5f;
+        ySpeed = 1.5f * Time.deltaTime * 2.5f;
+
+        DeathScale = new Vector3(2f,2f,2f); //scale for the explosion'
         //SetupEnemy();
+
+        SetupEnemy();
     }
 
     void FixedUpdate()

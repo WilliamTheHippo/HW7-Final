@@ -4,7 +4,8 @@ using UnityEngine;
 
 // the moldorm stands in place for a few seconds
 public class Moldorm : Enemy
-{
+{}
+/*{
     float randomNumber;
     float Timer;
     public bool active;
@@ -83,20 +84,20 @@ public class Moldorm : Enemy
         else if (randomNumber <= 0.75f) { randomNumber = 0.4f; } 
         else                            { randomNumber = 0.1f; }*/
 
-    }
+ /*   }
 
     void MoveInCircle()
     {
         degrees += clockwise ? Time.deltaTime : -Time.deltaTime;
         degrees %= 360;
         //Debug.Log(degrees);
-        transform.position /*+*/= new Vector3( Mathf.Cos(degrees) * 10f, Mathf.Sin(degrees) * 10f, 0f);
+        transform.position = new Vector3( Mathf.Cos(degrees) * 10f, Mathf.Sin(degrees) * 10f, 0f);
 
-    }
+ /*   }
 
     void SwitchDirection() //TODO actually call this
     {
         clockwise = !clockwise;
         
     }
-}
+}*/
