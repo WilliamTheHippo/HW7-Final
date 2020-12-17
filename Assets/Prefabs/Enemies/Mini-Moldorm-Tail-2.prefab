@@ -97,9 +97,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 1
   crystal: 0
-  deathAnimation: {fileID: 0}
-  fallSprite: {fileID: 0}
-  hitSound: {fileID: 0}
+  deathAnimation: {fileID: 9178090810995816017, guid: 64bdf02d25708d4418516e67294ef2ea,
+    type: 3}
+  fallSprite: {fileID: 21300000, guid: 4e9319b50a81b4eca90ffe4f5337a675, type: 3}
+  hitSound: {fileID: 8300000, guid: f4d7f6467ac604579a03431c159329df, type: 3}
   dieSound: {fileID: 0}
   fallSound: {fileID: 0}
   BallToFollow: {fileID: 0}
