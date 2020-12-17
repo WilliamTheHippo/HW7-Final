@@ -138,6 +138,7 @@ public class Player : MonoBehaviour
         if(activator.tag == "Enemy"){
             knockback = true;
             health -= 0.5f;
+            Debug.Log(health);
             if(health > 0){
                 if(canKnockback && !isKnockback){
                     Knockback();
@@ -146,7 +147,7 @@ public class Player : MonoBehaviour
                     transform.position.x - activator.transform.position.x,
                     transform.position.y - activator.transform.position.y);
                     fromMonsterToPlayer.Normalize();
-                    GetComponent<Rigidbody2D>().velocity = fromMonsterToPlayer*4;
+                    GetComponent<Rigidbody2D>().velocity = fromMonsterToPlayer*5;
                     isKnockback = true;
                 }
             }
