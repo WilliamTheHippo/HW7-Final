@@ -25,9 +25,4 @@ The largest code feature that i wrote was the players movement/shield/jump/attac
 
 ## Charlee
 
-Technical Challenge: A few weeks before the due date, we had one member of our group refactor all the existing code. After the refactor was implemented, the code for the enemies that was once very familiar became familiar no longer. The systems were certainly optimised to not require repetitive code, but I, who was less experienced in the coding world, had a hard time familiarizing with the more complex functions and systems. This, as well as a mountain of bugs that came from the refactor gave the group a real challenging time. When trying to bugfix the code of the enemies, I found myself often getting stuck due to not enough knowledge of what certain parts of code do. Reef also had similar troubles with the new player code. We could not swim with the refactored code, and often required our more experienced coders, Alex and Sam to help us.
-
-The cutest asset I made was the sprites for the Mini-Moldorm:
-An interesting thing about this boi is that it is composed of three separate sprites for each ball part. I also learned that an important part of sprite making is making sure it is scaled and rendered to the right size in both photoshop and unity
-
-A C# script I wrote pre-refactor was the Stalfos enemy code. It is used for the Stalfos enemy movement and reactions. For the movement, it first chose a random number between 0-100. If the random number chose 0-25, Stalfos would move right. Iif the random number chose 25-50, Stalfos would move down, and so on. Other features include animations, lives, knockback, etc. It has been reformatted a bit after the refactor, but the logic remains the same.
+https://docs.google.com/document/d/1thCoqbr4m7-8qMb27li4CrqWhA272bnmJdNi3AmtYyk/edit?usp=sharing
