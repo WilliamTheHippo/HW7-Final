@@ -106,7 +106,9 @@ public abstract class Enemy : MonoBehaviour
     {
         //fallFlag = true;
         //sound.clip = fallSound;
-        StartCoroutine(Die(true));
+        if(isKnockback == true){
+             StartCoroutine(Die(true));
+        }
         //fallFlag = false; //don't actually need this if we're just destroying the object
     }
 
