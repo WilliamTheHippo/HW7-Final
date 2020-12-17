@@ -234,7 +234,6 @@ public class Player : MonoBehaviour
                 }else if (currentDirection == Direction.Left){
                     Instantiate(fallPrefab, transform.position+= new Vector3(-1.5f,0f,0f) , Quaternion.identity);
                 }
-                
                 numberOfFallingsLinks +=1;
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
             }
