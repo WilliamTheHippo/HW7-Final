@@ -12,8 +12,8 @@ public class Moldorm : Enemy
     bool clockwise;
     float degrees;
     
-    public float Lives;
-    float LivesTimer;
+    //public float Lives;
+    //float LivesTimer;
     public float Hit;
 
     private float Knockback;

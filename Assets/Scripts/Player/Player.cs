@@ -232,8 +232,5 @@ public class Player : MonoBehaviour
         //currentState = fall;
     }
 
-    public int GetHealth() {
-        Debug.Log(health);
-        return (int)(health / 0.5);
-    }
+    public int GetHealth() => (int)(health / 0.5);
 }
