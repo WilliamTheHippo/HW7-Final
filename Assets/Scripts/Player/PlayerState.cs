@@ -40,7 +40,7 @@ public abstract class PlayerState : ScriptableObject
     public bool CheckPush () 
     {
     // Runs when an arrow key is pressed to check whether Link should be pushing or walking
-    	Turn();
+        Turn();
         bool pushing = false;
         float pushRayLength = 1f;
         Ray2D pushCheckRay;
@@ -49,7 +49,7 @@ public abstract class PlayerState : ScriptableObject
             pushCheckRay = new Ray2D (playerTransform.position, GetVDirection());
         } else { 
             pushCheckRay = new Ray2D (playerTransform.position, GetHDirection());
-            //Debug.Log(linkAnimator.GetFloat("AnimMoveX"));
+            Debug.Log(linkAnimator.GetFloat("AnimMoveY"));
             //Debug.Log(Input.GetAxis("Horizontal"));
         }
         Debug.DrawRay(pushCheckRay.origin, pushCheckRay.direction * pushRayLength, Color.blue);
