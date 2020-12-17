@@ -8,7 +8,7 @@ public class Hit : PlayerState
     const float SPINTIMER = 0.5f;
     const float SLASHTIMER = 0.25f;
     const float CHARGETIMER = 0.5f; 
-    const float SPINDURATION = 0.25f;
+    const float SPINDURATION = 0.4f;
     float charge = 0f;
     float spinTime = 0f;
     float attackTime = 0f;
