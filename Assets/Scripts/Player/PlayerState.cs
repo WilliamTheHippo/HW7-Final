@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class PlayerState : ScriptableObject
 {
     protected Player player;
-    protected float moveSpeed = 7f;
+    public float moveSpeed = 7f;
     protected Player.Direction direction; // WHICH WAY LINK IS FACING
 
     protected bool firstFrame = true; // BOOLEAN FLAG FOR Start() FUNCTIONALITY

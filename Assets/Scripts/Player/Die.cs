@@ -4,13 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Die : MonoBehaviour
 {
-    AudioSource sound;
+
     float ResetTimer = 3f;
 
     void Start()
     {
-        sound = GetComponent<AudioSource>();
-        sound.Play();
     }
 
     void Update()
