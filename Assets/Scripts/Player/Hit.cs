@@ -7,7 +7,7 @@ public class Hit : PlayerState
     const float POKETIMER = 1.6f;
     const float SPINTIMER = 1f;
     const float SLASHTIMER = 0.5f;
-    const float CHARGETIMER = 0.5f;  // 0.4f
+    const float CHARGETIMER = 0.5f; 
     float charge = 0f;
     float spinTime = 0.5f;
     float attackTime = 0f;
@@ -20,6 +20,7 @@ public class Hit : PlayerState
     bool canPoke = true;
     bool poking = false;
     bool slashing  = false;
+    bool slashed = false;
 
     // Slash :  initial swing
     // then he starts charging up
@@ -28,10 +29,6 @@ public class Hit : PlayerState
 
     ////////////////////////////// UTILITIES /////////////////////////////////
     void beginHit() {
-        // not sure how animation controller works, but hopefully setting these once at the 
-        // beginning of the hit will keep link facing the same direction, but let him move?
-        //linkAnimator.SetFloat("AnimMoveX", Input.GetAxis("Horizontal"));
-        //linkAnimator.SetFloat("AnimMoveY", Input.GetAxis("Vertical"));
 
         sound.clip = slash;
         sound.Play();
@@ -43,7 +40,7 @@ public class Hit : PlayerState
     }
 
     public override void Reset() {
-        spinning = poking = false;
+        spinning = poking = slashing = false;
         charge = attackTime = 0f;
         firstFrame = true;
         moveSpeed = 5f;
@@ -60,31 +57,28 @@ public class Hit : PlayerState
         attackTime += Time.deltaTime;
         if (firstFrame) beginHit();
         if (!slashing) Move();
-        // SLASHTIMER = 0.8f;
+        
         if (attackTime < SLASHTIMER) {
             slashing = true;
             moveSpeed = 5f;
-        } else /*if (attackTime > SLASHTIMER)*/ {
+        } else {
             slashing = false;
             poking = true;
             if (Input.GetKey(KeyCode.X)){
               charge += Time.deltaTime;
             } 
         } 
-        if (attackTime >= SPINTIMER) {
-            if (Input.GetKeyUp(KeyCode.X)){
-                if (charge >= CHARGETIMER){
-                    spinning = true;
-                    poking = false;
-                    slashing = false;
-                } 
-            }
-        } else/* if(attackTime < SPINTIMER)*/{
-            if(Input.GetKeyUp(KeyCode.X)){
-                Reset();
+        
+        if (Input.GetKeyUp(KeyCode.X)) {
+            if (attackTime >= SPINTIMER && charge >= CHARGETIMER) {
+                spinning = true;
+                poking = false;
                 slashing = false;
-            }
+            } 
+            else { Reset(); }
+            //
         }
+
         if (slashing) Slash();
         if (poking)   Poke();
         if (spinning) Spin();
@@ -124,7 +118,6 @@ public class Hit : PlayerState
             hHit.collider.GetComponent<Enemy>().SwordHit();
         }
         moveSpeed = 0f;
-        attackTime += Time.deltaTime;
     }
 
     

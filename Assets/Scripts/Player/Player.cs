@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+// Put this on Link. 
 public class Player : MonoBehaviour
 {
     ////////// PLAYER STATES //////////
@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     bool knockback;
     bool canKnockback = true;
     bool isKnockback;
+    bool alive = true;
 
     public enum Direction {
         Up,
@@ -35,7 +36,6 @@ public class Player : MonoBehaviour
 
     CameraMovement cam;
     public PlayerState currentState;
-    //PlayerState PlayerStateScript;
     bool moving; // True whenever movement keys are pressed
 
     public int keys;
@@ -88,9 +88,9 @@ public class Player : MonoBehaviour
                 currentState = jump;
             } else if (Input.GetKeyDown(KeyCode.Z)) {     // SHIELD
                 currentState = shield;
-            } else if (moving && !oldState.isAction) { // WALK
+            } else if (moving && !oldState.isAction) {    // WALK
                 currentState = walk;
-            } else if (!moving && !oldState.isAction) { // IDLE
+            } else if (!moving && !oldState.isAction) {   // IDLE
                 currentState = idle;
             }
             if (currentState == walk && currentState.CheckPush()) {
@@ -104,13 +104,11 @@ public class Player : MonoBehaviour
         
         if (moving) { currentState.linkAnimator.SetBool("walking", true); }
                else { currentState.linkAnimator.SetBool("walking", false); }
-
-        // currentState.Turn(); 
         
         if(isKnockback){
                 knockbackTime -= Time.deltaTime;
             }
-            Debug.Log(knockbackTime);
+            //Debug.Log(knockbackTime);
             if(knockbackTime <= 0){
                 knockbackTime = 1f;
                 GetComponent<Animator>().SetBool("gothit",false);
@@ -134,6 +132,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D activator){
         if(activator.tag == "Enemy"){
+            Debug.Log("Enemy Hit");
             knockback = true;
             health -= 0.5f;
             if(health > 0){
@@ -150,14 +149,9 @@ public class Player : MonoBehaviour
             }
         }
     }
-        public void Knockback(){
-           
-            
-        }
+    public void Knockback(){ }
          
-    void die(){
-
-    }
+    void Die(){ }
     void UpdateDirection() 
     {
         // move check if currentState is hit in here 
@@ -183,7 +177,6 @@ public class Player : MonoBehaviour
     // Rounds player's position onto the nearest tile.
     void QuantizePosition() 
     {
-
         float x = Mathf.Round(transform.position.x * 8) / 8;
         float y = Mathf.Round(transform.position.y * 8) / 8;
         this.transform.position = new Vector3 (x, y, 0f);
@@ -191,13 +184,11 @@ public class Player : MonoBehaviour
 
     void SwitchRoom(float old_x, float old_y)
     {
-        if(Mathf.Abs(transform.position.x % 20) == 10f)
-        {
+        if(Mathf.Abs(transform.position.x % 20) == 10f) {
             if(old_x < transform.position.x) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Right));
             else StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Left));
         }
-        if(Mathf.Abs(transform.position.y % 16) == 9f)
-        {
+        if(Mathf.Abs(transform.position.y % 16) == 9f) {
             if(old_y < transform.position.y) StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Up));
             else StartCoroutine(cam.MoveCamera(CameraMovement.Direction.Down));
         }
@@ -212,9 +203,15 @@ public class Player : MonoBehaviour
 ////////////////////////////// GETTERS AND SETTERS //////////////////////////////
     public void SetIdle() => currentState = idle;
 
+    // sets state to fall
     public void Fall()
     {
     	Debug.Log("falling");
         currentState = fall;
+    }
+
+    public int GetHealth() {
+        Debug.Log(health);
+        return (int)(health / 0.5);
     }
 }
