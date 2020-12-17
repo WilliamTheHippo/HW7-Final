@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
+  crystal: 0
   deathAnimation: {fileID: 0}
   fallSprite: {fileID: 0}
   hitSound: {fileID: 0}

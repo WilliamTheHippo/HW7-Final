@@ -8,8 +8,8 @@ public class Stalfos : Enemy
 
     void Start()
     {
-    	hp = 5;
-        SetupEnemy();
+        
+        hp = 5;
         sound = GetComponent<AudioSource>();
         knockbackDuration = 1f / Time.deltaTime;
         knockbackSpeed = 6f;
@@ -17,7 +17,12 @@ public class Stalfos : Enemy
         
         AssignRoom();
 
-        DeathScale = new Vector3(1f,1f,1f); //scale for the explosion
+        DeathScale = new Vector3(1f,1f,1f); //scale for the explosion'
+
+        xSpeed = 1.5f * Time.deltaTime * 1f;
+        ySpeed = 1.5f * Time.deltaTime * 1f;
+
+        SetupEnemy();
 
 
     }

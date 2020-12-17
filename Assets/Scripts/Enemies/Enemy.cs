@@ -72,7 +72,7 @@ public abstract class Enemy : MonoBehaviour
         alreadyHitting = false;
 
         AssignRoom();
-        RandomizeDirection();
+        //RandomizeDirection();
     }
 
     public virtual void SwordHit() 
