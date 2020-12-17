@@ -51,6 +51,7 @@ public abstract class Enemy : MonoBehaviour
         {
             room.x = transform.parent.GetComponent<Room>().coords.x;
             room.y = transform.parent.GetComponent<Room>().coords.y;
+            
         }
     }
 
