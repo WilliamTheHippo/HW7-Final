@@ -114,10 +114,10 @@ public abstract class Enemy : MonoBehaviour
         Vector3 followVector = playerVector - transform.position;
         float truncatedX = followVector.x;
         float truncatedY = followVector.y;
-        if(CheckHoles(Direction.Up) && truncatedY > 0f) truncatedY = 0f;
-        if(CheckHoles(Direction.Down) && truncatedY < 0f) truncatedY = 0f;
-        if(CheckHoles(Direction.Left) && truncatedX < 0f) truncatedX = 0f;
-        if(CheckHoles(Direction.Right) && truncatedX > 0f) truncatedX = 0f;
+        if(CheckHoles(Direction.Up,1f) && truncatedY > 0f) truncatedY = 0f;
+        if(CheckHoles(Direction.Down,1f) && truncatedY < 0f) truncatedY = 0f;
+        if(CheckHoles(Direction.Left,1f) && truncatedX < 0f) truncatedX = 0f;
+        if(CheckHoles(Direction.Right,1f) && truncatedX > 0f) truncatedX = 0f;
         Vector3 truncated = new Vector3(truncatedX, truncatedY, 0f);
         transform.position += truncated.normalized * Time.deltaTime * 2;
         Debug.DrawLine (transform.position, playerVector, Color.yellow);

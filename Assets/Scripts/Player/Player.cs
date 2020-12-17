@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     Jump jump;
     Push push;
     float health = 3;
-    float knockbackTime = 1f;
+    float knockbackTime = 0.3f;
     bool knockback;
     bool canKnockback = true;
     bool isKnockback;
@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
             }
             //Debug.Log(knockbackTime);
             if(knockbackTime <= 0){
-                knockbackTime = 1f;
+                knockbackTime = 0.5f;
                 GetComponent<Animator>().SetBool("gothit",false);
                 GetComponent<Rigidbody2D>().velocity = Vector3.zero;
                 isKnockback = false;
@@ -156,7 +156,7 @@ public class Player : MonoBehaviour
                     transform.position.x - activator.transform.position.x,
                     transform.position.y - activator.transform.position.y);
                     fromMonsterToPlayer.Normalize();
-                    GetComponent<Rigidbody2D>().velocity = fromMonsterToPlayer*2;
+                    GetComponent<Rigidbody2D>().velocity = fromMonsterToPlayer*5; 
                     isKnockback = true;
                 }
             }
