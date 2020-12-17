@@ -1602,6 +1602,11 @@ PrefabInstance:
       propertyPath: linkAnimator
       value: 
       objectReference: {fileID: 101482501}
+    - target: {fileID: 1449034564073603127, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
+        type: 3}
+      propertyPath: moneyCounter
+      value: 
+      objectReference: {fileID: 1704930742}
     - target: {fileID: 2983983166857302477, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
         type: 3}
       propertyPath: m_audioClip
