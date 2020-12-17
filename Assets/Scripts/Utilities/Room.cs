@@ -10,6 +10,8 @@ public class Room : MonoBehaviour
 	public List<Door> doors;
 	public List<Conditional> conditionals;
 	public Switch t_switch;
+	public Music music;
+	public bool changesMusic; //janky, usually dependent on items, but no time
 	List<Enemy> enemies;
 
 	bool unvisited;
@@ -26,6 +28,7 @@ public class Room : MonoBehaviour
 	{
 		if(!unvisited) return;
 		unvisited = false;
+		if(changesMusic && music != null) music.Switch();
 		if(selfSealing) StartCoroutine("Doors");
 		foreach(Conditional c in conditionals)
 		{

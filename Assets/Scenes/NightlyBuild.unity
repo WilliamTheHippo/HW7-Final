@@ -484,6 +484,8 @@ MonoBehaviour:
   doors: []
   conditionals: []
   t_switch: {fileID: 0}
+  music: {fileID: 0}
+  changesMusic: 0
 --- !u!1001 &99465675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -731,6 +733,8 @@ MonoBehaviour:
   doors: []
   conditionals: []
   t_switch: {fileID: 0}
+  music: {fileID: 0}
+  changesMusic: 0
 --- !u!4 &155656655
 Transform:
   m_ObjectHideFlags: 0
@@ -1068,6 +1072,8 @@ MonoBehaviour:
   doors: []
   conditionals: []
   t_switch: {fileID: 0}
+  music: {fileID: 0}
+  changesMusic: 0
 --- !u!1 &339289793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,6 +1126,8 @@ MonoBehaviour:
   doors: []
   conditionals: []
   t_switch: {fileID: 0}
+  music: {fileID: 0}
+  changesMusic: 0
 --- !u!1 &395743887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,6 +1345,8 @@ MonoBehaviour:
   doors: []
   conditionals: []
   t_switch: {fileID: 0}
+  music: {fileID: 0}
+  changesMusic: 0
 --- !u!1 &436716940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,6 +1515,8 @@ MonoBehaviour:
   doors: []
   conditionals: []
   t_switch: {fileID: 0}
+  music: {fileID: 0}
+  changesMusic: 0
 --- !u!1001 &562704839
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2013,7 +2025,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -8173,6 +8185,8 @@ MonoBehaviour:
   conditionals:
   - {fileID: 980218435}
   t_switch: {fileID: 0}
+  music: {fileID: 0}
+  changesMusic: 0
 --- !u!1001 &802738880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8452,6 +8466,8 @@ MonoBehaviour:
   doors: []
   conditionals: []
   t_switch: {fileID: 0}
+  music: {fileID: 0}
+  changesMusic: 0
 --- !u!1001 &882316565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8891,6 +8907,8 @@ MonoBehaviour:
   doors: []
   conditionals: []
   t_switch: {fileID: 0}
+  music: {fileID: 0}
+  changesMusic: 0
 --- !u!114 &980218435 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6269466205032404980, guid: e26652454ffdc42999550bcf21e7e49f,
@@ -43613,6 +43631,8 @@ MonoBehaviour:
   - {fileID: 1226831578}
   conditionals: []
   t_switch: {fileID: 0}
+  music: {fileID: 0}
+  changesMusic: 0
 --- !u!1001 &1078245383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43854,6 +43874,8 @@ MonoBehaviour:
   doors: []
   conditionals: []
   t_switch: {fileID: 0}
+  music: {fileID: 624860676}
+  changesMusic: 1
 --- !u!1 &1195970318
 GameObject:
   m_ObjectHideFlags: 0
@@ -43907,6 +43929,8 @@ MonoBehaviour:
   doors: []
   conditionals: []
   t_switch: {fileID: 0}
+  music: {fileID: 0}
+  changesMusic: 0
 --- !u!1 &1205343943
 GameObject:
   m_ObjectHideFlags: 0
@@ -82986,6 +83010,8 @@ MonoBehaviour:
   conditionals:
   - {fileID: 1314093392}
   t_switch: {fileID: 0}
+  music: {fileID: 0}
+  changesMusic: 0
 --- !u!4 &1671292605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7962415569471306460, guid: 8f219b87538c89c41b29c68db53553b6,
@@ -83701,6 +83727,8 @@ MonoBehaviour:
   doors: []
   conditionals: []
   t_switch: {fileID: 0}
+  music: {fileID: 0}
+  changesMusic: 0
 --- !u!1001 &1989211784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -83832,6 +83860,8 @@ MonoBehaviour:
   conditionals:
   - {fileID: 696219017}
   t_switch: {fileID: 1360873180}
+  music: {fileID: 0}
+  changesMusic: 0
 --- !u!1 &2059672877
 GameObject:
   m_ObjectHideFlags: 0
