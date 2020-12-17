@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public GameObject fallPrefab;
     public GameObject diePrefab;
 	float ResetTimer = 3f;
+    float checkForFall = 1f;
 
     public enum Direction {
         Up,
@@ -237,14 +238,54 @@ public class Player : MonoBehaviour
         if(fallingFirstFrame){
 			linkAnimator.enabled = false;
             if(numberOfFallingsLinks == 0){
-                if(currentDirection == Direction.Up){
-                    Instantiate(fallPrefab, transform.position += new Vector3(0f,1.5f,0f) , Quaternion.identity);
-                } else if(currentDirection == Direction.Right){
-                    Instantiate(fallPrefab, transform.position += new Vector3(1.5f,0f,0f) , Quaternion.identity);
-                }else if (currentDirection == Direction.Down){
-                    Instantiate(fallPrefab, transform.position+= new Vector3(0f,-1.5f,0f) , Quaternion.identity);
-                }else if (currentDirection == Direction.Left){
-                    Instantiate(fallPrefab, transform.position+= new Vector3(-1.5f,0f,0f) , Quaternion.identity);
+                Ray2D upRay = new Ray2D(transform.position, transform.up);
+                Ray2D upRightRay = new Ray2D(transform.position, transform.up + transform.right);
+                Ray2D RightRay = new Ray2D(transform.position, transform.right);
+                Ray2D downRightRay = new Ray2D(transform.position, -transform.up + transform.right);
+                Ray2D downRay = new Ray2D(transform.position, -transform.up);
+                Ray2D downLeftRay = new Ray2D(transform.position, -transform.up - transform.right);
+                Ray2D leftRay = new Ray2D(transform.position, -transform.right);
+                Ray2D upLeftRay = new Ray2D(transform.position, -transform.right + transform.up);
+                RaycastHit2D upHit = Physics2D.Raycast(upRay.origin, upRay.direction, checkForFall);
+                RaycastHit2D upRightHit = Physics2D.Raycast(upRightRay.origin, upRightRay.direction, checkForFall);
+                RaycastHit2D RightHit = Physics2D.Raycast(RightRay.origin, RightRay.direction, checkForFall);
+                RaycastHit2D downRightHit = Physics2D.Raycast(downRightRay.origin, downRightRay.direction, checkForFall);
+                RaycastHit2D downHit = Physics2D.Raycast(downRay.origin, downRay.direction, checkForFall);
+                RaycastHit2D downLeftHit = Physics2D.Raycast(downLeftRay.origin, downLeftRay.direction, checkForFall);
+                RaycastHit2D leftHit = Physics2D.Raycast(leftRay.origin, leftRay.direction, checkForFall);
+                RaycastHit2D upLeftHit = Physics2D.Raycast(upLeftRay.origin, upLeftRay.direction, checkForFall);
+                Debug.DrawRay(upRay.origin, upRay.direction * checkForFall, Color.red);
+                Debug.DrawRay(upRightRay.origin, upRightRay.direction * checkForFall, Color.red);
+                Debug.DrawRay(RightRay.origin, RightRay.direction * checkForFall, Color.red);
+                Debug.DrawRay(downRightRay.origin, downRightRay.direction * checkForFall, Color.red);
+                Debug.DrawRay(downRay.origin, downRay.direction * checkForFall, Color.red);
+                Debug.DrawRay(downLeftRay.origin, downLeftRay.direction * checkForFall, Color.red);
+                Debug.DrawRay(leftRay.origin, leftRay.direction * checkForFall, Color.red);
+                Debug.DrawRay(upLeftRay.origin, upLeftRay.direction * checkForFall, Color.red);
+                if(upHit.collider != null && upHit.collider.tag == "Fall"){
+                    Instantiate(fallPrefab,transform.position + new Vector3 (0f,1.5f,0f), Quaternion.identity);
+                    Debug.Log("up");
+                } else if (upRightHit.collider != null && upRightHit.collider.tag == "Fall"){
+                    Instantiate(fallPrefab,transform.position+ new Vector3 (1.5f,1.5f,0f), Quaternion.identity);
+                    Debug.Log("upRight");
+                }else if (RightHit.collider != null && RightHit.collider.tag == "Fall"){
+                    Instantiate(fallPrefab,transform.position+ new Vector3 (1.5f,0f,0f), Quaternion.identity);
+                    Debug.Log("Right");
+                }else if (downRightHit.collider != null && downRightHit.collider.tag == "Fall"){
+                    Instantiate(fallPrefab,transform.position+ new Vector3 (1.5f,-1.5f,0f), Quaternion.identity);
+                    Debug.Log("downRight");
+                }else if (downLeftHit.collider != null && downLeftHit.collider.tag == "Fall"){
+                    Instantiate(fallPrefab,transform.position+ new Vector3 (-1.5f,-1.5f,0f), Quaternion.identity);
+                    Debug.Log("downLeft");
+                }else if (downHit.collider != null && downHit.collider.tag == "Fall"){
+                    Instantiate(fallPrefab,transform.position+ new Vector3 (0f,-1.5f,0f), Quaternion.identity);
+                    Debug.Log("down");
+                }else if (leftHit.collider != null && leftHit.collider.tag == "Fall"){
+                    Instantiate(fallPrefab,transform.position+ new Vector3 (-1.5f,0f,0f), Quaternion.identity);
+                    Debug.Log("left");
+                }else if (upLeftHit.collider != null && upLeftHit.collider.tag == "Fall"){
+                    Instantiate(fallPrefab,transform.position+ new Vector3 (-1.5f,1.5f,0f), Quaternion.identity);
+                    Debug.Log("upleft");
                 }
                 numberOfFallingsLinks +=1;
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
