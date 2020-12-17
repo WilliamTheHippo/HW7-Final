@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D activator){
-        if(activator.tag == "Enemy"){
+        if(activator.tag == "Enemy" && !activator.GetComponent<Enemy>().crystal){
             Debug.Log("Enemy Hit");
             knockback = true;
             health -= 0.5f;

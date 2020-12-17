@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {    
     public int hp = 1;
+    public bool crystal = false; //hacky hacky
     protected Player player;
     protected Transform playerTransform;
     protected bool following;

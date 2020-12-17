@@ -82241,11 +82241,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crystal (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 8986982942786861298, guid: 4b760b9be951c45ebb128fffd33b9365,
-        type: 3}
-      propertyPath: m_TagString
-      value: Crystal
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b760b9be951c45ebb128fffd33b9365, type: 3}
 --- !u!4 &1507841779 stripped
