@@ -63,6 +63,11 @@ public class Door : MonoBehaviour
 	public virtual IEnumerator Close()
 	{
 		if(!open) yield break;
+		Player p = GameObject.FindWithTag("Player").GetComponent<Player>();
+		if(p.currentDirection == Player.Direction.Up) p.transform.position += new Vector3(0f,2f,0f);
+		if(p.currentDirection == Player.Direction.Down) p.transform.position += new Vector3(0f,-2f,0f);
+		if(p.currentDirection == Player.Direction.Left) p.transform.position += new Vector3(-2f,0f,0f);
+		if(p.currentDirection == Player.Direction.Right) p.transform.position += new Vector3(2f,0f,0f);
 		sound.clip = closeSound;
 		sound.Play();
 		r.enabled = true;
