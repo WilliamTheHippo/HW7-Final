@@ -49,7 +49,7 @@ public abstract class PlayerState : ScriptableObject
             pushCheckRay = new Ray2D (playerTransform.position, GetVDirection());
         } else { 
             pushCheckRay = new Ray2D (playerTransform.position, GetHDirection());
-            Debug.Log(linkAnimator.GetFloat("AnimMoveY"));
+            //Debug.Log(linkAnimator.GetFloat("AnimMoveY"));
             //Debug.Log(Input.GetAxis("Horizontal"));
         }
         Debug.DrawRay(pushCheckRay.origin, pushCheckRay.direction * pushRayLength, Color.blue);
