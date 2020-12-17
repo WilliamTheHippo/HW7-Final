@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
     public int keys;
 
     AudioSource sound;
-    public AudioClip itemPickup, slash;
+    public AudioClip itemPickup, slash, fallSound;
     public Animator linkAnimator;
     void Start()
     {

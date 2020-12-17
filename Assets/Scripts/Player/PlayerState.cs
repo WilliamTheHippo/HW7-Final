@@ -52,7 +52,7 @@ public abstract class PlayerState : ScriptableObject
             Debug.Log(linkAnimator.GetFloat("AnimMoveY"));
             //Debug.Log(Input.GetAxis("Horizontal"));
         }
-        Debug.DrawRay(pushCheckRay.origin, pushCheckRay.direction * pushRayLength, Color.green);
+        Debug.DrawRay(pushCheckRay.origin, pushCheckRay.direction * pushRayLength, Color.blue);
         RaycastHit2D pushRayHit = Physics2D.Raycast(
             pushCheckRay.origin, 
             pushCheckRay.direction, 
