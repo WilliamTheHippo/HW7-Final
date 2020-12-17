@@ -160,6 +160,7 @@ public class Player : MonoBehaviour
                     isKnockback = true;
                 }
             }
+            else Fall(); //TODO replace with appropriate anim
         } else if (activator.tag == "Fall"){
             Fall();
         }
