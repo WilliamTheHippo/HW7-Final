@@ -97,14 +97,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
+  crystal: 0
   deathAnimation: {fileID: 9178090810995816017, guid: 64bdf02d25708d4418516e67294ef2ea,
     type: 3}
   fallSprite: {fileID: 21300000, guid: 4e9319b50a81b4eca90ffe4f5337a675, type: 3}
-  Lives: 0
-  Hit: 0
-  KnockbackDirection: {x: 0, y: 0, z: 0}
-  Player: {fileID: 0}
-  KnockbackSpeed: 5
+  hitSound: {fileID: 8300000, guid: f4d7f6467ac604579a03431c159329df, type: 3}
+  dieSound: {fileID: 8300000, guid: 67670539f25974147afd3cf876487782, type: 3}
+  fallSound: {fileID: 8300000, guid: adea0ea1059304d809d3e46bf5416a03, type: 3}
 --- !u!50 &597888014926003359
 Rigidbody2D:
   serializedVersion: 4

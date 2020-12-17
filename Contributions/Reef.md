@@ -5,6 +5,6 @@ The biggest technical challenge was definately managing the link's attack functi
 
 The biggest asset contribution i have is the player sprite and animation. I broke down each of links frames, frame by frame by taking screenshots of link in an emulator running at 1 frame per second to make sure that each animation frame was accounted for to ensure that link looked like he was smooth in his transitions. However, i found that this was an ongoing thing because as things and new features would be implemented, i would discover new sprite needs and so this document was constantly updated.
 
-![Sprite Sheet](Contributions/sprite_sheet.png)
+![Sprite Sheet](img/sprite_sheet.png)
 
-The largest code feature that i wrote was the players movement/shield/jump/attack/fall. these scripts allow link to do his actions in the game such as combat, and room navigation. After the re-factor, these were split into different CS files and were made to talk to each other so they all knew which state link was in. All these are under [the Player script](Assets/Scripts/Player/Player.cs).
+The largest code feature that i wrote was the players movement/shield/jump/attack/fall. these scripts allow link to do his actions in the game such as combat, and room navigation. After the re-factor, these were split into different CS files and were made to talk to each other so they all knew which state link was in. All these are under [the Player script](../Assets/Scripts/Player/Player.cs).
