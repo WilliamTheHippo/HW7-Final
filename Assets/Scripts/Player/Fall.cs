@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-public class Fall : PlayerState 
+public class Fall : MonoBehaviour
 {
-	public override void UpdateOnActive()
-	{
-		if(firstFrame)
-		{
-			linkAnimator.enabled = false;
-			//new anim
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-		}
-	}
+    AudioSource sound;
+    float ResetTimer = 0.8f;
+
+    void Start()
+    {
+        sound = GetComponent<AudioSource>();
+        sound.Play();
+    }
+
+    void Update()
+    {   
+        ResetTimer -= Time.deltaTime;
+        Debug.Log(ResetTimer);
+        if(ResetTimer <= 0f){
+             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+             Debug.Log("Scene Reset");
+        }
+    }
 }

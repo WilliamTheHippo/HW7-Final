@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Push : PlayerState
 {
-    // This is a constructor that passes through the Player Transform component so the 
-    // states can use it.
-    //public Push(Player p) => GrabComponents();
+    Player.Direction pushDirection;
 
     void BeginPush()
     {
         firstFrame = false;
+        pushDirection = direction;
     }
 
     public override void UpdateOnActive() 
     {
         if (firstFrame) BeginPush();
+        if (direction != pushDirection) player.SetIdle();
     }
 }
