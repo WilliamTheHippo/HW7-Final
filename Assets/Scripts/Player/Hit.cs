@@ -13,7 +13,7 @@ public class Hit : PlayerState
     float spinTime = 0f;
     float attackTime = 0f;
     float pokeOffset = 0.4f;
-    float swordRayLength = 1.8f;
+    float swordRayLength = 2.5f;
     float swordSpinRayLength = 2.5f;
     Vector3 vDirection;
     Vector3 hDirection;
@@ -132,13 +132,16 @@ public class Hit : PlayerState
         Debug.DrawRay(hRay.origin, hRay.direction * swordRayLength, Color.green);
 
         RaycastHit2D vHit = Physics2D.Raycast(vRay.origin, vRay.direction, swordRayLength);
+        RaycastHit2D dHit = Physics2D.Raycast(dRay.origin, dRay.direction, swordRayLength);
         RaycastHit2D hHit = Physics2D.Raycast(hRay.origin, hRay.direction, swordRayLength);
 
         // Check collision––if Link hit an enemy, run that enemy's SwordHit(). 
         if (vHit.collider != null && vHit.collider.tag == "Enemy"){
             vHit.collider.GetComponent<Enemy>().SwordHit();
         }
-
+        if(dHit.collider != null && dHit.collider.tag == "Enemy"){
+            dHit.collider.GetComponent<Enemy>().SwordHit();
+        }
         if (hHit.collider != null && hHit.collider.tag == "Enemy"){
             hHit.collider.GetComponent<Enemy>().SwordHit();
         }
