@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class PlayerState : ScriptableObject
 {
     protected Player player;
-    protected float moveSpeed = 5f;
+    protected float moveSpeed = 7f;
     protected Player.Direction direction; // WHICH WAY LINK IS FACING
 
     protected bool firstFrame = true; // BOOLEAN FLAG FOR Start() FUNCTIONALITY
@@ -37,8 +37,10 @@ public abstract class PlayerState : ScriptableObject
         sound = player.GetComponent<AudioSource>();
     }
 
-    public bool CheckPush () {
+    public bool CheckPush () 
+    {
     // Runs when an arrow key is pressed to check whether Link should be pushing or walking
+        Debug.Log("CHECK PUSH");
 
         bool pushing = false;
         float pushRayLength = 1f;

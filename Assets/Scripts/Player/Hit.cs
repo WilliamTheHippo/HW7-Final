@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Hit : PlayerState
 {
-    const float POKETIMER = 1.6f;
-    const float SPINTIMER = 1f;
-    const float SLASHTIMER = 0.5f;
-    const float CHARGETIMER = 0.5f;  // 0.4f
+    const float POKETIMER = 1.25f;
+    const float SPINTIMER = 0.5f;
+    const float SLASHTIMER = 0.25f;
+    const float CHARGETIMER = 0.5f; 
+    const float SPINDURATION = 0.25f;
     float charge = 0f;
-    float spinTime = 0.5f;
+    float spinTime = 0f;
     float attackTime = 0f;
     float pokeOffset = 0.4f;
     float swordRayLength = 1.8f;
@@ -20,6 +21,15 @@ public class Hit : PlayerState
     bool canPoke = true;
     bool poking = false;
     bool slashing  = false;
+    bool slashed = false;
+
+    enum HitState {
+        Slash,
+        Poke,
+        Spin, 
+        Bye
+    }
+    HitState currentHitState = HitState.Slash;
 
     // Slash :  initial swing
     // then he starts charging up
@@ -27,27 +37,24 @@ public class Hit : PlayerState
     // otherwise he returns to idle
 
     ////////////////////////////// UTILITIES /////////////////////////////////
-    void beginHit() {
-        // not sure how animation controller works, but hopefully setting these once at the 
-        // beginning of the hit will keep link facing the same direction, but let him move?
-        //linkAnimator.SetFloat("AnimMoveX", Input.GetAxis("Horizontal"));
-        //linkAnimator.SetFloat("AnimMoveY", Input.GetAxis("Vertical"));
-
+    void BeginHit() 
+    {
+        currentHitState = HitState.Slash;
         sound.clip = player.slash;
         sound.Play();
 
         firstFrame = false;
         canInterrupt = false;
         isAction = true;
-
     }
 
-    public override void Reset() {
-        spinning = poking = false;
-        charge = attackTime = 0f;
+    public override void Reset() 
+    {
+        spinning = poking = slashing = false;
+        currentHitState = HitState.Bye;
+        charge = attackTime = spinTime = 0f;
         firstFrame = true;
-        moveSpeed = 5f;
-        spinTime = 0.5f;
+        moveSpeed = 7f;
 
         player.SetIdle();
         // When the state is Hit, Player doesn't switch states in FixedUpdate() automatically so 
@@ -58,33 +65,45 @@ public class Hit : PlayerState
     public override void UpdateOnActive()
     {
         attackTime += Time.deltaTime;
-        if (firstFrame) beginHit();
-        if (!slashing) Move();
-        // SLASHTIMER = 0.8f;
-        if (attackTime < SLASHTIMER) {
-            slashing = true;
-            moveSpeed = 5f;
-        } else /*if (attackTime > SLASHTIMER)*/ {
-            slashing = false;
-            poking = true;
-            if (Input.GetKey(KeyCode.X)){
-              charge += Time.deltaTime;
-            } 
-        } 
-        if (attackTime >= SPINTIMER) {
-            if (Input.GetKeyUp(KeyCode.X)){
-                if (charge >= CHARGETIMER){
-                    spinning = true;
-                    poking = false;
-                    slashing = false;
+        if (firstFrame) BeginHit();
+
+        switch (currentHitState) {
+            case (HitState.Slash):
+                moveSpeed = 5f;
+                slashing = true;
+                if (attackTime > SLASHTIMER) {
+                    currentHitState = HitState.Poke;
                 } 
-            }
-        } else/* if(attackTime < SPINTIMER)*/{
-            if(Input.GetKeyUp(KeyCode.X)){
-                Reset();
+            break;
+
+            case (HitState.Poke):
                 slashing = false;
-            }
+                poking = true;
+                Move();
+                if (attackTime >= SPINTIMER && charge >= CHARGETIMER && Input.GetKeyUp(KeyCode.X)) {
+                    linkAnimator.Play("spinning");
+                    currentHitState = HitState.Spin;
+                    //;
+                } 
+                else if (!Input.GetKey(KeyCode.X)) {
+                    Reset();
+                } else {
+                    charge += Time.deltaTime;
+                }
+            break;
+
+            case (HitState.Spin):
+                poking = false;
+                spinning = true;
+                spinTime += Time.deltaTime;
+                if (spinTime > SPINDURATION) Reset();
+            break;
+
+            default:
+                Reset();
+            break;
         }
+
         if (slashing) Slash();
         if (poking)   Poke();
         if (spinning) Spin();
@@ -124,10 +143,9 @@ public class Hit : PlayerState
             hHit.collider.GetComponent<Enemy>().SwordHit();
         }
         moveSpeed = 0f;
-        attackTime += Time.deltaTime;
     }
 
-    
+    // The charge
     void Poke() 
     {
         Ray2D pokeRay;
@@ -153,10 +171,13 @@ public class Hit : PlayerState
         if (pokeRayHit.collider != null && pokeRayHit.collider.tag == "Enemy") SwordKnockback();
     }
 
+    // The spin attack
     void Spin()
     {   
         Vector3 vDirection = GetVDirection(); 
         Vector3 hDirection = GetHDirection();
+
+        spinning = true;
 
         Ray2D upRay = new Ray2D(playerTransform.position, vDirection);
         Ray2D upRightRay = new Ray2D(playerTransform.position, vDirection + hDirection);
@@ -182,9 +203,8 @@ public class Hit : PlayerState
         Debug.DrawRay(downLeftRay.origin, downLeftRay.direction * swordSpinRayLength, Color.red);
         Debug.DrawRay(leftRay.origin, leftRay.direction * swordSpinRayLength, Color.red);
         Debug.DrawRay(upLeftRay.origin, upLeftRay.direction * swordSpinRayLength, Color.red);
-        spinTime -= Time.deltaTime;
         Debug.Log("yo");
-        if (upHit.collider != null && upHit.collider.tag == "Enemy"){
+        if (upHit.collider != null && upHit.collider.tag == "Enemy") {
             upHit.collider.GetComponent<Enemy>().SwordHit();
         }
         if (upRightHit.collider != null && upRightHit.collider.tag == "Enemy"){
@@ -205,16 +225,9 @@ public class Hit : PlayerState
         if (leftHit.collider != null && leftHit.collider.tag == "Enemy"){
             upHit.collider.GetComponent<Enemy>().SwordHit();
         }
-
-        if (upLeftHit.collider != null && upLeftHit.collider.tag == "Enemy"){
+        if (upLeftHit.collider != null && upLeftHit.collider.tag == "Enemy") 
             upLeftHit.collider.GetComponent<Enemy>().SwordHit();
-        }
 
-
-
-        if(spinTime< 0){
-            Reset();
-        }
     }
 
     void SwordKnockback() 
