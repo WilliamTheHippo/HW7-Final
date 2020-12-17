@@ -37,8 +37,10 @@ public abstract class PlayerState : ScriptableObject
         sound = player.GetComponent<AudioSource>();
     }
 
-    public bool CheckPush () {
+    public bool CheckPush () 
+    {
     // Runs when an arrow key is pressed to check whether Link should be pushing or walking
+        Debug.Log("CHECK PUSH");
 
         bool pushing = false;
         float pushRayLength = 1f;

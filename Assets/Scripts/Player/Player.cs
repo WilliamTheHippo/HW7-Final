@@ -96,11 +96,10 @@ public class Player : MonoBehaviour
             } else if (!moving && !oldState.isAction) {   // IDLE
                 currentState = idle;
             }
+            currentState.SetDirection(currentDirection);
             if (currentState == walk && currentState.CheckPush()) {
                 currentState = push;                      // PUSH
                  }
-
-
             currentState.SetDirection(currentDirection);
             if (currentState != oldState) oldState.Reset();
         }

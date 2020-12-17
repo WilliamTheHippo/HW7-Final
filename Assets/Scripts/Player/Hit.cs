@@ -37,7 +37,7 @@ public class Hit : PlayerState
     // otherwise he returns to idle
 
     ////////////////////////////// UTILITIES /////////////////////////////////
-    void beginHit() 
+    void BeginHit() 
     {
         currentHitState = HitState.Slash;
         sound.clip = player.slash;
@@ -50,7 +50,6 @@ public class Hit : PlayerState
 
     public override void Reset() 
     {
-        Debug.Log("RESET HIT");
         spinning = poking = slashing = false;
         currentHitState = HitState.Bye;
         charge = attackTime = spinTime = 0f;
@@ -66,93 +65,44 @@ public class Hit : PlayerState
     public override void UpdateOnActive()
     {
         attackTime += Time.deltaTime;
-        if (firstFrame) beginHit();
+        if (firstFrame) BeginHit();
 
         switch (currentHitState) {
             case (HitState.Slash):
                 moveSpeed = 5f;
                 slashing = true;
                 if (attackTime > SLASHTIMER) {
-                    Debug.Log("START POKE");
                     currentHitState = HitState.Poke;
                 } 
             break;
+
             case (HitState.Poke):
                 slashing = false;
                 poking = true;
                 Move();
                 if (attackTime >= SPINTIMER && charge >= CHARGETIMER && Input.GetKeyUp(KeyCode.X)) {
-                    Debug.Log("START SPIN");
                     linkAnimator.Play("spinning");
                     currentHitState = HitState.Spin;
                     //;
                 } 
                 else if (!Input.GetKey(KeyCode.X)) {
-                    Debug.Log("BUTTON RELEASED");
                     Reset();
                 } else {
                     charge += Time.deltaTime;
                 }
             break;
-            case (HitState.Spin):
-                
-                //myAnimatorController.Play(mySelectedIndex);
 
-                Debug.Log("SPIN");
+            case (HitState.Spin):
                 poking = false;
                 spinning = true;
                 spinTime += Time.deltaTime;
                 if (spinTime > SPINDURATION) Reset();
             break;
+
             default:
                 Reset();
             break;
         }
-        // if (!slashing) Move();
-        
-        
-        /*
-        
-        
-        if (attackTime < SLASHTIMER) {
-            slashing = true;
-            moveSpeed = 5f;
-        } else {
-            slashing = false;
-            poking = true;
-            if (Input.GetKey(KeyCode.X)){
-                charge += Time.deltaTime;
-            } else if (attackTime >= SPINTIMER && charge >= CHARGETIMER) {
-                Debug.Log("SPIN");
-                spinning = true;
-                poking = false;
-                slashing = false;
-            } else if (poking) { 
-                Debug.Log("DO NOT SPIN " + attackTime + " " + charge);
-                Reset(); 
-            }
-        } 
-
-        if (Input.GetKeyUp(KeyCode.X) && !slashing && !spinning) Reset();
-        /* if (Input.GetKeyUp(KeyCode.X)) {
-            if (attackTime >= SPINTIMER && charge >= CHARGETIMER) {
-                spinning = true;
-                poking = false;
-                slashing = false;
-            } 
-            else  { Reset(); }
-        }*/
-
-        /*
-        if (!Input.GetKey(KeyCode.X)) {
-            if (slashing) {
-                //
-            } else if (attackTime >= SPINTIMER && charge >= CHARGETIMER) {
-                
-            } else {
-                Reset();
-            }
-        }*/
 
         if (slashing) Slash();
         if (poking)   Poke();
@@ -195,7 +145,7 @@ public class Hit : PlayerState
         moveSpeed = 0f;
     }
 
-    
+    // The charge
     void Poke() 
     {
         Ray2D pokeRay;
@@ -221,6 +171,7 @@ public class Hit : PlayerState
         if (pokeRayHit.collider != null && pokeRayHit.collider.tag == "Enemy") SwordKnockback();
     }
 
+    // The spin attack
     void Spin()
     {   
         Vector3 vDirection = GetVDirection(); 
@@ -252,7 +203,6 @@ public class Hit : PlayerState
         Debug.DrawRay(downLeftRay.origin, downLeftRay.direction * swordSpinRayLength, Color.red);
         Debug.DrawRay(leftRay.origin, leftRay.direction * swordSpinRayLength, Color.red);
         Debug.DrawRay(upLeftRay.origin, upLeftRay.direction * swordSpinRayLength, Color.red);
-        //spinTime -= Time.deltaTime;
         Debug.Log("yo");
         if (upHit.collider != null && upHit.collider.tag == "Enemy") {
             upHit.collider.GetComponent<Enemy>().SwordHit();
@@ -278,7 +228,6 @@ public class Hit : PlayerState
         if (upLeftHit.collider != null && upLeftHit.collider.tag == "Enemy") 
             upLeftHit.collider.GetComponent<Enemy>().SwordHit();
 
-        //if(spinTime < 0) Reset();
     }
 
     void SwordKnockback() 
