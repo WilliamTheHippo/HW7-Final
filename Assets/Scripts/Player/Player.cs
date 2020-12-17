@@ -22,7 +22,9 @@ public class Player : MonoBehaviour
     bool alive = true;
     bool fallingFirstFrame = false;
     int numberOfFallingsLinks = 0;
+    int numberOfDyingLinks = 0;
     public GameObject fallPrefab;
+    public GameObject diePrefab;
 	float ResetTimer = 3f;
 
     public enum Direction {
@@ -114,7 +116,7 @@ public class Player : MonoBehaviour
         if(isKnockback){
                 knockbackTime -= Time.deltaTime;
             }
-            //Debug.Log(knockbackTime);
+
             if(knockbackTime <= 0){
                 knockbackTime = 0.5f;
                 GetComponent<Animator>().SetBool("gothit",false);
@@ -140,15 +142,16 @@ public class Player : MonoBehaviour
 
         QuantizePosition();
         SwitchRoom(old_x, old_y);
+        if(health <= 0){
+            Die();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D activator){
         if(activator.tag == "Enemy" && !activator.GetComponent<Enemy>().crystal){
-            Debug.Log("Enemy Hit");
             knockback = true;
-            health -= 0.5f;
-            Debug.Log(health);
             if(health > 0){
+                health -= 0.5f;
                 if(canKnockback && !isKnockback){
                     Knockback();
                     GetComponent<Animator>().SetBool("gothit",true);
@@ -160,14 +163,22 @@ public class Player : MonoBehaviour
                     isKnockback = true;
                 }
             }
-            else Fall(); //TODO replace with appropriate anim
         } else if (activator.tag == "Fall"){
             Fall();
         }
     }
     public void Knockback(){ }
          
-    void Die(){ }
+    void Die(){
+        linkAnimator.enabled = false;
+        if(numberOfDyingLinks == 0){
+            Instantiate(diePrefab, transform.position , Quaternion.identity);
+            numberOfDyingLinks += 1;
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<Collider2D>().enabled = false;
+            currentState.moveSpeed = 0f;
+        }
+     }
     void UpdateDirection() 
     {
         // move check if currentState is hit in here 
@@ -235,7 +246,6 @@ public class Player : MonoBehaviour
                 }else if (currentDirection == Direction.Left){
                     Instantiate(fallPrefab, transform.position+= new Vector3(-1.5f,0f,0f) , Quaternion.identity);
                 }
-                
                 numberOfFallingsLinks +=1;
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
             }

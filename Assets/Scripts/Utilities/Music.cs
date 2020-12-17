@@ -18,6 +18,8 @@ public class Music : MonoBehaviour
 
 	public void Switch()
 	{
+		sound.Stop();
 		sound.clip = end;
+		sound.Play();
 	}
 }
