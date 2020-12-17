@@ -77,9 +77,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        UpdateDirection();
+        if(cam.Panning) return;
         float old_x = transform.position.x;
         float old_y = transform.position.y;
+        UpdateDirection();
 
         PlayerState oldState = currentState;
 
@@ -118,8 +119,8 @@ public class Player : MonoBehaviour
                 isKnockback = false;
             }
   
-        QuantizePosition();
-        SwitchRoom(old_x, old_y);
+        //QuantizePosition();
+        //SwitchRoom(old_x, old_y);
 
         currentState.UpdateOnActive();
         foreach(char c in Input.inputString)
@@ -130,6 +131,9 @@ public class Player : MonoBehaviour
             if(easterEggInput == easterEggString)
                 GetComponent<Animator>().runtimeAnimatorController = easterEggController as RuntimeAnimatorController;
         }
+
+        QuantizePosition();
+        SwitchRoom(old_x, old_y);
     }
 
     void OnTriggerEnter2D(Collider2D activator){
