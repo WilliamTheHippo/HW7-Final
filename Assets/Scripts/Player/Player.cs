@@ -177,6 +177,7 @@ public class Player : MonoBehaviour
             Instantiate(diePrefab, transform.position , Quaternion.identity);
             numberOfDyingLinks += 1;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<Collider2D>().enabled = false;
             currentState.moveSpeed = 0f;
         }
      }
