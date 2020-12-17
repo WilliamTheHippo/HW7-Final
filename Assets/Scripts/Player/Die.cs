@@ -17,10 +17,10 @@ public class Die : MonoBehaviour
     void Update()
     {   
         ResetTimer -= Time.deltaTime;
-        Debug.Log(ResetTimer);
+
         if(ResetTimer <= 0f){
              SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-             Debug.Log("Scene Reset");
+
         }
     }
 }
