@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Fall : PlayerState 
+using UnityEngine.SceneManagement;
+public class Fall : MonoBehaviour
 {
-	public override void UpdateOnActive()
-	{
-		if(firstFrame)
-		{
-			//disable animators
-			//set player.sr.sprite to falling
-			//call player.Die(), which'll just reload the scene
-		}
-	}
+    float ResetTimer = 0.8f;
+    
+    void Update()
+    {   
+        ResetTimer -= Time.deltaTime;
+        Debug.Log(ResetTimer);
+        if(ResetTimer <= 0f){
+             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+             Debug.Log("Scene Reset");
+        }
+    }
 }

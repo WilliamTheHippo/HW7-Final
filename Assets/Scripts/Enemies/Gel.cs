@@ -19,7 +19,7 @@ public class Gel : Enemy
         following = true;
         canKnockback = true;
 
-        DeathScale = new Vector3(0.5f,0.5f,0.5f); //scale for the explosion       
+        DeathScale = new Vector3(0.7f,0.7f,0.7f); //scale for the explosion       
     }
 
     void FixedUpdate()

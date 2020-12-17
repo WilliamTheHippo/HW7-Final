@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Put this on Link. 
 public class Player : MonoBehaviour
@@ -11,7 +12,6 @@ public class Player : MonoBehaviour
     Hit hit;
     Shield shield;
     Jump jump;
-    Fall fall;
     Push push;
     float health = 3;
     float knockbackTime = 1f;
@@ -19,6 +19,10 @@ public class Player : MonoBehaviour
     bool canKnockback = true;
     bool isKnockback;
     bool alive = true;
+    bool fallingFirstFrame = false;
+    int numberOfFallingsLinks = 0;
+    public GameObject fallPrefab;
+	float ResetTimer = 3f;
 
     public enum Direction {
         Up,
@@ -42,7 +46,7 @@ public class Player : MonoBehaviour
 
     AudioSource sound;
     public AudioClip itemPickup, slash;
-    
+    public Animator linkAnimator;
     void Start()
     {
         sound = GetComponent<AudioSource>();
@@ -53,7 +57,6 @@ public class Player : MonoBehaviour
         hit = ScriptableObject.CreateInstance<Hit>();
         shield = ScriptableObject.CreateInstance<Shield>();
         jump = ScriptableObject.CreateInstance<Jump>();
-        fall = ScriptableObject.CreateInstance<Fall>();
         push = ScriptableObject.CreateInstance<Push>();
 
         idle.GrabComponents(this);
@@ -61,7 +64,7 @@ public class Player : MonoBehaviour
         hit.GrabComponents(this);
         shield.GrabComponents(this);
         jump.GrabComponents(this);
-        fall.GrabComponents(this);
+
         push.GrabComponents(this);
     
         currentState = idle;
@@ -147,6 +150,8 @@ public class Player : MonoBehaviour
                     isKnockback = true;
                 }
             }
+        } else if (activator.tag == "Fall"){
+            Fall();
         }
     }
     public void Knockback(){ }
@@ -206,8 +211,25 @@ public class Player : MonoBehaviour
     // sets state to fall
     public void Fall()
     {
-    	Debug.Log("falling");
-        currentState = fall;
+        fallingFirstFrame = true;
+        if(fallingFirstFrame){
+			linkAnimator.enabled = false;
+            if(numberOfFallingsLinks == 0){
+                if(currentDirection == Direction.Up){
+                    Instantiate(fallPrefab, transform.position += new Vector3(0f,1.5f,0f) , Quaternion.identity);
+                } else if(currentDirection == Direction.Right){
+                    Instantiate(fallPrefab, transform.position += new Vector3(1.5f,0f,0f) , Quaternion.identity);
+                }else if (currentDirection == Direction.Down){
+                    Instantiate(fallPrefab, transform.position+= new Vector3(0f,-1.5f,0f) , Quaternion.identity);
+                }else if (currentDirection == Direction.Left){
+                    Instantiate(fallPrefab, transform.position+= new Vector3(-1.5f,0f,0f) , Quaternion.identity);
+                }
+                
+                numberOfFallingsLinks +=1;
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
+		}
+        //currentState = fall;
     }
 
     public int GetHealth() {

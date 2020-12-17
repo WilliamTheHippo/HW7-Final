@@ -30,7 +30,7 @@ public class Hit : PlayerState
     ////////////////////////////// UTILITIES /////////////////////////////////
     void beginHit() {
 
-        sound.clip = slash;
+        sound.clip = player.slash;
         sound.Play();
 
         firstFrame = false;

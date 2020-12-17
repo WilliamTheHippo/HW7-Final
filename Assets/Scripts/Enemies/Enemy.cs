@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ public abstract class Enemy : MonoBehaviour
     protected Player player;
     protected Transform playerTransform;
     protected bool following;
-    protected bool canKnockback = false;
+    protected bool canKnockback = true;
     protected bool isKnockback = false;
     protected float knockbackDuration;
     protected bool hasInvFrames = false;
@@ -40,7 +40,7 @@ public abstract class Enemy : MonoBehaviour
     protected Vector3 DeathScale;
 
     protected AudioSource sound;
-    protected AudioClip hitSound, dieSound, fallSound;
+    public AudioClip hitSound, dieSound, fallSound;
     //protected bool fallFlag = false;
 
     protected enum Direction {Up, Down, Left, Right}
@@ -83,6 +83,7 @@ public abstract class Enemy : MonoBehaviour
         if (hasInvFrames) {
             /*if(!noSwordHit)*/ hp--;
             if (hp > 0) {
+                //Debug.Log("canknockback: " + canKnockback + "isknockback: " + isKnockback);
                 if (canKnockback && !isKnockback) Knockback();
                 myAnimator.SetBool("isHit", true);
                 StartCoroutine(InvFrames());
@@ -147,7 +148,7 @@ public abstract class Enemy : MonoBehaviour
 	    	GetComponent<Collider2D>().enabled = false;
 	    }
         if(falling) sound.clip = fallSound;
-        else sound.clip = dieSound;
+        //else sound.clip = dieSound;
         sound.Play();
         myAnimator.SetBool("isHit", true);
         if(falling) yield return new WaitForSeconds(0.25f);
