@@ -361,7 +361,7 @@ BlendTree:
     m_DirectBlendParameter: AnimMoveX
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 3dfab31566175e84486137b2874b463f, type: 2}
+    m_Motion: {fileID: 7400000, guid: 5d00c217759ed8c469692f9840bf59e1, type: 2}
     m_Threshold: 1
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
