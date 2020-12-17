@@ -28,9 +28,9 @@ public class Conditional : MonoBehaviour
 		sound = GetComponent<AudioSource>();
 		c = GetComponent<Collider2D>();
 		r = GetComponent<Renderer>();
-		visible = false;
-		c.enabled = false;
-		r.enabled = false;
+		//visible = false;
+		if(!visible) c.enabled = false;
+		if(!visible) r.enabled = false;
 	}
 
 	public IEnumerator Appear()
