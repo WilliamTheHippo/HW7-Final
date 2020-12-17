@@ -142,7 +142,6 @@ public class Player : MonoBehaviour
 
         QuantizePosition();
         SwitchRoom(old_x, old_y);
-        Debug.Log(alive);
         if(health <= 0){
             Die();
         }
@@ -153,7 +152,7 @@ public class Player : MonoBehaviour
             knockback = true;
             if(health > 0){
                 health -= 0.5f;
-                if(canKnockback && !isKnockback && alive == true){
+                if(canKnockback && !isKnockback){
                     Knockback();
                     GetComponent<Animator>().SetBool("gothit",true);
                     Vector2 fromMonsterToPlayer = new Vector2 (
@@ -172,11 +171,11 @@ public class Player : MonoBehaviour
          
     void Die(){
         linkAnimator.enabled = false;
-        alive = false;
         if(numberOfDyingLinks == 0){
             Instantiate(diePrefab, transform.position , Quaternion.identity);
             numberOfDyingLinks += 1;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<Collider2D>().enabled = false;
             currentState.moveSpeed = 0f;
         }
      }
