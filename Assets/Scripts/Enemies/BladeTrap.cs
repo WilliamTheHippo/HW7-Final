@@ -30,7 +30,7 @@ public class BladeTrap : Enemy
         if(!reset)
         {
             //player within 3 units
-            if((player.transform.position-this.transform.position).sqrMagnitude<4*4)
+            if((player.transform.position-this.transform.position).sqrMagnitude<5*5)
                 move = true;
             if (move) transform.Translate(c * 12f * Time.deltaTime, 0f, 0f);
         }
