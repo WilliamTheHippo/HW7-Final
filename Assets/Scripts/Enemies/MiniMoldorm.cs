@@ -63,8 +63,8 @@ public class MiniMoldorm : Enemy
         Timer++;
 
         if(Knockback == 0){
-            if ( randomNumber <= 0.25f ) { 
-
+            if ( randomNumber <= 0.25f ) {
+                if(CheckHoles(Direction.Up) || CheckHoles(Direction.Right)) randomNumber = 0.8f;
                 transform.Translate(xSpeed, 0f, 0f, Space.World); // move pixels per second
                 transform.Translate(0f, ySpeed, 0f, Space.World);
 
@@ -72,21 +72,21 @@ public class MiniMoldorm : Enemy
 
             
             } else if (0.25f < randomNumber && randomNumber <= 0.5f) {
-
+                if(CheckHoles(Direction.Down) || CheckHoles(Direction.Right)) randomNumber = 0.6f;
                 transform.Translate(xSpeed, 0f, 0f, Space.World);
                 transform.Translate( 0f, -ySpeed, 0f, Space.World);
 
                 transform.localEulerAngles = new Vector3(0f, 0f, 0f );
 
             } else if (0.5f < randomNumber && randomNumber <= 0.75f) {
-
+                if(CheckHoles(Direction.Up) || CheckHoles(Direction.Left)) randomNumber = 0.4f;
                 transform.Translate(-xSpeed, 0f, 0f, Space.World);
                 transform.Translate( 0f, ySpeed, 0f, Space.World);
 
                 transform.localEulerAngles = new Vector3(0f, 0f, 180f );
 
             } else if (0.75f < randomNumber) {
-
+                if(CheckHoles(Direction.Down) || CheckHoles(Direction.Left)) randomNumber = 0.1f;
                 transform.Translate(-xSpeed, 0f, 0f, Space.World);
                 transform.Translate( 0f, -ySpeed, 0f, Space.World);
 
