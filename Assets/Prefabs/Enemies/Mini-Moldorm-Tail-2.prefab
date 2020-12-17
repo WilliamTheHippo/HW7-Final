@@ -104,7 +104,7 @@ MonoBehaviour:
   dieSound: {fileID: 0}
   fallSound: {fileID: 0}
   BallToFollow: {fileID: 0}
-  LerpScale: 2
+  LerpScale: 6
   moldorm: {fileID: 0}
 --- !u!95 &2807700773520436453
 Animator:

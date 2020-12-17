@@ -14,11 +14,13 @@ public class BladeTrap : Enemy
     void Start()
     {
         sound = GetComponent<AudioSource>();
-        SetupEnemy();
+        
         c = moveLeft ? -1 : 1;
         move = false;
         reset = false;
         resetPosition = transform.position;
+
+        SetupEnemy();
     }
 
     void FixedUpdate()
@@ -28,7 +30,7 @@ public class BladeTrap : Enemy
         if(!reset)
         {
             //player within 3 units
-            if((player.transform.position-this.transform.position).sqrMagnitude<6*6)
+            if((player.transform.position-this.transform.position).sqrMagnitude<4*4)
                 move = true;
             if (move) transform.Translate(c * 12f * Time.deltaTime, 0f, 0f);
         }
