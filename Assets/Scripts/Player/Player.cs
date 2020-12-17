@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 // Put this on Link. 
 public class Player : MonoBehaviour
@@ -14,7 +15,7 @@ public class Player : MonoBehaviour
     Jump jump;
     Push push;
     float health = 3;
-    float knockbackTime = 1f;
+    float knockbackTime = 0.3f;
     bool knockback;
     bool canKnockback = true;
     bool isKnockback;
@@ -38,6 +39,8 @@ public class Player : MonoBehaviour
     public string easterEggString;
     string easterEggInput;
 
+    public Text moneyCounter;
+
     CameraMovement cam;
     public PlayerState currentState;
     bool moving; // True whenever movement keys are pressed
@@ -45,7 +48,7 @@ public class Player : MonoBehaviour
     public int keys;
 
     AudioSource sound;
-    public AudioClip itemPickup, slash;
+    public AudioClip itemPickup, slash, fallSound;
     public Animator linkAnimator;
     void Start()
     {
@@ -77,9 +80,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        UpdateDirection();
+        if(cam.Panning) return;
         float old_x = transform.position.x;
         float old_y = transform.position.y;
+        UpdateDirection();
 
         PlayerState oldState = currentState;
 
@@ -112,14 +116,14 @@ public class Player : MonoBehaviour
             }
             //Debug.Log(knockbackTime);
             if(knockbackTime <= 0){
-                knockbackTime = 1f;
+                knockbackTime = 0.5f;
                 GetComponent<Animator>().SetBool("gothit",false);
                 GetComponent<Rigidbody2D>().velocity = Vector3.zero;
                 isKnockback = false;
             }
   
-        QuantizePosition();
-        SwitchRoom(old_x, old_y);
+        //QuantizePosition();
+        //SwitchRoom(old_x, old_y);
 
         currentState.UpdateOnActive();
         foreach(char c in Input.inputString)
@@ -128,8 +132,14 @@ public class Player : MonoBehaviour
             if(easterEggInput.Length > easterEggString.Length) easterEggInput = "";
             if(easterEggInput != easterEggString.Substring(0, easterEggInput.Length)) easterEggInput = "";
             if(easterEggInput == easterEggString)
+            {
                 GetComponent<Animator>().runtimeAnimatorController = easterEggController as RuntimeAnimatorController;
+                moneyCounter.text = "LOL";
+            }
         }
+
+        QuantizePosition();
+        SwitchRoom(old_x, old_y);
     }
 
     void OnTriggerEnter2D(Collider2D activator){
@@ -137,6 +147,7 @@ public class Player : MonoBehaviour
             Debug.Log("Enemy Hit");
             knockback = true;
             health -= 0.5f;
+            Debug.Log(health);
             if(health > 0){
                 if(canKnockback && !isKnockback){
                     Knockback();
@@ -145,7 +156,7 @@ public class Player : MonoBehaviour
                     transform.position.x - activator.transform.position.x,
                     transform.position.y - activator.transform.position.y);
                     fromMonsterToPlayer.Normalize();
-                    GetComponent<Rigidbody2D>().velocity = fromMonsterToPlayer*4;
+                    GetComponent<Rigidbody2D>().velocity = fromMonsterToPlayer*5; 
                     isKnockback = true;
                 }
             }
