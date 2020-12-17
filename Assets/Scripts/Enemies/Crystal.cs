@@ -6,6 +6,7 @@ public class Crystal : Enemy
 {
 	void Start()
 	{
+		crystal = true;
 		SetupEnemy();
 		noSwordHit = true;
 		canKnockback = false;
