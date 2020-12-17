@@ -150,8 +150,7 @@ public class Player : MonoBehaviour
                     transform.position.x - activator.transform.position.x,
                     transform.position.y - activator.transform.position.y);
                     fromMonsterToPlayer.Normalize();
-                        GetComponent<Rigidbody2D>().velocity = fromMonsterToPlayer*5; 
-
+                    GetComponent<Rigidbody2D>().velocity = fromMonsterToPlayer*5; 
                     isKnockback = true;
                 }
             }
