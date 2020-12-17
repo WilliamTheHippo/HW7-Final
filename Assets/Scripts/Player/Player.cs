@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 // Put this on Link. 
 public class Player : MonoBehaviour
@@ -37,6 +38,8 @@ public class Player : MonoBehaviour
     public RuntimeAnimatorController easterEggController;
     public string easterEggString;
     string easterEggInput;
+
+    public Text moneyCounter;
 
     CameraMovement cam;
     public PlayerState currentState;
@@ -129,7 +132,10 @@ public class Player : MonoBehaviour
             if(easterEggInput.Length > easterEggString.Length) easterEggInput = "";
             if(easterEggInput != easterEggString.Substring(0, easterEggInput.Length)) easterEggInput = "";
             if(easterEggInput == easterEggString)
+            {
                 GetComponent<Animator>().runtimeAnimatorController = easterEggController as RuntimeAnimatorController;
+                moneyCounter.text = "LOL";
+            }
         }
 
         QuantizePosition();
