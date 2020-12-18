@@ -18,3 +18,20 @@ See [Reef.md](Contributions/Reef.md)
 ## Charlee
 
 https://docs.google.com/document/d/1thCoqbr4m7-8qMb27li4CrqWhA272bnmJdNi3AmtYyk/edit?usp=sharing
+
+## Sam
+
+I refactored the code for players and enemies midway through development, and that was definitely my biggest technical challenge. Code can get messy when several people are collaborating on it, and the project had become difficult for our group to understand and debug. Once the refactor was complete and debugged, adding new functionality was much easier––but my biggest technical challenge was trying to make other people's code more readable without breaking everything. Most of the refactoring involved collapsing reused code into methods or moving code from one class to another, and the majority of the logic Reef and Charlee had already figured out remained the same.
+I believe I did a much better job refactoring the code for the player than the code for the enemies. I made a state machine for Link, which uses the main class [`Player.cs`](Assets/Scripts/Player/Player.cs) to instantiate [`PlayerState`](Assets/Scripts/Player/PlayerState.cs) objects for each of Link's actions: [`Idle`](Assets/Scripts/Player/Idle.cs), [`Walk`](Assets/Scripts/Player/Walk.cs), [`Hit`](Assets/Scripts/Player/Hit.cs), [`Shield`](Assets/Scripts/Player/Shield.cs), [`Jump`](Assets/Scripts/Player/Jump.cs), [`Push`](Assets/Scripts/Player/Push.cs), and [`Fall`](Assets/Scripts/Player/Fall.cs). Each state has its own `UpdateOnActive()` function, and the `Player` class switches automatically between them based on key input. The states share certain key variables, like `player`, which points back to the `Player` object that instantiated the class.
+The refactored enemy code has all enemies inherit from [`Enemy.cs`](Assets/Scripts/Enemies/Enemy.cs). Repeated functionality, like how the enemy should manage its health or behave when hit by the sword, was moved to `Enemy.cs`. The code was already structured this way before the refactor, but `Enemy.cs` had little functionality and a lot of methods were reused between classes. Refactoring the enemy code was easier in that I didn't have to write as much of my own code, but I was rushed when I did it, and as a result there are tiny mistakes that make the code more difficult to debug than the player code––unused variables, methods that are in `Enemy.cs` when they shouldn't be, etc. 
+Being the only person responsible for refactoring the code also meant that the group was dependent on me to finish refactoring quickly so progress could continue at a time when extenuating circumstances meant I had to work on the project in inconsistent sprints rather than daily time blocks. I'm happy with the refactor, especially the refactored player code, but in hindsight I think it would have been better to have either not refactored the enemy code or to have had someone else do it––an alternative, more generally applicable moral for myself would be to avoid creating situations in group projects where everyone is waiting on one person to do a lot of work. 
+
+I also did a couple of Link's many sprites for his various animation states, and most of the enemy sprites, some of which are pictured below:
+
+![Orange Stalfos](Contributions/Orange-Stalfos.png)
+
+![Hardhat Beetle](Contributions/Hardhat-Beetle.png)
+
+![Gel](Contributions/Gel.png)
+
+Hopefully the first paragraph makes it pretty clear which code I'm responsible for, but to be more specific, I wrote all of the code in Player's `Update()` function. [`HealthBar.cs`](Assets/Scripts/Utilities/UI/HealthBar.cs) may be the only class where all of the code is mine. 
