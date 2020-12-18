@@ -7,7 +7,7 @@ public class HardhatBeetle : Enemy
 
     void Start()
     {
-
+        hp = 500;
         noSwordHit = true;
         knockbackDuration = 0.5f / Time.deltaTime;
         knockbackSpeed = 4f;
@@ -33,7 +33,7 @@ public class HardhatBeetle : Enemy
     public override void SwordHit() {
         
         following = false;
-        if(canKnockback && !isKnockback) Knockback();
-        //base.SwordHit();
+        //if(canKnockback && !isKnockback) Knockback();
+        base.SwordHit();
     }
 }
