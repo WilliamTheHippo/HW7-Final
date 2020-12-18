@@ -2164,7 +2164,7 @@ PrefabInstance:
     - target: {fileID: 1449034564073603127, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
         type: 3}
       propertyPath: easterEggString
-      value: 123
+      value: bug
       objectReference: {fileID: 0}
     - target: {fileID: 1449034564073603127, guid: 20f064ee3a3169d49a2d0b67f3c259c8,
         type: 3}
@@ -45633,7 +45633,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.199997, y: -60.3}
+  m_AnchoredPosition: {x: 2.5713, y: -60.299995}
   m_SizeDelta: {x: 7, y: 7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1366745827
